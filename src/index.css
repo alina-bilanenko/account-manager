@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+button.fieldHeader span,
+.MuiTab-label-187,
+.MuiTab-label-203,
+.MuiTab-label-205 {
+  font-size: 1.5rem !important;
+}
+
+.TabIndicator-colorSecondary-209 {
+  background-color: #4E86E4 !important;
+}
+
+.MuiBottomNavigationAction-wrapper-109 {
+  flex-direction: row !important;
+  justify-content: flex-start !important;
+}
