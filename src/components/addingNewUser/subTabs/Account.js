@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles, Typography, BottomNavigationAction, Grid, Card } from '@material-ui/core';
 import { Close } from "icons";
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
-import BootstrapButton from 'components/collectiveComponents/BootstrapButton'
+import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
 import { connect } from 'react-redux'
 import { createUser } from "actions/createUserAction";
@@ -118,12 +118,11 @@ let Account = (props) => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.userName} label="User name"/>} type="text" />
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Password" />} type="text" />
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Repeat Password"/>} type="text" />
+              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.userName} label="User name" />} type="text" />
+              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Password" endAdornment={true} />} type="text" />
+              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Repeat Password" endAdornment={true} />} type="text" />
+              <ButtonGroup leftName='Back' rightName='Forward' hidden={true}/>
             </div>
-            {/*<button type="submit">Submit</button>*/}
-            <BootstrapButton buttonName='Forward' type="submit"/>
           </Grid>
         </Grid>
       </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { withStyles, Button} from '@material-ui/core';
+import classNames from "classnames";
 
 const styles = theme =>({
   buttonGroup: {
     display: 'flex',
-    marginTop: '140px',
+    marginTop: '100px',
     justifyContent: 'space-between'
   },
   button: {
@@ -12,15 +13,18 @@ const styles = theme =>({
     textTransform: 'none',
     width: '100px',
     height: '40px',
-  }
+  },
+  hidden: {
+  visibility: 'hidden'
+}
 });
 
 const ButtonGroup = (props) => {
-  const {classes, leftName, rightName} = props;
+  const {classes, leftName, rightName, hidden} = props;
 
   return (
             <div className={classes.buttonGroup}>
-              <Button variant="contained" color="primary" className={classes.button}>
+              <Button variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
                 {leftName}
               </Button>
               <Button variant="contained" color="primary" className={classes.button}>
