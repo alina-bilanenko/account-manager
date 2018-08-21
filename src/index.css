@@ -18,3 +18,14 @@ button.fieldHeader span,
   flex-direction: row !important;
   justify-content: flex-start !important;
 }
+
+.MuiTypography-root-114.MuiTypography-body1-123 {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #657C9A
+}
+
+.MuiFormHelperText-root-283 {
+  color: #EB5757 !important
+}

@@ -9,11 +9,18 @@
     "@material-ui/core": "^1.5.0",
     "@material-ui/icons": "^2.0.2",
     "classnames": "^2.2.6",
+    "connected-react-router": "^4.4.1",
+    "history": "^4.7.2",
+    "moment": "^2.22.2",
     "prettier": "^1.14.2",
     "react": "^16.4.2",
+    "react-datepicker": "^1.6.0",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-select": "^2.0.0",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2"
   },
@@ -22,13 +29,32 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "lint-staged",
-    "prettier": "prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\""
+    "lint": "eslint src/*",
+    "lint-fix": "eslint --fix src/*",
+    "lint-fix-test": "eslint --fix-dry-run src/*"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --single-quote --trailing-comma es5 --write",
-      "git add"
+    "*.(js|jsx)": [
+      "eslint --fix"
     ]
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-react": "^6.0.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "husky": "^0.14.3"
   }
 }
