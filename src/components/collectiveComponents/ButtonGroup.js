@@ -27,7 +27,7 @@ const ButtonGroup = (props) => {
               <Button variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
                 {leftName}
               </Button>
-              <Button variant="contained" color="primary" className={classes.button}>
+              <Button type="submit" variant="contained" color="primary" className={classes.button}>
                 {rightName}
               </Button>
             </div>

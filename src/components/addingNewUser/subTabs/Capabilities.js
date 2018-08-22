@@ -4,6 +4,7 @@ import IntegrationReactSelect from 'components/collectiveComponents/IntegrationR
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
 import CheckboxesGroup from 'components/collectiveComponents/CheckboxesGroup'
 import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
+
 const styles = theme =>({
   root: {
     backgroundColor: 'rgba(231, 240, 255, 0.2)',

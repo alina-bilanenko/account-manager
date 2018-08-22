@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Typography } from "@material-ui/core";
 import { Add } from "icons";
 import Button from "@material-ui/core/Button";
+import {fieldNames} from "consts";
 
 const styles = theme => ({
   button: {
@@ -30,7 +31,7 @@ const styles = theme => ({
 });
 
 function ImageLoader (props) {
-  const { classes, addPhoto } = props;
+  const { classes } = props;
 
   const AddAvatar = (
     <Typography variant="body2" gutterBottom className={classes.addAvatar}>
@@ -41,7 +42,7 @@ function ImageLoader (props) {
 
   return (
     <div>
-      <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={addPhoto}/>
+      <input accept="image/*" className={classes.input} id="icon-button-file" name={fieldNames.photo} type="file" />
       <label htmlFor="icon-button-file">
         <Button variant="outlined" component="span"  className={classes.avatar}>
           {AddAvatar}

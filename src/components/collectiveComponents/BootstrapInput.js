@@ -43,20 +43,21 @@ const styles = theme =>({
 });
 
 const BootstrapInput = (props) => {
-  const {classes, label, handleChangeInput, name, required = false, endAdornment = false} = props;
-  const showPassword = true;
-  const handleClickShowPassword = () => {
-
+  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type } = props;
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
-  const handleMouseDownPassword = () => {
 
+  const handleClickShowPassword = () => {
+    changeShow();
   };
 
   return (
     <TextField
       required={required}
       label={label}
-      id="bootstrap-input"
+      type={type}
+
       InputProps={{
         disableUnderline: true,
         classes: {
@@ -70,16 +71,17 @@ const BootstrapInput = (props) => {
               onMouseDown={handleMouseDownPassword}
               className={classes.visibleIcon}
             >
-              {showPassword ? (<Icon>{Eye}</Icon>): (<Icon>{EyeStrike}</Icon>)}
+              {show ? (<Icon>{Eye}</Icon>): (<Icon>{EyeStrike}</Icon>)}
             </IconButton>
           </InputAdornment>
-        ) : null
+        ) : null,
+        ...inputProps
       }}
       InputLabelProps={{
         shrink: true,
         className: classes.bootstrapFormLabel,
       }}
-      helperText="Some important text"
+      helperText={meta.touched && meta.error}
       FormHelperTextProps={{
         classes: {root: classes.textHelper},
       }}

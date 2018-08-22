@@ -4,12 +4,13 @@ import { Close } from "icons";
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
 import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
-import { connect } from 'react-redux'
-import { createUser } from "actions/createUserAction";
 import { fieldNames } from 'consts'
 import { Avatar } from "icons";
-import {validate} from 'Validation/index'
+import {accountValidation, matchInput, confirmPassword} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
+import { collectiveActions } from "actions/action";
+
 
 const styles = theme =>({
   root: {
@@ -71,36 +72,35 @@ const styles = theme =>({
 });
 
 let Account = (props) => {
-  let { classes, createUser, changeUser, handleChangeInput, handleSubmit } = props;
+  let { classes, handleSubmit, showPassword, changeShowPassword, showConfirmPassword, changeShowConfirmPassword } = props;
 
-  const addPhoto = (event) => {
-    const files = event.target.files;
+  // const addPhoto = (event) => {
+  //   const files = event.target.files;
+  //
+  //   if (!files.length ) {
+  //     return
+  //   }
+  //
+  //   let reader = new FileReader();
+  //   let file = files[0];
+  //
+  //   reader.onloadend = () => {
+  //     changeUser({...createUser.addNewUser, [fieldNames.photo]: reader.result});
+  //   };
+  //
+  //   reader.readAsDataURL(file);
+  // };
 
-    if (!files.length ) {
-      return
-    }
 
-    let reader = new FileReader();
-    let file = files[0];
+  // let imagePreview = Avatar;
+    //
+    // if (createUser.addNewUser.photo) {
+    //   imagePreview = (<img src={createUser.addNewUser.photo} className={classes.imageLoader}  />);
+    // }
 
-    reader.onloadend = () => {
-      changeUser({...createUser.addNewUser, [fieldNames.photo]: reader.result});
-    };
-
-    reader.readAsDataURL(file);
-  };
-
-
-  const ImagePreview = () => {
-    if (createUser.addNewUser.photo) {
-     return (<img src={createUser.addNewUser.photo} className={classes.imageLoader}/>);
-    }
-
-    return <img src={Avatar} />
-  };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmit)}>
+    <form onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>
         <div className={classes.unsavedUserData}>
           <Typography variant="body2" gutterBottom className={classes.unsavedUserDataText}>
@@ -112,15 +112,15 @@ let Account = (props) => {
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <Card className={classes.card}>
-
+              {Avatar}
             </Card>
-            <ImageLoader addPhoto={addPhoto}/>
+            <ImageLoader/>
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.userName} label="User name" />} type="text" />
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Password" endAdornment={true} />} type="text" />
-              <Field name={fieldNames.userName} component={()=> <BootstrapInput name={fieldNames.password} label="Repeat Password" endAdornment={true} />} type="text" />
+              <Field name={fieldNames.userName} label="User name" component={BootstrapInput} type="text"  />
+              <Field name={fieldNames.password} label="Password" endAdornment={true} component={BootstrapInput} type={showPassword? "text" : "password"} show={showPassword} changeShow={changeShowPassword}/>
+              <Field name={fieldNames.repeatPassword} validate={[confirmPassword, matchInput]} label="Repeat Password" endAdornment={true} component={BootstrapInput} type={showConfirmPassword? "text" : "password"} show={showConfirmPassword} changeShow={changeShowConfirmPassword} />
               <ButtonGroup leftName='Back' rightName='Forward' hidden={true}/>
             </div>
           </Grid>
@@ -131,21 +131,21 @@ let Account = (props) => {
 };
 
 
+Account = reduxForm({
+  form: 'account',
+  validate: accountValidation
+})(Account);
+
 const mapStateToProps = (props) => {
   return {
-    createUser: props.createUser
+    showPassword: props.collectiveState.showPassword,
+    showConfirmPassword: props.collectiveState.showConfirmPassword
   }
 };
 
 const mapDispatchToProps = {
-  changeUser: createUser.addNewUser
+  changeShowPassword: collectiveActions.showPassword,
+  changeShowConfirmPassword: collectiveActions.showConfirmPassword
 };
-
-Account = reduxForm({
-  // a unique name for the form
-  form: 'account',
-  validate
-})(Account);
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Account));

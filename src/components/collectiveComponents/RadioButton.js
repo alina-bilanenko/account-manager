@@ -8,11 +8,24 @@ const styles = theme =>({
     fontSize: 14,
     lineHeight: '16px',
     fontWeight: 400,
-    color: '#657C9A'
+    color: '#657C9A',
   },
   group: {
     flexDirection: 'row'
   },
+  radio: {
+    color: '#C1CFE0',
+    '&$checked': {
+      color: '#4E86E4'
+    }
+  },
+  checked: {
+    '&, & + $label': {
+      color: '#000000',
+      fontWeight: '500'
+    },
+  },
+  label: {},
 });
 
 const RadioButton = (props) => {
@@ -22,31 +35,37 @@ const RadioButton = (props) => {
 
   };
   return (
-            <Fragment>
-              <FormLabel component="legend" className={classes.bootstrapFormLabel}>Gender</FormLabel>
-              <RadioGroup
-                aria-label="gender"
-                name="gender2"
-                className={ classNames(classes.group, classes.bootstrapFormLabel) }
-                value={value}
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value="female"
-                  control={<Radio color="primary" />}
-                  label="Female"
-                  labelPlacement="end"
-                  className={classes.bootstrapFormLabel}
-                />
-                <FormControlLabel
-                  value="male"
-                  control={<Radio color="primary" />}
-                  label="Male"
-                  labelPlacement="end"
-                  className={classes.bootstrapFormLabel}
-                />
-              </RadioGroup>
-            </Fragment>
+    <Fragment>
+      <FormLabel component="legend" className={classes.bootstrapFormLabel}>Gender</FormLabel>
+      <RadioGroup
+        aria-label="gender"
+        name="gender2"
+        className={ classNames(classes.group, classes.bootstrapFormLabel) }
+        value={value}
+        onChange={handleChange}
+      >
+        <FormControlLabel
+          value="male"
+          classes={{
+            label: classes.label,
+          }}
+          control={<Radio classes={{root: classes.radio, checked: classes.checked}} />}
+          label="Male"
+          labelPlacement="end"
+          className={classes.bootstrapFormLabel}
+        />
+        <FormControlLabel
+          value="female"
+          classes={{
+            label: classes.label,
+          }}
+          control={<Radio classes={{root: classes.radio, checked: classes.checked}} />}
+          label="Female"
+          labelPlacement="end"
+          className={classes.bootstrapFormLabel}
+        />
+      </RadioGroup>
+    </Fragment>
   )};
 
 export default withStyles(styles)(RadioButton);

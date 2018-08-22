@@ -7,6 +7,10 @@ const collectiveState = (state = {}, action) => {
   switch (action.type) {
     case 'CREATE_USER':
       return { ...state, createUser: !state.createUser };
+    case 'SHOW_PASSWORD':
+      return { ...state, showPassword: !state.showPassword };
+    case 'SHOW_CONFIRM_PASSWORD':
+      return { ...state, showConfirmPassword: !state.showConfirmPassword };
 
     default:
       return state

@@ -13,7 +13,6 @@ import { stylesAdd } from 'styles'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { createUser } from "actions/createUserAction";
-import { fieldNames } from 'consts'
 
 const AddingNewUsers = (props) => {
 
@@ -21,20 +20,13 @@ const AddingNewUsers = (props) => {
     props.history.push(`/create-user/${val}`)
   };
 
-  const {classes, user, changeUser} = props;
+  const {classes } = props;
   const tabName = props.match.params.name;
 
   if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
     props.history.push('/create-user/account');
     return null
   }
-
-  const handleChangeInput = (event) => {
-    const name = event.target.name;
-    const value =  event.target.value;
-
-    changeUser({...user, [fieldNames[name]]: value});
-  };
 
   return (
     <div>
@@ -52,28 +44,28 @@ const AddingNewUsers = (props) => {
         </AppBar>
         <Route exact path='/create-user/account'
                render={(props) => (
-                 <Account {...props} handleChangeInput={handleChangeInput}/>
+                 <Account {...props} onSubmit={()=>{}}/>
                )}
         />
         <Route exact path='/create-user/profile'
                render={(props) => (
-                 <Profile {...props} handleChangeInput={handleChangeInput}/>
+                 <Profile {...props} onSubmit={()=>{}}/>
                )}
         />
         <Route exact path='/create-user/contacts'
                render={(props) => (
-                 <Contacts {...props} handleChangeInput={handleChangeInput}/>
+                 <Contacts {...props} onSubmit={()=>{}}/>
                )}
         />
         <Route exact path='/create-user/capabilities'
                render={(props) => (
-                 <Capabilities {...props} handleChangeInput={handleChangeInput}/>
+                 <Capabilities {...props} onSubmit={()=>{}}/>
                )}
         />
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = (props) => {
   return {

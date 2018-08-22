@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles, Grid, Button } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css';
 import BootstrapInput from "../../collectiveComponents/BootstrapInput";
-import CheckBox from 'components/collectiveComponents/RadioButton'
+import RadioButton from 'components/collectiveComponents/RadioButton'
 import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
-import {validate} from 'Validation/index'
+import {profileValidation} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from "consts";
 
@@ -32,20 +32,20 @@ const styles = theme =>({
 });
 
 let Profile = (props) => {
-  const {classes, value = 'female', date=moment(), handleSubmit} = props;
+  const {classes, date=moment(), handleSubmit} = props;
 
   const handleChange = () => {
 
   };
 
   return (
-    <form onSubmit={handleSubmit(handleSubmit)}>
+    <form onSubmit={handleSubmit} noValidate>
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <Field name={fieldNames.firstName} component={()=> <BootstrapInput required={true} name={fieldNames.firstName} label="First name" />} type="text" />
-            <Field name={fieldNames.lastName} component={()=> <BootstrapInput required={true} name={fieldNames.lastName} label="Last name" />} type="text" />
+            <Field name={fieldNames.firstName} required={true} label="First name"  component={BootstrapInput} type="text" />
+            <Field name={fieldNames.lastName} required={true} label="Last name" component={BootstrapInput} type="text" />
             <DatePicker
               selected={date}
               onChange={handleChange}
@@ -55,9 +55,9 @@ let Profile = (props) => {
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <Field name={fieldNames.email} component={()=> <BootstrapInput required={true} name={fieldNames.email} label="Email" />} type="text" />
-            <Field name={fieldNames.address} component={()=> <BootstrapInput required={true} name={fieldNames.address} label="Address" />} type="text" />
-            <CheckBox />
+            <Field name={fieldNames.email} required={true} label="Email" component={BootstrapInput} type="text" />
+            <Field name={fieldNames.address} required={true} label="Address" component={BootstrapInput} type="text" />
+            <RadioButton />
             <ButtonGroup leftName='Back' rightName='Forward'/>
           </div>
         </Grid>
@@ -68,7 +68,7 @@ let Profile = (props) => {
 
 Profile = reduxForm({
   form: 'profile',
-  validate
+  validate: profileValidation
 })(Profile);
 
 export default withStyles(styles)(Profile);

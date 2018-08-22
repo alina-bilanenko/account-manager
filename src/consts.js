@@ -26,6 +26,7 @@ export const fieldNames = {
   photo: 'photo',
   userName: 'userName',
   password: 'password',
+  repeatPassword: 'repeatPassword',
   firstName: 'firstName',
   lastName: 'lastName',
   birthDate: 'birthDate',
@@ -45,7 +46,9 @@ export const fieldNames = {
 
 export const initialState = {
   collectiveState: {
-    createUser:  true
+    createUser:  true,
+    showPassword: false,
+    showConfirmPassword: false
   },
   usersList: {
     listOfUsers: []
