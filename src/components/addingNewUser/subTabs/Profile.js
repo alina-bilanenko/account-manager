@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Grid } from '@material-ui/core';
+import { withStyles, Grid, Icon, Radio, FormLabel, FormControlLabel } from "@material-ui/core";
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css';
 import BootstrapInput from "../../collectiveComponents/BootstrapInput";
@@ -9,6 +9,8 @@ import {profileValidation} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from "consts";
 import BirthDate from 'components/collectiveComponents/BirthDate'
+import { Calendar } from "icons";
+import renderRadioGroup from 'components/collectiveComponents/RadioButton'
 
 const styles = theme =>({
   root: {
@@ -27,12 +29,11 @@ const styles = theme =>({
     flexDirection: 'column',
     flexWrap: 'wrap',
     width: '70%',
-
-  }
+  },
 });
 
 let Profile = (props) => {
-  const {classes, date=moment(), handleSubmit} = props;
+  const {classes, handleSubmit} = props;
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -42,26 +43,16 @@ let Profile = (props) => {
           <div className={classes.container}>
             <Field name={fieldNames.firstName} required={true} label="First name"  component={BootstrapInput} type="text" />
             <Field name={fieldNames.lastName} required={true} label="Last name" component={BootstrapInput} type="text" />
-            <Field name={fieldNames.birthDate} selected={date} label="Birth date" component={BirthDate} type="text" />
-            <Field
-              name={fieldNames.birthDate}
-              inputValueFormat="DD-MM-YYYY"
-              dateFormat="L"
-              dateFormatCalendar="dddd"
-              fixedHeight
-              showMonthDropdown
-              showYearDropdown
-              dropdownMode="select"
-              normalize={value => (value ? moment(value).format('DD-MM-YYYY') : null)}
-              component={BirthDate}
-            />
+            <Field name={fieldNames.birthDate} required={true} label="Birth date" component={BirthDate} type="text" >
+              <Icon>{Calendar}</Icon>
+            </Field>
           </div>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
             <Field name={fieldNames.email} required={true} label="Email" component={BootstrapInput} type="text" />
             <Field name={fieldNames.address} required={true} label="Address" component={BootstrapInput} type="text" />
-            <RadioButton />
+            <Field name={fieldNames.gender} component={RadioButton} />
             <ButtonGroup leftName='Back' rightName='Forward'/>
           </div>
         </Grid>

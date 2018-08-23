@@ -83,8 +83,6 @@ let Account = (props) => {
     photo
   } = props;
 
-  console.log(props)
-
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>

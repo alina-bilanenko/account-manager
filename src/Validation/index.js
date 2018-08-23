@@ -1,5 +1,5 @@
 import {fieldNames } from "consts";
-
+import moment from 'moment'
 export const accountValidation = (inputs) => {
   const errors = {};
   if (!inputs[fieldNames.userName]) {
@@ -36,9 +36,19 @@ export const profileValidation = inputs => {
   if (!inputs[fieldNames.lastName]) {
     errors[fieldNames.lastName] = 'Required';
   }
+
   if (!inputs[fieldNames.birthDate]) {
-    errors[fieldNames.lastName] = 'Required';
+    errors[fieldNames.birthDate] = 'Required';
+  } else  if (!inputs[fieldNames.birthDate].isValid()) {
+    errors[fieldNames.birthDate] = 'Date does not exist';
+  } else if(moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
+    errors[fieldNames.birthDate] = 'You must be over 18 years of age';
   }
+
+  if (!inputs[fieldNames.email]) {
+    errors[fieldNames.email] = 'Required';
+  }
+
 
   return errors;
 };

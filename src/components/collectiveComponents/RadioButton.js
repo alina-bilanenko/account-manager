@@ -3,6 +3,7 @@ import { withStyles, FormLabel, RadioGroup, FormControlLabel } from '@material-u
 import Radio from '@material-ui/core/Radio';
 import classNames from 'classnames';
 
+
 const styles = theme =>({
   bootstrapFormLabel: {
     fontSize: 14,
@@ -29,20 +30,18 @@ const styles = theme =>({
 });
 
 const RadioButton = (props) => {
-  const {classes, value = 'female',} = props;
+  const {classes, input, name, ...rest} = props;
 
-  const handleChange = () => {
-
-  };
   return (
     <Fragment>
       <FormLabel component="legend" className={classes.bootstrapFormLabel}>Gender</FormLabel>
       <RadioGroup
+        {...input} {...rest}
         aria-label="gender"
-        name="gender2"
+        name={name}
         className={ classNames(classes.group, classes.bootstrapFormLabel) }
-        value={value}
-        onChange={handleChange}
+        value={!input.value ? 'male' : input.value }
+        onChange={(event, value) => input.onChange(value)}
       >
         <FormControlLabel
           value="male"
