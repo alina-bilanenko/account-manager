@@ -1,6 +1,5 @@
 import React from 'react';
-import { withStyles, Grid, Icon, Radio, FormLabel, FormControlLabel } from "@material-ui/core";
-import moment from 'moment'
+import { withStyles, Grid, Icon } from "@material-ui/core";
 import 'react-datepicker/dist/react-datepicker.css';
 import BootstrapInput from "../../collectiveComponents/BootstrapInput";
 import RadioButton from 'components/collectiveComponents/RadioButton'
@@ -10,7 +9,6 @@ import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from "consts";
 import BirthDate from 'components/collectiveComponents/BirthDate'
 import { Calendar } from "icons";
-import renderRadioGroup from 'components/collectiveComponents/RadioButton'
 
 const styles = theme =>({
   root: {
@@ -63,6 +61,7 @@ let Profile = (props) => {
 
 Profile = reduxForm({
   form: 'profile',
+  destroyOnUnmount: false,
   validate: profileValidation
 })(Profile);
 

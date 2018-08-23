@@ -2,7 +2,10 @@ import React from 'react';
 import { withStyles, Grid } from '@material-ui/core';
 import IntegrationReactSelect from 'components/collectiveComponents/IntegrationReactSelect'
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
-import ButtonGroup from "components/collectiveComponents/ButtonGroup";
+import ButtonGroup from "components/collectiveComponents/ButtonGroup"
+import { Field, reduxForm } from 'redux-form'
+import { contactsValidation } from "Validation";
+import { fieldNames } from "consts";
 
 const styles = theme =>({
   root: {
@@ -20,34 +23,42 @@ const styles = theme =>({
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
-    width: '50%',
+    width: '70%',
   }
 });
 
-const Contacts = (props) => {
-  const {classes} = props;
+let Contacts = (props) => {
+  const {classes, handleSubmit} = props;
 
   return (
+    <form onSubmit={handleSubmit} noValidate>
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <BootstrapInput label='Company'/>
-            <BootstrapInput label='Github link'/>
-            <BootstrapInput label='Facebook link'/>
+            <Field name={fieldNames.company} required={true} label="Company"  component={BootstrapInput} type="text" />
+            <Field name={fieldNames.gitHubLink} label="Github link"  component={BootstrapInput} type="text" />
+            <Field name={fieldNames.facebookLink}  label="Facebook link"  component={BootstrapInput} type="text" />
             <IntegrationReactSelect isMulti={false}/>
           </div>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <BootstrapInput label='Fax'/>
-            <BootstrapInput label='Phone #1'/>
-            <BootstrapInput label='Phone #2'/>
+            <Field name={fieldNames.fax} label="Fax"  component={BootstrapInput} type="text" />
+            <Field name={fieldNames.phone} label="Phone #1" inputMask={true} component={BootstrapInput} type="text" />
+            <Field name={fieldNames.phone} label="Phone #2" inputMask={true} component={BootstrapInput} type="text" />
             <ButtonGroup leftName='Back' rightName='Forward'/>
           </div>
         </Grid>
       </Grid>
     </div>
+    </form>
   )};
+
+Contacts = reduxForm({
+  form: 'contacts',
+  destroyOnUnmount: false,
+  validate: contactsValidation
+})(Contacts);
 
 export default withStyles(styles)(Contacts);

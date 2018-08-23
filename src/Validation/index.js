@@ -49,6 +49,25 @@ export const profileValidation = inputs => {
     errors[fieldNames.email] = 'Required';
   }
 
+  if (!inputs[fieldNames.address]) {
+    errors[fieldNames.address] = 'Required';
+  }
+
+  return errors;
+};
+
+export const contactsValidation = (inputs) => {
+  const errors = {};
+  if (!inputs[fieldNames.company]) {
+    errors[fieldNames.company] = 'Required';
+  }
+
+  return errors;
+};
+
+export const capabilitiesValidation = (inputs) => {
+  const errors = {};
+
 
   return errors;
 };

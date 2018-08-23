@@ -54,12 +54,12 @@ const AddingNewUsers = (props) => {
         />
         <Route exact path='/create-user/contacts'
                render={(props) => (
-                 <Contacts {...props} onSubmit={()=>{}}/>
+                 <Contacts {...props} onSubmit={(res)=>{console.log(res)}}/>
                )}
         />
         <Route exact path='/create-user/capabilities'
                render={(props) => (
-                 <Capabilities {...props} onSubmit={()=>{}}/>
+                 <Capabilities {...props} onSubmit={(res)=>{console.log(res)}}/>
                )}
         />
       </div>

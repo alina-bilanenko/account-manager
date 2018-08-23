@@ -4,6 +4,9 @@ import IntegrationReactSelect from 'components/collectiveComponents/IntegrationR
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
 import CheckboxesGroup from 'components/collectiveComponents/CheckboxesGroup'
 import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
+import { Field, reduxForm } from 'redux-form'
+import { capabilitiesValidation } from "Validation";
+import { fieldNames } from "../../../consts";
 
 const styles = theme =>({
   root: {
@@ -25,16 +28,17 @@ const styles = theme =>({
   }
 });
 
-const Capabilities = (props) => {
-  const {classes} = props;
+let Capabilities = (props) => {
+  const {classes, handleSubmit} = props;
 
   return (
+    <form onSubmit={handleSubmit} noValidate>
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
             <IntegrationReactSelect isMulti={true}/>
-            <BootstrapInput label='Additional information'/>
+            <Field name={fieldNames.additionalInformation} label="Additional information"  component={BootstrapInput} type="text" />
           </div>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
@@ -45,6 +49,13 @@ const Capabilities = (props) => {
         </Grid>
       </Grid>
     </div>
+    </form>
   )};
+
+Capabilities = reduxForm({
+  form: 'contacts',
+  destroyOnUnmount: false,
+  validate: capabilitiesValidation
+})(Capabilities);
 
 export default withStyles(styles)(Capabilities);

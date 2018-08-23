@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import DatePicker from 'react-datepicker';
-import { withStyles, FormHelperText, Icon } from "@material-ui/core";
+import { withStyles, FormHelperText } from "@material-ui/core";
 import moment from 'moment';
-import { Calendar } from "icons";
 import InputMask from 'react-input-mask'
 
 const styles = theme =>({
@@ -61,7 +60,6 @@ const BirthDate = (props) => {
         selected={!value? null :value}
         className={classes.bootstrapInput}
         selectsStart
-        startDate={moment('01.01.1997')}
         customInput={<InputMask mask="99/99/9999" />}
       />
       {meta.touched && <FormHelperText className={classes.textHelper}>{meta.error}</FormHelperText>}

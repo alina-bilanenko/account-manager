@@ -1,6 +1,7 @@
 import React from "react";
 import { TextField, withStyles, InputAdornment, IconButton, Icon } from "@material-ui/core";
 import {Eye, EyeStrike} from 'icons';
+import InputMask from 'react-input-mask'
 
 const styles = theme =>({
   bootstrapInput: {
@@ -30,6 +31,21 @@ const styles = theme =>({
   },
   textField: {
     marginBottom: '25px',
+    '&input': {
+      borderRadius: 0,
+      backgroundColor: theme.palette.common.white,
+      border: '1px solid #C1CFE0',
+      fontSize: 14,
+      lineHeight: '16px',
+      fontWeight: 500,
+      padding: '10px 12px',
+      width: 'calc(100% - 24px)',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      color: '#000000',
+      '& + div': {
+        marginLeft: '-16px'
+      }
+    }
   },
   error: {
     borderColor: '#EB5757'
@@ -43,7 +59,7 @@ const styles = theme =>({
 });
 
 const BootstrapInput = (props) => {
-  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type } = props;
+  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type, inputMask = false } = props;
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -59,10 +75,15 @@ const BootstrapInput = (props) => {
       type={type}
 
       InputProps={{
+        inputComponent:  inputMask? (() => (<InputMask mask="+7 (999) 999-99-99"
+                                                       maskChar={'X'}
+                                                       alwaysShowMask={true}
+       />)): null,
         disableUnderline: true,
         classes: {
           input: classes.bootstrapInput,
         },
+
         endAdornment: endAdornment ? (
           <InputAdornment position="end">
             <IconButton
