@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import 'react-datepicker/dist/react-datepicker.css'
 import 'index.css'
 import App from 'containers/App'
 import { createStore, applyMiddleware, compose } from 'redux'

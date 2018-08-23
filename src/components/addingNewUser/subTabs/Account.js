@@ -10,7 +10,7 @@ import {accountValidation, matchInput, confirmPassword} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { collectiveActions } from "actions/action";
-
+import { formValueSelector} from 'redux-form';
 
 const styles = theme =>({
   root: {
@@ -72,35 +72,21 @@ const styles = theme =>({
 });
 
 let Account = (props) => {
-  let { classes, handleSubmit, showPassword, changeShowPassword, showConfirmPassword, changeShowConfirmPassword } = props;
+  let {
+    classes,
+    handleSubmit,
+    showPassword,
+    changeShowPassword,
+    showConfirmPassword,
+    changeShowConfirmPassword,
+    change,
+    photo
+  } = props;
 
-  // const addPhoto = (event) => {
-  //   const files = event.target.files;
-  //
-  //   if (!files.length ) {
-  //     return
-  //   }
-  //
-  //   let reader = new FileReader();
-  //   let file = files[0];
-  //
-  //   reader.onloadend = () => {
-  //     changeUser({...createUser.addNewUser, [fieldNames.photo]: reader.result});
-  //   };
-  //
-  //   reader.readAsDataURL(file);
-  // };
-
-
-  // let imagePreview = Avatar;
-    //
-    // if (createUser.addNewUser.photo) {
-    //   imagePreview = (<img src={createUser.addNewUser.photo} className={classes.imageLoader}  />);
-    // }
-
+  console.log(props)
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>
         <div className={classes.unsavedUserData}>
           <Typography variant="body2" gutterBottom className={classes.unsavedUserDataText}>
@@ -112,9 +98,11 @@ let Account = (props) => {
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <Card className={classes.card}>
-              {Avatar}
+              {photo ?
+                <img src={photo} alt="" className={classes.imageLoader}/>
+                :Avatar}
             </Card>
-            <ImageLoader/>
+            <ImageLoader name={fieldNames.photo} onChange={change}/>
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
@@ -133,13 +121,18 @@ let Account = (props) => {
 
 Account = reduxForm({
   form: 'account',
+  destroyOnUnmount: false,
   validate: accountValidation
 })(Account);
+
+const selector = formValueSelector('account')
+
 
 const mapStateToProps = (props) => {
   return {
     showPassword: props.collectiveState.showPassword,
-    showConfirmPassword: props.collectiveState.showConfirmPassword
+    showConfirmPassword: props.collectiveState.showConfirmPassword,
+    photo: selector(props, 'photo')
   }
 };
 

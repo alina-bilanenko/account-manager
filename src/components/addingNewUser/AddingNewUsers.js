@@ -44,12 +44,12 @@ const AddingNewUsers = (props) => {
         </AppBar>
         <Route exact path='/create-user/account'
                render={(props) => (
-                 <Account {...props} onSubmit={()=>{}}/>
+                 <Account {...props} onSubmit={(res)=>{console.log(res)}}/>
                )}
         />
         <Route exact path='/create-user/profile'
                render={(props) => (
-                 <Profile {...props} onSubmit={()=>{}}/>
+                 <Profile {...props} onSubmit={(res)=>{console.log(res)}} />
                )}
         />
         <Route exact path='/create-user/contacts'

@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles, Grid } from '@material-ui/core';
-import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css';
 import BootstrapInput from "../../collectiveComponents/BootstrapInput";
@@ -9,6 +8,7 @@ import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
 import {profileValidation} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from "consts";
+import BirthDate from 'components/collectiveComponents/BirthDate'
 
 const styles = theme =>({
   root: {
@@ -34,10 +34,6 @@ const styles = theme =>({
 let Profile = (props) => {
   const {classes, date=moment(), handleSubmit} = props;
 
-  const handleChange = () => {
-
-  };
-
   return (
     <form onSubmit={handleSubmit} noValidate>
     <div className={classes.root}>
@@ -46,10 +42,18 @@ let Profile = (props) => {
           <div className={classes.container}>
             <Field name={fieldNames.firstName} required={true} label="First name"  component={BootstrapInput} type="text" />
             <Field name={fieldNames.lastName} required={true} label="Last name" component={BootstrapInput} type="text" />
-            <DatePicker
-              selected={date}
-              onChange={handleChange}
-              placeholderText="Enter tomorrow"
+            <Field name={fieldNames.birthDate} selected={date} label="Birth date" component={BirthDate} type="text" />
+            <Field
+              name={fieldNames.birthDate}
+              inputValueFormat="DD-MM-YYYY"
+              dateFormat="L"
+              dateFormatCalendar="dddd"
+              fixedHeight
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
+              normalize={value => (value ? moment(value).format('DD-MM-YYYY') : null)}
+              component={BirthDate}
             />
           </div>
         </Grid>

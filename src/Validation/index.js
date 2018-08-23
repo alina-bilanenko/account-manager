@@ -1,9 +1,6 @@
 import {fieldNames } from "consts";
 
-export const avatar = (input) =>
-  input.size <= 1000000 ? undefined : `Размер превышает 1Mb`;
-
-export const accountValidation = inputs => {
+export const accountValidation = (inputs) => {
   const errors = {};
   if (!inputs[fieldNames.userName]) {
     errors[fieldNames.userName] = 'Required';
@@ -14,6 +11,12 @@ export const accountValidation = inputs => {
   if (!inputs[fieldNames.repeatPassword]) {
     errors[fieldNames.repeatPassword] = 'Required';
   }
+  if (
+    inputs[fieldNames.photo] &&
+    new Blob([inputs[fieldNames.photo]]).size > 1000000
+  ) {
+    errors[fieldNames.photo] = 'Size too big'
+  }
 
   return errors;
 };
@@ -23,7 +26,7 @@ export const confirmPassword = (input) =>
 
 
 export const matchInput = (input, allInputs) =>
-  input === allInputs[fieldNames.password] ? undefined : 'Password does not match';
+  input === allInputs[fieldNames.password] ? undefined : 'Passwords don’t match';
 
 export const profileValidation = inputs => {
   const errors = {};
@@ -33,11 +36,9 @@ export const profileValidation = inputs => {
   if (!inputs[fieldNames.lastName]) {
     errors[fieldNames.lastName] = 'Required';
   }
-  if (!inputs[fieldNames.email]) {
-    errors[fieldNames.email] = 'Required';
+  if (!inputs[fieldNames.birthDate]) {
+    errors[fieldNames.lastName] = 'Required';
   }
-  if (!inputs[fieldNames.address]) {
-    errors[fieldNames.address] = 'Required';
-  }
+
   return errors;
 };
