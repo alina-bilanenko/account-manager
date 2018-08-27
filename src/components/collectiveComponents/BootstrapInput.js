@@ -2,6 +2,7 @@ import React from "react";
 import { TextField, withStyles, InputAdornment, IconButton, Icon } from "@material-ui/core";
 import {Eye, EyeStrike} from 'icons';
 import InputMask from 'react-input-mask'
+import classNames from 'classnames'
 
 const styles = theme =>({
   bootstrapInput: {
@@ -68,6 +69,8 @@ const BootstrapInput = (props) => {
     changeShow();
   };
 
+  console.log(inputProps)
+
   return (
     <TextField
       required={required}
@@ -77,7 +80,9 @@ const BootstrapInput = (props) => {
       InputProps={{
         inputComponent:  inputMask? (() => (<InputMask mask="+7 (999) 999-99-99"
                                                        maskChar={'X'}
-                                                       alwaysShowMask={true}
+                                                       alwaysShowMask={false}
+                                                       className={classNames(classes.bootstrapInput, classes.textField)}
+                                                       {...inputProps}
        />)): null,
         disableUnderline: true,
         classes: {

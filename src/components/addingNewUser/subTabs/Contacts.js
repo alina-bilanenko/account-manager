@@ -45,7 +45,7 @@ let Contacts = (props) => {
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <Field name={fieldNames.fax} label="Fax"  component={BootstrapInput} type="text" />
+            <Field name={fieldNames.fax} label="Fax" inputMask={true} component={BootstrapInput} type="text" />
             <Field name={fieldNames.phone} label="Phone #1" inputMask={true} component={BootstrapInput} type="text" />
             <Field name={fieldNames.phone} label="Phone #2" inputMask={true} component={BootstrapInput} type="text" />
             <ButtonGroup leftName='Back' rightName='Forward'/>
