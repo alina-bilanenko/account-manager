@@ -37,20 +37,12 @@ export const profileValidation = inputs => {
     errors[fieldNames.lastName] = 'Required';
   }
 
-  if (!inputs[fieldNames.birthDate]) {
-    errors[fieldNames.birthDate] = 'Required';
-  } else  if (!inputs[fieldNames.birthDate].isValid()) {
-    errors[fieldNames.birthDate] = 'Date does not exist';
-  } else if(moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
+ if(inputs[fieldNames.birthDate] && moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
     errors[fieldNames.birthDate] = 'You must be over 18 years of age';
   }
 
   if (!inputs[fieldNames.email]) {
     errors[fieldNames.email] = 'Required';
-  }
-
-  if (!inputs[fieldNames.address]) {
-    errors[fieldNames.address] = 'Required';
   }
 
   return errors;

@@ -35,27 +35,27 @@ let Profile = (props) => {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-    <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={6} className={classes.gridItem}>
-          <div className={classes.container}>
-            <Field name={fieldNames.firstName} required={true} label="First name"  component={BootstrapInput} type="text" />
-            <Field name={fieldNames.lastName} required={true} label="Last name" component={BootstrapInput} type="text" />
-            <Field name={fieldNames.birthDate} required={true} label="Birth date" component={BirthDate} type="text" >
-              <Icon>{Calendar}</Icon>
-            </Field>
-          </div>
+      <div className={classes.root}>
+        <Grid container>
+          <Grid item xs={6} className={classes.gridItem}>
+            <div className={classes.container}>
+              <Field name={fieldNames.firstName} required={true} label="First name"  component={BootstrapInput} type="text" />
+              <Field name={fieldNames.lastName} required={true} label="Last name" component={BootstrapInput} type="text" />
+              <Field name={fieldNames.birthDate} required={true} label="Birth date" component={BirthDate} type="text" >
+                <Icon>{Calendar}</Icon>
+              </Field>
+            </div>
+          </Grid>
+          <Grid item xs={6} className={classes.gridItem}>
+            <div className={classes.container}>
+              <Field name={fieldNames.email} required={true} label="Email" component={BootstrapInput} type="text" />
+              <Field name={fieldNames.address} label="Address" component={BootstrapInput} type="text" />
+              <Field name={fieldNames.gender} component={RadioButton} />
+              <ButtonGroup leftName='Back' rightName='Forward'/>
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={6} className={classes.gridItem}>
-          <div className={classes.container}>
-            <Field name={fieldNames.email} required={true} label="Email" component={BootstrapInput} type="text" />
-            <Field name={fieldNames.address} required={true} label="Address" component={BootstrapInput} type="text" />
-            <Field name={fieldNames.gender} component={RadioButton} />
-            <ButtonGroup leftName='Back' rightName='Forward'/>
-          </div>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
     </form>
   )};
 

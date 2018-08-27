@@ -7,6 +7,7 @@ import { Field, reduxForm } from 'redux-form'
 import { contactsValidation } from "Validation";
 import { fieldNames } from "consts";
 
+
 const styles = theme =>({
   root: {
     backgroundColor: 'rgba(231, 240, 255, 0.2)',

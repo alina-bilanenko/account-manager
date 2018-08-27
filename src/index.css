@@ -86,4 +86,20 @@ button.fieldHeader span,
   font-weight: 500;
 }
 
+.react-datepicker-wrapper {
+  position: relative;
+}
 
+/*.react-datepicker-wrapper:before {*/
+  /*content: '*';*/
+  /*position: absolute;*/
+  /*right: 0;*/
+  /*top: -15px;*/
+  /*font-family: "Roboto", "Helvetica", "Arial", sans-serif;*/
+  /*color: #657C9A;*/
+  /*font-size: 14px;*/
+  /*transform: translate(0, -5.5px) scale(1);*/
+  /*line-height: 16px;*/
+  /*font-weight: 400;*/
+
+/*}*/

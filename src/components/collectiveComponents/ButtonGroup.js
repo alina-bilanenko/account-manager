@@ -30,11 +30,11 @@ const ButtonGroup = (props) => {
           {leftName}
         </Button>
       </Link>
-      <Link to={`/create-user/${url}`}>
-        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={!valid}>
+      {/*<Link to={`/create-user/${url}`}>*/}
+        <Button type="submit" variant="contained" color="primary" className={classes.button}>
           {rightName}
         </Button>
-      </Link>
+      {/*</Link>*/}
     </div>
   )};
 
