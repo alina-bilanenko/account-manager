@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from "@material-ui/core";
+import { Typography, FormHelperText } from "@material-ui/core";
 import { Add } from "icons";
 import Button from "@material-ui/core/Button";
-import {fieldNames} from "consts";
 
 const styles = theme => ({
   button: {
@@ -28,10 +27,16 @@ const styles = theme => ({
   addAvatar: {
     color: '#9BB0CB',
   },
+  error: {
+    color: '#EB5757',
+    textAlign: 'center',
+    textTransform: 'none',
+    fontWeight: '400'
+  }
 });
 
 function ImageLoader (props) {
-  const { classes, onChange, name } = props;
+  const { classes, input, meta, type } = props;
 
   const AddAvatar = (
     <Typography variant="body2" gutterBottom className={classes.addAvatar}>
@@ -48,19 +53,10 @@ function ImageLoader (props) {
       return
     }
 
-   // if(file.size > 1000000) {
-   //   throw new SubmissionError({
-   //     photo: 'Size too big',
-   //     _error: 'Size too big!'
-   //   })
-   // }
-
-
-
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      onChange(fieldNames.photo, reader.result)
+      input.onChange(reader.result)
     };
 
     reader.readAsDataURL(file);
@@ -68,10 +64,10 @@ function ImageLoader (props) {
 
   return (
     <div>
-      <input accept="image/*" name={name} onChange={handleFile} className={classes.input} id="icon-button-file" type="file" />
+      <input accept="image/*" name={input.name} {...input} value={undefined} onChange={handleFile} className={classes.input} id="icon-button-file" type={type} />
       <label htmlFor="icon-button-file">
         <Button variant="outlined" component="span"  className={classes.avatar}>
-          {/*{meta.touched && <FormHelperText id="name-error-text">meta.error </FormHelperText>}*/}
+          {meta.error && <FormHelperText id="name-error-text" className={classes.error}>{meta.error} </FormHelperText>}
           {AddAvatar}
         </Button>
       </label>

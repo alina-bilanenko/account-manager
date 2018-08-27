@@ -35,7 +35,7 @@ const AddingNewUsers = (props) => {
       </Typography>
       <div className={classes.root}>
         <AppBar position="static" className={classes.header}>
-          <Tabs value={tabName} onChange={handleChange}>
+          <Tabs value={tabName} onChange={()=>{}}>
             <Tab value="account" label="1. Account"  className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName==="account"})} />
             <Tab value="profile" label="2. Profile" className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName ==="profile"})}/>
             <Tab value="contacts" label="3. Contacts" className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName ==="contacts"})}/>

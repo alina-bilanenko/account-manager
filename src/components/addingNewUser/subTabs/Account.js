@@ -10,7 +10,7 @@ import {accountValidation, matchInput, confirmPassword} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { collectiveActions } from "actions/action";
-import { formValueSelector} from 'redux-form';
+import { formValueSelector, clearSubmitErrors} from 'redux-form';
 
 const styles = theme =>({
   root: {
@@ -79,9 +79,11 @@ let Account = (props) => {
     changeShowPassword,
     showConfirmPassword,
     changeShowConfirmPassword,
-    change,
-    photo
+    photo,
+    valid
   } = props;
+
+  console.log(valid)
 
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
@@ -100,14 +102,14 @@ let Account = (props) => {
                 <img src={photo} alt="" className={classes.imageLoader}/>
                 :Avatar}
             </Card>
-            <ImageLoader name={fieldNames.photo} onChange={change}/>
+            <Field  name={fieldNames.photo} component={ImageLoader} type="file" />
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
               <Field name={fieldNames.userName} label="User name" component={BootstrapInput} type="text"  />
               <Field name={fieldNames.password} label="Password" endAdornment={true} component={BootstrapInput} type={showPassword? "text" : "password"} show={showPassword} changeShow={changeShowPassword}/>
               <Field name={fieldNames.repeatPassword} validate={[confirmPassword, matchInput]} label="Repeat Password" endAdornment={true} component={BootstrapInput} type={showConfirmPassword? "text" : "password"} show={showConfirmPassword} changeShow={changeShowConfirmPassword} />
-              <ButtonGroup leftName='Back' rightName='Forward' hidden={true}/>
+              <ButtonGroup leftName='Back' rightName='Forward' hidden={true} valid={valid} url='profile' />
             </div>
           </Grid>
         </Grid>

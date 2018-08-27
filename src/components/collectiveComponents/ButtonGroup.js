@@ -1,6 +1,7 @@
 import React from 'react';
 import { withStyles, Button} from '@material-ui/core';
 import classNames from "classnames";
+import { Link } from 'react-router-dom'
 
 const styles = theme =>({
   buttonGroup: {
@@ -15,22 +16,26 @@ const styles = theme =>({
     height: '40px',
   },
   hidden: {
-  visibility: 'hidden'
-}
+    visibility: 'hidden'
+  }
 });
 
 const ButtonGroup = (props) => {
-  const {classes, leftName, rightName, hidden} = props;
+  const {classes, leftName, rightName, hidden, valid, url=undefined, prevUrl=undefined} = props;
 
   return (
-            <div className={classes.buttonGroup}>
-              <Button variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
-                {leftName}
-              </Button>
-              <Button type="submit" variant="contained" color="primary" className={classes.button}>
-                {rightName}
-              </Button>
-            </div>
+    <div className={classes.buttonGroup}>
+      <Link to={`/create-user/${prevUrl}`}>
+        <Button variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
+          {leftName}
+        </Button>
+      </Link>
+      <Link to={`/create-user/${url}`}>
+        <Button type="submit" variant="contained" color="primary" className={classes.button} disabled={!valid}>
+          {rightName}
+        </Button>
+      </Link>
+    </div>
   )};
 
 export default withStyles(styles)(ButtonGroup);

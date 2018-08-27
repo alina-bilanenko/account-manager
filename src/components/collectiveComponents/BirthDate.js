@@ -59,8 +59,8 @@ const BirthDate = (props) => {
         dateFormat="DD/MM/YYYY"
         selected={!value? null :value}
         className={classes.bootstrapInput}
-        selectsStart
-        customInput={<InputMask mask="99/99/9999" />}
+        openToDate={moment("1997-01-01")}
+        // customInput={<InputMask mask="99/99/9999" />}
       />
       {meta.touched && <FormHelperText className={classes.textHelper}>{meta.error}</FormHelperText>}
     </Fragment>
