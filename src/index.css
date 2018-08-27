@@ -3,6 +3,7 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
 button.fieldHeader span,
 .MuiTab-label-187,
 .MuiTab-label-203,
@@ -92,4 +93,98 @@ button.fieldHeader span,
 
 input:focus, textarea:focus, select:focus {
   outline: none;
+}
+
+:focus {
+  outline: none !important;
+}
+
+.react-select__menu-list::-webkit-scrollbar {
+  width: 8px;
+  height: 42px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-track {
+  border-radius: 29px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb {
+  background: #C1CFE0;
+  border-radius: 29px;
+  border: 3px solid #ffffff
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb:hover {
+  background: #C1CFE0;
+}
+
+div.react-select-container {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.react-select-container:before {
+  content: '*';
+  position: absolute;
+  right: 0;
+  top: -15px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  color: #657C9A;
+  font-size: 14px;
+  transform: translate(0, -5.5px) scale(1);
+  line-height: 16px;
+  font-weight: 400;
+}
+
+div.react-select-container > div.react-select__control {
+  border-radius: 0;
+  background-color: #ffffff;
+  border: 1px solid #C1CFE0;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 0 12px;
+  width: 100%;
+  color: #000000;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.css-1rtrksz.react-select__value-container,
+div.react-select__control > div.react-select__value-container--has-value,
+div.react-select__value-containe > div.react-select__single-value,
+.css-va7pk8.react-select__single-value,
+.react-select__value-container > .css-rsyb7x,
+.css-rsyb7x > .react-select__input {
+  padding: 0;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+div.react-select__control > .react-select__indicators {
+  display: none;
+}
+
+div.react-select__menu {
+  box-shadow: unset;
+  border-radius: unset;
+  max-height: 172px;
+}
+
+div.react-select__menu-list {
+  background-color: #ffffff;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 14px;
+  color: #657C9A;
+  max-height: 172px;
+}
+
+div.react-select__option:hover {
+  background-color: #E7F0FF;
 }

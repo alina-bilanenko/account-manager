@@ -69,8 +69,6 @@ const BootstrapInput = (props) => {
     changeShow();
   };
 
-  console.log(inputProps)
-
   return (
     <TextField
       required={required}
@@ -82,7 +80,7 @@ const BootstrapInput = (props) => {
                                                        maskChar={'X'}
                                                        alwaysShowMask={false}
                                                        className={classNames(classes.bootstrapInput, classes.textField)}
-                                                       {...inputProps}
+                                                       { ...inputProps}
        />)): null,
         disableUnderline: true,
         classes: {

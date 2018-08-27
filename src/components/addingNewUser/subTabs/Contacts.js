@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, Grid } from '@material-ui/core';
-import IntegrationReactSelect from 'components/collectiveComponents/IntegrationReactSelect'
+import SelectMainLanguage from 'components/collectiveComponents/IntegrationReactSelect'
 import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
 import ButtonGroup from "components/collectiveComponents/ButtonGroup"
 import { Field, reduxForm } from 'redux-form'
@@ -40,7 +40,7 @@ let Contacts = (props) => {
             <Field name={fieldNames.company} required={true} label="Company"  component={BootstrapInput} type="text" />
             <Field name={fieldNames.gitHubLink} label="Github link"  component={BootstrapInput} type="text" />
             <Field name={fieldNames.facebookLink}  label="Facebook link"  component={BootstrapInput} type="text" />
-            <IntegrationReactSelect isMulti={false}/>
+            <Field name={fieldNames.mainLanguage}  label="Main language" isMulti={false} component={SelectMainLanguage}/>
           </div>
         </Grid>
         <Grid item xs={6} className={classes.gridItem}>

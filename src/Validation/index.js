@@ -54,6 +54,10 @@ export const contactsValidation = (inputs) => {
     errors[fieldNames.company] = 'Required';
   }
 
+  if (!inputs[fieldNames.mainLanguage]) {
+    errors[fieldNames.mainLanguage] = 'Required';
+  }
+
   return errors;
 };
 
