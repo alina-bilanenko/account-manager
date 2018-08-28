@@ -7,6 +7,7 @@ import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from "Validation";
 import { fieldNames } from "../../../consts";
+import MyHobbies from 'components/commonComponents/MyHobbies'
 
 const styles = theme =>({
   root: {
@@ -24,13 +25,12 @@ const styles = theme =>({
     display: 'flex',
     flexDirection: 'column',
     flexWrap: 'wrap',
-    width: '50%',
+    width: '70%',
   }
 });
 
 let Capabilities = (props) => {
   const {classes, handleSubmit, push} = props;
-  console.log(props.push)
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -38,7 +38,7 @@ let Capabilities = (props) => {
       <Grid container>
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
-            <IntegrationReactSelect isMulti={true}/>
+            {/*<IntegrationReactSelect isMulti={true}/>*/}
             <Field name={fieldNames.additionalInformation} label="Additional information"  component={BootstrapInput} type="text" />
           </div>
         </Grid>

@@ -70,7 +70,12 @@ export const fieldNames = {
   fax: 'fax',
   phone: 'phone',
   skills: 'skills',
-  myHobbies: 'myHobbies',
+  checkBox1: 'checkBox1',
+  checkBox2: 'checkBox2',
+  checkBox3: 'checkBox3',
+  checkBox4: 'checkBox4',
+  checkBox5: 'checkBox5',
+  checkBox6: 'checkBox6',
   additionalInformation: 'additionalInformation'
 };
 
