@@ -39,7 +39,11 @@ function ImageLoader (props) {
   const { classes, input, meta, type } = props;
 
   const AddAvatar = (
-    <Typography variant="body2" gutterBottom className={classes.addAvatar}>
+    <Typography
+      variant="body2"
+      gutterBottom
+      className={classes.addAvatar}
+    >
       {Add}
       <span>add avatar</span>
     </Typography>
@@ -64,10 +68,30 @@ function ImageLoader (props) {
 
   return (
     <div>
-      <input accept="image/*" name={input.name} {...input} value={undefined} onChange={handleFile} className={classes.input} id="icon-button-file" type={type} />
+      <input
+        accept="image/*"
+        name={input.name}
+        {...input}
+        value={undefined}
+        onChange={handleFile}
+        className={classes.input}
+        id="icon-button-file"
+        type={type}
+      />
       <label htmlFor="icon-button-file">
-        <Button variant="outlined" component="span"  className={classes.avatar}>
-          {meta.error && <FormHelperText id="name-error-text" className={classes.error}>{meta.error} </FormHelperText>}
+        <Button
+          variant="outlined"
+          component="span"
+          className={classes.avatar}
+        >
+          {meta.error &&
+          <FormHelperText
+            id="name-error-text"
+            className={classes.error}
+          >
+            {meta.error}
+          </FormHelperText>
+          }
           {AddAvatar}
         </Button>
       </label>

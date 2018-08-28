@@ -34,21 +34,44 @@ const RadioButton = (props) => {
 
   return (
     <Fragment>
-      <FormLabel component="legend" className={classes.bootstrapFormLabel}>Gender</FormLabel>
+      <FormLabel
+        component="legend"
+        className={classes.bootstrapFormLabel}
+      >
+        Gender
+      </FormLabel>
       <RadioGroup
-        {...input} {...rest}
+        {...input}
+        {...rest}
         aria-label="gender"
         name={name}
-        className={ classNames(classes.group, classes.bootstrapFormLabel) }
-        value={!input.value ? 'male' : input.value }
-        onChange={(event, value) => input.onChange(value)}
+        className={
+          classNames(
+            classes.group,
+            classes.bootstrapFormLabel
+          ) }
+        value={
+          !input.value
+            ? 'male'
+            : input.value
+        }
+        onChange={
+          (event, value) => input.onChange(value)
+        }
       >
         <FormControlLabel
           value="male"
           classes={{
             label: classes.label,
           }}
-          control={<Radio classes={{root: classes.radio, checked: classes.checked}} />}
+          control={
+            <Radio
+              classes={{
+                root: classes.radio,
+                checked: classes.checked
+              }}
+            />
+          }
           label="Male"
           labelPlacement="end"
           className={classes.bootstrapFormLabel}
@@ -58,7 +81,13 @@ const RadioButton = (props) => {
           classes={{
             label: classes.label,
           }}
-          control={<Radio classes={{root: classes.radio, checked: classes.checked}} />}
+          control={
+            <Radio
+              classes={{
+                root: classes.radio,
+                checked: classes.checked
+              }}
+            />}
           label="Female"
           labelPlacement="end"
           className={classes.bootstrapFormLabel}

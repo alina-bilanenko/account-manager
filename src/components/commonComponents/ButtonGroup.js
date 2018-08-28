@@ -20,7 +20,14 @@ const styles = theme =>({
 });
 
 const ButtonGroup = (props) => {
-  const {classes, leftName, rightName, hidden, url=undefined, push} = props;
+  const {
+    classes,
+    leftName,
+    rightName,
+    hidden,
+    url=undefined,
+    push
+  } = props;
 
   const handleClickBack = () => {
     if(url)  push(url)
@@ -28,12 +35,26 @@ const ButtonGroup = (props) => {
 
   return (
     <div className={classes.buttonGroup}>
-        <Button onClick={handleClickBack} variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
-          {leftName}
-        </Button>
-        <Button type="submit" variant="contained" color="primary" className={classes.button}>
-          {rightName}
-        </Button>
+      <Button
+        onClick={handleClickBack}
+        variant="contained"
+        color="primary"
+        className={
+          classNames(
+            classes.button,
+            {[classes.hidden]: hidden}
+          )
+        }>
+        {leftName}
+      </Button>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        className={classes.button}
+      >
+        {rightName}
+      </Button>
     </div>
   )};
 

@@ -58,7 +58,20 @@ const styles = theme =>({
 });
 
 const BootstrapInput = (props) => {
-  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type} = props;
+  const {
+    classes,
+    label,
+    handleChangeInput,
+    name,
+    required = false,
+    endAdornment = false,
+    input: inputProps,
+    meta,
+    show,
+    changeShow,
+    type
+  } = props;
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -87,7 +100,9 @@ const BootstrapInput = (props) => {
               onMouseDown={handleMouseDownPassword}
               className={classes.visibleIcon}
             >
-              {show ? (<Icon>{Eye}</Icon>): (<Icon>{EyeStrike}</Icon>)}
+              {show
+                ? (<Icon>{Eye}</Icon>)
+                : (<Icon>{EyeStrike}</Icon>)}
             </IconButton>
           </InputAdornment>
         ) : null,

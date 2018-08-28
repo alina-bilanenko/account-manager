@@ -1,16 +1,21 @@
 import {fieldNames } from "consts";
 import moment from 'moment'
+
 export const accountValidation = (inputs) => {
   const errors = {};
+
   if (!inputs[fieldNames.userName]) {
     errors[fieldNames.userName] = 'Required';
   }
+
   if (!inputs[fieldNames.password]) {
     errors[fieldNames.password] = 'Required';
   }
+
   if (!inputs[fieldNames.repeatPassword]) {
     errors[fieldNames.repeatPassword] = 'Required';
   }
+
   if (
     inputs[fieldNames.photo] &&
     new Blob([inputs[fieldNames.photo]]).size > 1000000
@@ -30,14 +35,16 @@ export const matchInput = (input, allInputs) =>
 
 export const profileValidation = inputs => {
   const errors = {};
+
   if (!inputs[fieldNames.firstName]) {
     errors[fieldNames.firstName] = 'Required';
   }
+
   if (!inputs[fieldNames.lastName]) {
     errors[fieldNames.lastName] = 'Required';
   }
 
- if(inputs[fieldNames.birthDate] && moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
+  if(inputs[fieldNames.birthDate] && moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
     errors[fieldNames.birthDate] = 'You must be over 18 years of age';
   }
 

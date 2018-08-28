@@ -31,36 +31,100 @@ const AddingNewUsers = (props) => {
 
   return (
     <div>
-      <Typography variant="display1" gutterBottom className={classes.caption}>
+      <Typography
+        variant="display1"
+        gutterBottom
+        className={classes.caption}
+      >
         Adding new user
       </Typography>
       <div className={classes.root}>
         <AppBar position="static" className={classes.header}>
           <Tabs value={tabName} onChange={()=>{}}>
-            <Tab value="account" label="1. Account"  className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName==="account"})} />
-            <Tab value="profile" label="2. Profile" className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName ==="profile"})}/>
-            <Tab value="contacts" label="3. Contacts" className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName ==="contacts"})}/>
-            <Tab value="capabilities" label="4. Capabilities" className={classNames(classes.fieldHeader, {[classes.activeTab]: tabName ==="capabilities"})}/>
+            <Tab
+              value="account"
+              label="1. Account"
+              className={
+                classNames(
+                  classes.fieldHeader,
+                  {
+                    [classes.activeTab]: tabName==="account"
+                  }
+                )
+              }
+            />
+            <Tab
+              value="profile"
+              label="2. Profile"
+              className={
+                classNames(
+                  classes.fieldHeader,
+                  {
+                    [classes.activeTab]: tabName ==="profile"
+                  }
+                )
+              }
+            />
+            <Tab
+              value="contacts"
+              label="3. Contacts"
+              className={
+                classNames(
+                  classes.fieldHeader,
+                  {
+                    [classes.activeTab]: tabName ==="contacts"
+                  }
+                )
+              }
+            />
+            <Tab
+              value="capabilities"
+              label="4. Capabilities"
+              className={
+                classNames(
+                  classes.fieldHeader,
+                  {
+                    [classes.activeTab]: tabName ==="capabilities"
+                  }
+                )
+              }
+            />
           </Tabs>
         </AppBar>
         <Route exact path='/create-user/account'
                render={(props) => (
-                 <Account {...props} push={push} onSubmit={()=>{ push('/create-user/profile')}}/>
+                 <Account
+                   {...props}
+                   push={push}
+                   onSubmit={()=>{ push('/create-user/profile')}}
+                 />
                )}
         />
         <Route exact path='/create-user/profile'
                render={(props) => (
-                 <Profile {...props} push={push} onSubmit={()=>{push('/create-user/contacts')}} />
+                 <Profile
+                   {...props}
+                   push={push}
+                   onSubmit={()=>{push('/create-user/contacts')}}
+                 />
                )}
         />
         <Route exact path='/create-user/contacts'
                render={(props) => (
-                 <Contacts {...props} push={push} onSubmit={()=>{push('/create-user/capabilities')}}/>
+                 <Contacts
+                   {...props}
+                   push={push}
+                   onSubmit={()=>{push('/create-user/capabilities')}}
+                 />
                )}
         />
         <Route exact path='/create-user/capabilities'
                render={(props) => (
-                 <Capabilities {...props} push={push} onSubmit={()=>{}}/>
+                 <Capabilities
+                   {...props}
+                   push={push}
+                   onSubmit={()=>{}}
+                 />
                )}
         />
       </div>

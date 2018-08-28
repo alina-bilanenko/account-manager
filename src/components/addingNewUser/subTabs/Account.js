@@ -87,11 +87,21 @@ let Account = (props) => {
     <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>
         <div className={classes.unsavedUserData}>
-          <Typography variant="body2" gutterBottom className={classes.unsavedUserDataText}>
+          <Typography
+            variant="body2"
+            gutterBottom
+            className={classes.unsavedUserDataText}
+          >
             You have an unsaved user data. Do you want to complete it?
           </Typography>
-          <BottomNavigationAction icon='Continue' className={classes.unsavedUserDataTextBlack}/>
-          <BottomNavigationAction icon={Close} className={classes.rightIcons}/>
+          <BottomNavigationAction
+            icon='Continue'
+            className={classes.unsavedUserDataTextBlack}
+          />
+          <BottomNavigationAction
+            icon={Close}
+            className={classes.rightIcons}
+          />
         </div>
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
@@ -104,10 +114,38 @@ let Account = (props) => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.userName} label="User name" component={BootstrapInput} type="text"  />
-              <Field name={fieldNames.password} label="Password" endAdornment={true} component={BootstrapInput} type={showPassword? "text" : "password"} show={showPassword} changeShow={changeShowPassword}/>
-              <Field name={fieldNames.repeatPassword} validate={[confirmPassword, matchInput]} label="Repeat Password" endAdornment={true} component={BootstrapInput} type={showConfirmPassword? "text" : "password"} show={showConfirmPassword} changeShow={changeShowConfirmPassword} />
-              <ButtonGroup push={push} leftName='Back' rightName='Forward' hidden={true} url='profile' />
+              <Field
+                name={fieldNames.userName}
+                label="User name"
+                component={BootstrapInput}
+                type="text"
+              />
+              <Field
+                name={fieldNames.password}
+                label="Password"
+                endAdornment={true}
+                component={BootstrapInput}
+                type={showPassword? "text" : "password"}
+                show={showPassword}
+                changeShow={changeShowPassword}
+              />
+              <Field
+                name={fieldNames.repeatPassword}
+                validate={[confirmPassword, matchInput]}
+                label="Repeat Password"
+                endAdornment={true}
+                component={BootstrapInput}
+                type={showConfirmPassword? "text" : "password"}
+                show={showConfirmPassword}
+                changeShow={changeShowConfirmPassword}
+              />
+              <ButtonGroup
+                push={push}
+                leftName='Back'
+                rightName='Forward'
+                hidden={true}
+                url='profile'
+              />
             </div>
           </Grid>
         </Grid>
@@ -123,7 +161,7 @@ Account = reduxForm({
   validate: accountValidation
 })(Account);
 
-const selector = formValueSelector('account')
+const selector = formValueSelector('account');
 
 
 const mapStateToProps = (props) => {

@@ -78,8 +78,17 @@ const BirthDate = (props) => {
         dateFormat="DD/MM/YYYY"
         selected={!value? null :value}
         className={classes.bootstrapInput}
-        openToDate={!value? moment("1997-01-01") :value}
-        customInput={(<ExampleCustomInput label={label} meta={meta} classes={classes}/>)}
+        openToDate={
+          !value
+            ? moment("1997-01-01")
+            :value
+        }
+        customInput={
+          (<ExampleCustomInput
+            label={label}
+            meta={meta}
+            classes={classes}
+          />)}
       />
     </Fragment>
   )
@@ -88,7 +97,14 @@ const BirthDate = (props) => {
 class ExampleCustomInput extends Component {
 
   render() {
-    const {value, onClick, label, type, meta, classes} = this.props;
+    const {
+      value,
+      onClick,
+      label,
+      type,
+      meta,
+      classes
+    } = this.props;
 
     return (
       <TextField
@@ -109,11 +125,11 @@ class ExampleCustomInput extends Component {
                 aria-label="Toggle password visibility"
                 className={classes.visibleIcon}
               >
-               <Icon>{Calendar}</Icon>
+                <Icon>{Calendar}</Icon>
               </IconButton>
             </InputAdornment>
           ),
-          }}
+        }}
         InputLabelProps={{
           shrink: true,
           className: classes.bootstrapFormLabel,

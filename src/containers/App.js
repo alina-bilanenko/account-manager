@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import MainContainer from 'containers/MainContainer'
 
-const App = ({history, store}) => (
+const App = ({history}) => (
       <ConnectedRouter history={history}>
         <Switch>
                 <Route component={MainContainer} />

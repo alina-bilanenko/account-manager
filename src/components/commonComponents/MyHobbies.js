@@ -23,9 +23,17 @@ const MyHobbies = ({ input, label, classes }) => (
   <FormControlLabel
     control={
       <Checkbox
-        checked={input.value ? true : false}
+        checked={
+          input.value
+            ? true
+            : false
+        }
         onChange={input.onChange}
-        checkedIcon={<CheckBoxIcon className={classes.sizeIcon} />}
+        checkedIcon={
+          <CheckBoxIcon
+            className={classes.sizeIcon}
+          />
+        }
         classes={{
           root: classes.root,
           checked: classes.checked,

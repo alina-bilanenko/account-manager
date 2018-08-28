@@ -44,7 +44,8 @@ const RenderPhone = ({ fields, classes }) => {
     <ul className={classes.root}>
       {fields.map((hobby, index) =>
         <li key={index} className={classes.button}>
-          {fields.length > 1 && <button
+          {fields.length > 1 &&
+          <button
             type="button"
             onClick={() => {if(fields.length > 1)fields.remove(index)}}
             className={classes.buttonRemove}
@@ -58,8 +59,14 @@ const RenderPhone = ({ fields, classes }) => {
             label={`Phone #${index + 1}`}/>
         </li>
       )}
-      {(fields.length < 3) && (<li>
-        <Button variant="outlined" component="span" className={classes.addNumber} onClick={() => {if(fields.length < 3) fields.push()}}>
+      {(fields.length < 3) &&
+      (<li>
+        <Button
+          variant="outlined"
+          component="span"
+          className={classes.addNumber}
+          onClick={() => {if(fields.length < 3) fields.push()}}
+        >
           <Typography variant="body2" gutterBottom>
             {Add}
             <span className={classes.addNumberColor}>add phone number</span>

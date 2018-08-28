@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Grid, FormHelperText, Typography } from "@material-ui/core";
+import { withStyles, Grid } from "@material-ui/core";
 import SelectMainLanguage from 'components/commonComponents/IntegrationReactSelect'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import ButtonGroup from "components/commonComponents/ButtonGroup"
@@ -38,17 +38,52 @@ let Contacts = (props) => {
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.company} required={true} label="Company"  component={BootstrapInput} type="text" />
-              <Field name={fieldNames.gitHubLink} label="Github link"  component={BootstrapInput} type="text" />
-              <Field name={fieldNames.facebookLink}  label="Facebook link"  component={BootstrapInput} type="text" />
-              <Field name={fieldNames.mainLanguage}  label="Main language" isMulti={false} component={SelectMainLanguage}/>
+              <Field
+                name={fieldNames.company}
+                required={true}
+                label="Company"
+                component={BootstrapInput}
+                type="text"
+              />
+              <Field
+                name={fieldNames.gitHubLink}
+                label="Github link"
+                component={BootstrapInput}
+                type="text"
+              />
+              <Field
+                name={fieldNames.facebookLink}
+                label="Facebook link"
+                component={BootstrapInput}
+                type="text"
+              />
+              <Field
+                name={fieldNames.mainLanguage}
+                label="Main language"
+                isMulti={false}
+                component={SelectMainLanguage}
+              />
             </div>
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.fax} label="Fax" component={InputWithMask} type="text" required={true}/>
-              <FieldArray name={fieldNames.phone} component={RenderPhone}/>
-              <ButtonGroup push={push} leftName='Back' rightName='Forward' url='/create-user/profile'/>
+              <Field
+                name={fieldNames.fax}
+                label="Fax"
+                component={InputWithMask}
+                type="text"
+                required={true}
+              />
+              <FieldArray
+                name={fieldNames.phone}
+                component={RenderPhone}
+              />
+              <ButtonGroup
+                push={push}
+                leftName='Back'
+                rightName='Forward'
+                url='/create-user/profile'
+              />
             </div>
           </Grid>
         </Grid>

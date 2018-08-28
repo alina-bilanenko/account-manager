@@ -23,25 +23,41 @@ const styles = theme => ({
 class SelectMainLanguage extends React.Component {
 
   render() {
-    const { input, name, label, classes, meta } = this.props;
+    const {
+      input,
+      name,
+      label,
+      classes,
+      meta
+    } = this.props;
 
     return (
-     <div>
-       <InputLabel className={classes.bootstrapFormLabel}>Main language</InputLabel>
-       <Select
-         classNamePrefix="react-select"
-         className='react-select-container'
-         value={input.value}
-         onChange={input.onChange}
-         onBlur={() => input.onBlur(input.value)}
-         label={label}
-         name={name}
-         options={mainLanguage}
-         onBlurResetsInput={false}
-         placeholder=''
-       />
-       {meta.touched && <FormHelperText className={classes.textHelper}>{meta.error}</FormHelperText>}
-     </div>
+      <div>
+        <InputLabel
+          className={classes.bootstrapFormLabel}
+        >
+          Main language
+        </InputLabel>
+        <Select
+          classNamePrefix="react-select"
+          className='react-select-container'
+          value={input.value}
+          onChange={input.onChange}
+          onBlur={() => input.onBlur(input.value)}
+          label={label}
+          name={name}
+          options={mainLanguage}
+          onBlurResetsInput={false}
+          placeholder=''
+        />
+        {meta.touched &&
+        <FormHelperText
+          className={classes.textHelper}
+        >
+          {meta.error}
+        </FormHelperText>
+        }
+      </div>
     )
   }
 }
