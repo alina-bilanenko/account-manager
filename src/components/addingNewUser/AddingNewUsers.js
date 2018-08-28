@@ -13,6 +13,7 @@ import { stylesAdd } from 'styles'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { createUser } from "actions/createUserAction";
+import { push } from 'connected-react-router'
 
 const AddingNewUsers = (props) => {
 
@@ -20,7 +21,7 @@ const AddingNewUsers = (props) => {
     props.history.push(`/create-user/${val}`)
   };
 
-  const {classes } = props;
+  const {classes, push } = props;
   const tabName = props.match.params.name;
 
   if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
@@ -44,17 +45,17 @@ const AddingNewUsers = (props) => {
         </AppBar>
         <Route exact path='/create-user/account'
                render={(props) => (
-                 <Account {...props} onSubmit={(res)=>{console.log(res)}}/>
+                 <Account {...props} onSubmit={()=>{ push('/create-user/profile')}}/>
                )}
         />
         <Route exact path='/create-user/profile'
                render={(props) => (
-                 <Profile {...props} onSubmit={(res)=>{console.log(res)}} />
+                 <Profile {...props} onSubmit={(res)=>{push('/create-user/contacts')}} />
                )}
         />
         <Route exact path='/create-user/contacts'
                render={(props) => (
-                 <Contacts {...props} onSubmit={(res)=>{console.log(res)}}/>
+                 <Contacts {...props} onSubmit={(res)=>{push('/create-user/capabilities')}}/>
                )}
         />
         <Route exact path='/create-user/capabilities'
@@ -74,7 +75,10 @@ const mapStateToProps = (props) => {
 };
 
 const mapDispatchToProps = {
-  changeUser: createUser.addNewUser
+  changeUser: createUser.addNewUser,
+  push: push
 };
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(stylesAdd)(AddingNewUsers));

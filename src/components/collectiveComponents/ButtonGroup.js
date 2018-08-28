@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const styles = theme =>({
   buttonGroup: {
     display: 'flex',
-    marginTop: '100px',
+    marginTop: '20%',
     justifyContent: 'space-between'
   },
   button: {
@@ -21,20 +21,18 @@ const styles = theme =>({
 });
 
 const ButtonGroup = (props) => {
-  const {classes, leftName, rightName, hidden, valid, url=undefined, prevUrl=undefined} = props;
+  const {classes, leftName, rightName, hidden, url=undefined} = props;
 
   return (
     <div className={classes.buttonGroup}>
-      <Link to={`/create-user/${prevUrl}`}>
+      <Link to={`/create-user/${url}`}>
         <Button variant="contained" color="primary" className={ classNames(classes.button, {[classes.hidden]: hidden} ) }>
           {leftName}
         </Button>
       </Link>
-      {/*<Link to={`/create-user/${url}`}>*/}
         <Button type="submit" variant="contained" color="primary" className={classes.button}>
           {rightName}
         </Button>
-      {/*</Link>*/}
     </div>
   )};
 

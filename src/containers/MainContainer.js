@@ -48,7 +48,7 @@ class MainContainer extends Component {
               </Grid>
               <Grid item xs={12}>
                <Switch>
-                 <Route exact path='/create-user/:name' component={AddingNewUsers} />
+                 <Route exact path='/create-user/:name' component ={AddingNewUsers} />
                  <Route exact path='/list-of-user' component={ListOfAllUsers} />
                  <Route exact path='/view-user/' component={UsersList} />
                  <Route exact path='/edit-user/:id' component={AddingNewUsers} />

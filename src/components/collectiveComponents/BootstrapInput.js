@@ -79,7 +79,7 @@ const BootstrapInput = (props) => {
         inputComponent:  inputMask? (() => (<InputMask mask="+7 (999) 999-99-99"
                                                        maskChar={'X'}
                                                        alwaysShowMask={false}
-                                                       className={classNames(classes.bootstrapInput, classes.textField)}
+                                                       className={classNames(classes.bootstrapInput)}
                                                        { ...inputProps}
        />)): null,
         disableUnderline: true,
