@@ -39,7 +39,9 @@ let Capabilities = (props) => {
               <Field
                 name={fieldNames.additionalInformation}
                 label="Additional information"
-                component={BootstrapInput} type="text"
+                component={BootstrapInput}
+                type="text"
+                multiline
               />
             </div>
           </Grid>

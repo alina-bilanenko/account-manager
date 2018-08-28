@@ -69,7 +69,8 @@ const BootstrapInput = (props) => {
     meta,
     show,
     changeShow,
-    type
+    type,
+    multiline=false
   } = props;
 
   const handleMouseDownPassword = (event) => {
@@ -85,8 +86,10 @@ const BootstrapInput = (props) => {
       required={required}
       label={label}
       type={type}
-
+      multiline={multiline}
+      rows={multiline? '5' : '1'}
       InputProps={{
+        maxLength: 10,
         disableUnderline: true,
         classes: {
           input: classes.bootstrapInput,
