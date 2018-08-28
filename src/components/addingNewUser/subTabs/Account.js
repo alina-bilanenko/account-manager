@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles, Typography, BottomNavigationAction, Grid, Card } from '@material-ui/core';
 import { Close } from "icons";
-import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
-import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
+import BootstrapInput from 'components/commonComponents/BootstrapInput'
+import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
 import { fieldNames } from 'consts'
 import { Avatar } from "icons";
@@ -10,7 +10,7 @@ import {accountValidation, matchInput, confirmPassword} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { collectiveActions } from "actions/action";
-import { formValueSelector, clearSubmitErrors} from 'redux-form';
+import { formValueSelector} from 'redux-form';
 
 const styles = theme =>({
   root: {
@@ -80,10 +80,8 @@ let Account = (props) => {
     showConfirmPassword,
     changeShowConfirmPassword,
     photo,
-    valid
+    push
   } = props;
-
-  console.log(valid)
 
   return (
     <form encType="multipart/form-data" onSubmit={handleSubmit} noValidate>
@@ -109,7 +107,7 @@ let Account = (props) => {
               <Field name={fieldNames.userName} label="User name" component={BootstrapInput} type="text"  />
               <Field name={fieldNames.password} label="Password" endAdornment={true} component={BootstrapInput} type={showPassword? "text" : "password"} show={showPassword} changeShow={changeShowPassword}/>
               <Field name={fieldNames.repeatPassword} validate={[confirmPassword, matchInput]} label="Repeat Password" endAdornment={true} component={BootstrapInput} type={showConfirmPassword? "text" : "password"} show={showConfirmPassword} changeShow={changeShowConfirmPassword} />
-              <ButtonGroup leftName='Back' rightName='Forward' hidden={true} valid={valid} url='profile' />
+              <ButtonGroup push={push} leftName='Back' rightName='Forward' hidden={true} url='profile' />
             </div>
           </Grid>
         </Grid>

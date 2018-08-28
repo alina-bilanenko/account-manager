@@ -1,13 +1,13 @@
 import React from 'react';
 import { withStyles, Grid, Icon } from "@material-ui/core";
 import 'react-datepicker/dist/react-datepicker.css';
-import BootstrapInput from "../../collectiveComponents/BootstrapInput";
-import RadioButton from 'components/collectiveComponents/RadioButton'
-import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
+import BootstrapInput from "../../commonComponents/BootstrapInput";
+import RadioButton from 'components/commonComponents/RadioButton'
+import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import {profileValidation} from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from "consts";
-import BirthDate from 'components/collectiveComponents/BirthDate'
+import BirthDate from 'components/commonComponents/BirthDate'
 import { Calendar } from "icons";
 
 const styles = theme =>({
@@ -31,8 +31,8 @@ const styles = theme =>({
 });
 
 let Profile = (props) => {
-  const {classes, handleSubmit} = props;
-
+  const {classes, handleSubmit, push} = props;
+console.log(props)
   return (
     <form onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>
@@ -51,7 +51,7 @@ let Profile = (props) => {
               <Field name={fieldNames.email} required={true} label="Email" component={BootstrapInput} type="text" />
               <Field name={fieldNames.address} label="Address" component={BootstrapInput} type="text" />
               <Field name={fieldNames.gender} component={RadioButton} />
-              <ButtonGroup leftName='Back' rightName='Forward'/>
+              <ButtonGroup push={push} leftName='Back' rightName='Forward' url='/create-user/account'/>
             </div>
           </Grid>
         </Grid>

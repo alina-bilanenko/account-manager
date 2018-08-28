@@ -50,12 +50,31 @@ export const profileValidation = inputs => {
 
 export const contactsValidation = (inputs) => {
   const errors = {};
+  const reg = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/;
+
   if (!inputs[fieldNames.company]) {
     errors[fieldNames.company] = 'Required';
   }
 
   if (!inputs[fieldNames.mainLanguage]) {
     errors[fieldNames.mainLanguage] = 'Required';
+  }
+
+  if (inputs[fieldNames.fax] && !reg.test(inputs[fieldNames.fax])) {
+    errors[fieldNames.fax] = 'Invalid number';
+  }
+
+  if (inputs[fieldNames.phone] && inputs[fieldNames.phone].length) {
+    const phoneArrayErrors = [];
+    console.log(inputs[fieldNames.phone] )
+    // inputs[fieldNames.phone].forEach((phone, phoneIndex) => {
+    //   if (!reg.test(inputs[fieldNames.fax])) {
+    //     phoneArrayErrors[phoneIndex] = 'Invalid number';
+    //   }
+    // });
+    // if (phoneArrayErrors.length) {
+    //   errors.phone = phoneArrayErrors;
+    // }
   }
 
   return errors;

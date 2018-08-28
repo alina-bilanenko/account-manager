@@ -75,3 +75,9 @@ export const Calendar = (
     <rect x="10" y="2" width="2" height="3" rx="1" fill="#CED9E5"/>
   </svg>
 );
+
+export const ButtonDelete = (
+  <svg width="11" height="2" viewBox="0 0 11 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 1L1 1" stroke="#CED9E5" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);

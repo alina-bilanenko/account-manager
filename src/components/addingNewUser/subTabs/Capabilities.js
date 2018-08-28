@@ -1,9 +1,9 @@
 import React from 'react';
 import { withStyles, Grid} from '@material-ui/core';
-import IntegrationReactSelect from 'components/collectiveComponents/IntegrationReactSelect'
-import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
-import CheckboxesGroup from 'components/collectiveComponents/CheckboxesGroup'
-import ButtonGroup from 'components/collectiveComponents/ButtonGroup'
+import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
+import BootstrapInput from 'components/commonComponents/BootstrapInput'
+import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
+import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from "Validation";
 import { fieldNames } from "../../../consts";
@@ -29,7 +29,8 @@ const styles = theme =>({
 });
 
 let Capabilities = (props) => {
-  const {classes, handleSubmit} = props;
+  const {classes, handleSubmit, push} = props;
+  console.log(props.push)
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -44,7 +45,7 @@ let Capabilities = (props) => {
         <Grid item xs={6} className={classes.gridItem}>
           <div className={classes.container}>
             <CheckboxesGroup />
-            <ButtonGroup leftName='Back' rightName='Finish'/>
+            <ButtonGroup push={push} leftName='Back' rightName='Finish' url='/create-user/contacts'/>
           </div>
         </Grid>
       </Grid>

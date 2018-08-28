@@ -1,8 +1,6 @@
 import React from "react";
 import { TextField, withStyles, InputAdornment, IconButton, Icon } from "@material-ui/core";
 import {Eye, EyeStrike} from 'icons';
-import InputMask from 'react-input-mask'
-import classNames from 'classnames'
 
 const styles = theme =>({
   bootstrapInput: {
@@ -60,7 +58,7 @@ const styles = theme =>({
 });
 
 const BootstrapInput = (props) => {
-  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type, inputMask = false } = props;
+  const {classes, label, handleChangeInput, name, required = false, endAdornment = false, input: inputProps, meta, show, changeShow, type} = props;
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -76,12 +74,6 @@ const BootstrapInput = (props) => {
       type={type}
 
       InputProps={{
-        inputComponent:  inputMask? (() => (<InputMask mask="+7 (999) 999-99-99"
-                                                       maskChar={'X'}
-                                                       alwaysShowMask={false}
-                                                       className={classNames(classes.bootstrapInput)}
-                                                       { ...inputProps}
-       />)): null,
         disableUnderline: true,
         classes: {
           input: classes.bootstrapInput,

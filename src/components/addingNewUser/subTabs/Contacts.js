@@ -1,14 +1,13 @@
 import React from 'react';
 import { withStyles, Grid, FormHelperText, Typography } from "@material-ui/core";
-import SelectMainLanguage from 'components/collectiveComponents/IntegrationReactSelect'
-import BootstrapInput from 'components/collectiveComponents/BootstrapInput'
-import ButtonGroup from "components/collectiveComponents/ButtonGroup"
-import { Field, reduxForm } from 'redux-form'
+import SelectMainLanguage from 'components/commonComponents/IntegrationReactSelect'
+import BootstrapInput from 'components/commonComponents/BootstrapInput'
+import ButtonGroup from "components/commonComponents/ButtonGroup"
+import { Field, FieldArray, reduxForm } from "redux-form";
 import { contactsValidation } from "Validation";
 import { fieldNames } from "consts";
-import Button from "@material-ui/core/Button/Button";
-import { Add } from "icons";
-import {InputWithMask} from 'components/collectiveComponents/InputMask'
+import InputWithMask from 'components/commonComponents/InputMask'
+import RenderPhone from 'components/commonComponents/RenderPhones'
 
 const styles = theme =>({
   root: {
@@ -27,24 +26,11 @@ const styles = theme =>({
     flexDirection: 'column',
     flexWrap: 'wrap',
     width: '70%',
-  },
-  addNumber: {
-    display: 'block',
-    textTransform: 'lowercase',
-    border: 'none',
-    width: '50%',
-    paddingLeft: '0',
-    '&:hover': {
-      backgroundColor: 'inherit'
-    }
-  },
-  addNumberColor: {
-    color: '#657C9A',
   }
 });
 
 let Contacts = (props) => {
-  const {classes, handleSubmit} = props;
+  const {classes, handleSubmit, push} = props;
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -60,20 +46,9 @@ let Contacts = (props) => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field name={fieldNames.fax} label="Fax" inputMask={true} component={BootstrapInput} type="text" />
-              <Field name={fieldNames.phone} label="Phone #1" inputMask={true} component={BootstrapInput} type="text" />
-              <Field name={fieldNames.phone} label="Phone #2" inputMask={true} component={BootstrapInput} type="text" />
-              <Field name={fieldNames.phone} label="Phone #2" inputMask={true} component={BootstrapInput} type="text" />
-              <Field name={fieldNames.fax} label="Fax" component={InputWithMask} type="text" />
-              <div>
-                  <Button variant="outlined" component="span" className={classes.addNumber}>
-                    <Typography variant="body2" gutterBottom>
-                      {Add}
-                      <span className={classes.addNumberColor}>add phone number</span>
-                    </Typography>
-                  </Button>
-              </div>
-              <ButtonGroup leftName='Back' rightName='Forward'/>
+              <Field name={fieldNames.fax} label="Fax" component={InputWithMask} type="text" required={true}/>
+              <FieldArray name={fieldNames.phone} component={RenderPhone}/>
+              <ButtonGroup push={push} leftName='Back' rightName='Forward' url='/create-user/profile'/>
             </div>
           </Grid>
         </Grid>
@@ -84,7 +59,10 @@ let Contacts = (props) => {
 Contacts = reduxForm({
   form: 'contacts',
   destroyOnUnmount: false,
-  validate: contactsValidation
+  validate: contactsValidation,
+  initialValues: {
+    phone: [null, null]
+  }
 })(Contacts);
 
 export default withStyles(styles)(Contacts);
