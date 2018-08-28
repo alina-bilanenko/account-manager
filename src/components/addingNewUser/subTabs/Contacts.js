@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles, Grid } from "@material-ui/core";
-import SelectMainLanguage from 'components/commonComponents/IntegrationReactSelect'
+import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import ButtonGroup from "components/commonComponents/ButtonGroup"
 import { Field, FieldArray, reduxForm } from "redux-form";
@@ -61,7 +61,7 @@ let Contacts = (props) => {
                 name={fieldNames.mainLanguage}
                 label="Main language"
                 isMulti={false}
-                component={SelectMainLanguage}
+                component={IntegrationReactSelect}
               />
             </div>
           </Grid>

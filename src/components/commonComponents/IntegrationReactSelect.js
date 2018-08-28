@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class SelectMainLanguage extends React.Component {
+class IntegrationReactSelect extends React.Component {
 
   render() {
     const {
@@ -28,7 +28,8 @@ class SelectMainLanguage extends React.Component {
       name,
       label,
       classes,
-      meta
+      meta,
+      isMulti
     } = this.props;
 
     return (
@@ -36,7 +37,7 @@ class SelectMainLanguage extends React.Component {
         <InputLabel
           className={classes.bootstrapFormLabel}
         >
-          Main language
+          {label}
         </InputLabel>
         <Select
           classNamePrefix="react-select"
@@ -46,20 +47,20 @@ class SelectMainLanguage extends React.Component {
           onBlur={() => input.onBlur(input.value)}
           label={label}
           name={name}
-          options={mainLanguage}
+          options={isMulti? skills :mainLanguage}
           onBlurResetsInput={false}
           placeholder=''
+          isMulti={isMulti}
+          isClearable={isMulti}
         />
-        {meta.touched &&
         <FormHelperText
           className={classes.textHelper}
         >
-          {meta.error}
+          {meta.touched && meta.error}
         </FormHelperText>
-        }
       </div>
     )
   }
 }
 
-export default withStyles(styles, { withTheme: true })(SelectMainLanguage);
+export default withStyles(styles, { withTheme: true })(IntegrationReactSelect);

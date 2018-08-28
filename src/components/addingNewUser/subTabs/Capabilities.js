@@ -6,6 +6,7 @@ import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from "Validation";
 import { fieldNames } from "../../../consts";
+import IntegrationReactSelect from "../../commonComponents/IntegrationReactSelect";
 
 const styles = theme =>({
   root: {
@@ -36,6 +37,12 @@ let Capabilities = (props) => {
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
+              <Field
+                name={fieldNames.skills}
+                label="Skills"
+                isMulti={true}
+                component={IntegrationReactSelect}
+              />
               <Field
                 name={fieldNames.additionalInformation}
                 label="Additional information"

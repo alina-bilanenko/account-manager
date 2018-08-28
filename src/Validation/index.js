@@ -71,9 +71,9 @@ export const contactsValidation = (inputs) => {
     errors[fieldNames.fax] = 'Invalid number';
   }
 
-  if (inputs[fieldNames.phone] && inputs[fieldNames.phone].length) {
-    const phoneArrayErrors = [];
-    console.log(inputs[fieldNames.phone] )
+  // if (inputs[fieldNames.phone] && inputs[fieldNames.phone].length) {
+  //   const phoneArrayErrors = [];
+  //   console.log(inputs[fieldNames.phone] )
     // inputs[fieldNames.phone].forEach((phone, phoneIndex) => {
     //   if (!reg.test(inputs[fieldNames.fax])) {
     //     phoneArrayErrors[phoneIndex] = 'Invalid number';
@@ -82,7 +82,7 @@ export const contactsValidation = (inputs) => {
     // if (phoneArrayErrors.length) {
     //   errors.phone = phoneArrayErrors;
     // }
-  }
+  // }
 
   return errors;
 };

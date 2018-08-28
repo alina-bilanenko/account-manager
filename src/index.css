@@ -149,6 +149,10 @@ div.react-select-container > div.react-select__control {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
+div.react-select-container > div.react-select__control--is-focused {
+  box-shadow: none;
+}
+
 .css-1rtrksz.react-select__value-container,
 div.react-select__control > div.react-select__value-container--has-value,
 div.react-select__value-containe > div.react-select__single-value,
@@ -164,7 +168,21 @@ div.react-select__value-containe > div.react-select__single-value,
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-div.react-select__control > .react-select__indicators {
+.react-select__indicator.react-select__clear-indicator {
+  padding: 0;
+  color: #9BB0CB;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  right: -6%;
+  top: 20%;
+}
+
+.css-d8oujb.react-select__indicator-separator {
+  background-color: inherit;
+}
+
+.react-select__indicator.react-select__dropdown-indicator {
   display: none;
 }
 
@@ -187,4 +205,26 @@ div.react-select__menu-list {
 
 div.react-select__option:hover {
   background-color: #E7F0FF;
+}
+
+.css-xwjg1b.react-select__multi-value {
+  background: #E7F0FF;
+}
+
+.css-10odw4q.react-select__multi-value__label {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 12px;
+  color: #9BB0CB;
+}
+
+.css-1alnv5e.react-select__multi-value__remove {
+  color:  #9BB0CB;
+}
+
+.css-1alnv5e.react-select__multi-value__remove:hover {
+  background-color: inherit;
+  color: #9BB0CB;
 }
