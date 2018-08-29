@@ -6,4 +6,4 @@ export const usersList = (state = {}, action) => {
     default:
       return state
   }
-};
+}

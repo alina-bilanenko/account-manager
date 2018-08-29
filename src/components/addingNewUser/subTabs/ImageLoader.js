@@ -1,92 +1,65 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Typography, FormHelperText } from "@material-ui/core";
-import { Add } from "icons";
-import Button from "@material-ui/core/Button";
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-  avatar: {
-    margin: 'auto',
-    display: 'block',
-    textTransform: 'lowercase',
-    border: 'none',
-    textAlign: 'center',
-    width: '50%',
-    paddingLeft: '0',
-    '&:hover': {
-      backgroundColor: 'inherit'
-    }
-  },
-  addAvatar: {
-    color: '#9BB0CB',
-  },
-  error: {
-    color: '#EB5757',
-    textAlign: 'center',
-    textTransform: 'none',
-    fontWeight: '400'
-  }
-});
+import React from 'react'
+import {
+  withStyles,
+  Button,
+  Typography,
+  FormHelperText
+} from '@material-ui/core'
+import { Add } from 'icons'
+import { stylesImgLoader } from 'styles'
 
 function ImageLoader (props) {
-  const { classes, input, meta, type } = props;
+  const { classes, input, meta, type } = props
 
   const AddAvatar = (
     <Typography
-      variant="body2"
+      variant='body2'
       gutterBottom
       className={classes.addAvatar}
     >
       {Add}
       <span>add avatar</span>
     </Typography>
-  );
+  )
 
-  function handleFile(e) {
-    e.preventDefault();
+  function handleFile (e) {
+    e.preventDefault()
 
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     if (!file) {
       return
     }
 
-    let reader = new FileReader();
+    let reader = new FileReader()
 
     reader.onloadend = () => {
       input.onChange(reader.result)
-    };
+    }
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file)
   }
 
   return (
     <div>
       <input
-        accept="image/*"
+        accept='image/*'
         name={input.name}
         {...input}
         value={undefined}
         onChange={handleFile}
         className={classes.input}
-        id="icon-button-file"
+        id='icon-button-file'
         type={type}
       />
-      <label htmlFor="icon-button-file">
+      <label htmlFor='icon-button-file'>
         <Button
-          variant="outlined"
-          component="span"
+          variant='outlined'
+          component='span'
           className={classes.avatar}
         >
           {meta.error &&
           <FormHelperText
-            id="name-error-text"
+            id='name-error-text'
             className={classes.error}
           >
             {meta.error}
@@ -96,11 +69,11 @@ function ImageLoader (props) {
         </Button>
       </label>
     </div>
-  );
+  )
 }
 
 ImageLoader.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+  classes: PropTypes.object.isRequired
+}
 
-export default withStyles(styles)(ImageLoader);
+export default withStyles(stylesImgLoader)(ImageLoader)

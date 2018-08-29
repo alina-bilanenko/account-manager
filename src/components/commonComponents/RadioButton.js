@@ -1,41 +1,21 @@
-import React, { Fragment } from "react";
-import { withStyles, FormLabel, RadioGroup, FormControlLabel } from '@material-ui/core';
-import Radio from '@material-ui/core/Radio';
-import classNames from 'classnames';
-
-
-const styles = theme =>({
-  bootstrapFormLabel: {
-    fontSize: 14,
-    lineHeight: '16px',
-    fontWeight: 400,
-    color: '#657C9A',
-  },
-  group: {
-    flexDirection: 'row'
-  },
-  radio: {
-    color: '#C1CFE0',
-    '&$checked': {
-      color: '#4E86E4'
-    }
-  },
-  checked: {
-    '&, & + $label': {
-      color: '#000000',
-      fontWeight: '500'
-    },
-  },
-  label: {},
-});
+import React, { Fragment } from 'react'
+import {
+  withStyles,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio
+} from '@material-ui/core'
+import classNames from 'classnames'
+import { stylesRadio } from 'styles'
 
 const RadioButton = (props) => {
-  const {classes, input, name, ...rest} = props;
+  const { classes, input, name, ...rest } = props
 
   return (
     <Fragment>
       <FormLabel
-        component="legend"
+        component='legend'
         className={classes.bootstrapFormLabel}
       >
         Gender
@@ -43,13 +23,13 @@ const RadioButton = (props) => {
       <RadioGroup
         {...input}
         {...rest}
-        aria-label="gender"
+        aria-label='gender'
         name={name}
         className={
           classNames(
             classes.group,
             classes.bootstrapFormLabel
-          ) }
+          )}
         value={
           !input.value
             ? 'male'
@@ -60,9 +40,9 @@ const RadioButton = (props) => {
         }
       >
         <FormControlLabel
-          value="male"
+          value='male'
           classes={{
-            label: classes.label,
+            label: classes.label
           }}
           control={
             <Radio
@@ -72,14 +52,14 @@ const RadioButton = (props) => {
               }}
             />
           }
-          label="Male"
-          labelPlacement="end"
+          label='Male'
+          labelPlacement='end'
           className={classes.bootstrapFormLabel}
         />
         <FormControlLabel
-          value="female"
+          value='female'
           classes={{
-            label: classes.label,
+            label: classes.label
           }}
           control={
             <Radio
@@ -88,12 +68,13 @@ const RadioButton = (props) => {
                 checked: classes.checked
               }}
             />}
-          label="Female"
-          labelPlacement="end"
+          label='Female'
+          labelPlacement='end'
           className={classes.bootstrapFormLabel}
         />
       </RadioGroup>
     </Fragment>
-  )};
+  )
+}
 
-export default withStyles(styles)(RadioButton);
+export default withStyles(stylesRadio)(RadioButton)

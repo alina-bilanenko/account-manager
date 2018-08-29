@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react'
 import { Route, Switch } from 'react-router'
 import { ConnectedRouter } from 'connected-react-router'
 import MainContainer from 'containers/MainContainer'
 
-const App = ({history}) => (
-      <ConnectedRouter history={history}>
-        <Switch>
-                <Route component={MainContainer} />
-        </Switch>
-      </ConnectedRouter>
-);
+const App = ({ history }) => (
+  <ConnectedRouter history={history}>
+    <Switch>
+      <Route component={MainContainer} />
+    </Switch>
+  </ConnectedRouter>
+)
 
-export default App;
+export default App

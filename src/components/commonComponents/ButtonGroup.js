@@ -1,63 +1,49 @@
-import React from 'react';
-import { withStyles, Button} from '@material-ui/core';
-import classNames from "classnames";
-
-const styles = theme =>({
-  buttonGroup: {
-    display: 'flex',
-    marginTop: '20%',
-    justifyContent: 'space-between'
-  },
-  button: {
-    backgroundColor: '#5E97F3',
-    textTransform: 'none',
-    width: '100px',
-    height: '40px',
-  },
-  hidden: {
-    visibility: 'hidden'
-  }
-});
+import React from 'react'
+import { withStyles, Button } from '@material-ui/core'
+import classNames from 'classnames'
+import { stylesButtonGroup } from 'styles'
 
 const ButtonGroup = (props) => {
   const {
     classes,
-    leftName,
-    rightName,
+    finish,
     hidden,
-    url=undefined,
+    url = undefined,
     push
-  } = props;
+  } = props
 
   const handleClickBack = () => {
-    if(url)  push(url)
-  };
+    if (url) push(url)
+  }
 
   return (
     <div className={classes.buttonGroup}>
       <Button
         onClick={handleClickBack}
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         className={
           classNames(
             classes.button,
-            {[classes.hidden]: hidden}
+            { [classes.hidden]: hidden }
           )
         }>
-        {leftName}
+        Back
       </Button>
       <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        className={classes.button}
-      >
-        {rightName}
+        type='submit'
+        variant='contained'
+        color='primary'
+        className={
+          classNames(
+            classes.button,
+            { [classes.finish]: finish }
+          )
+        }>
+        {finish ? 'Finish' : 'Forward'}
       </Button>
     </div>
-  )};
+  )
+}
 
-export default withStyles(styles)(ButtonGroup);
-
-
+export default withStyles(stylesButtonGroup)(ButtonGroup)

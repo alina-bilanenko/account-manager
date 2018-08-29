@@ -1,36 +1,17 @@
-import React from 'react';
-import { withStyles, Grid, Icon } from "@material-ui/core";
-import BootstrapInput from "../../commonComponents/BootstrapInput";
+import React from 'react'
+import { withStyles, Grid, Icon } from '@material-ui/core'
+import BootstrapInput from '../../commonComponents/BootstrapInput'
 import RadioButton from 'components/commonComponents/RadioButton'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
-import {profileValidation} from 'Validation/index'
-import { Field, reduxForm } from 'redux-form'
-import { fieldNames } from "consts";
 import BirthDate from 'components/commonComponents/BirthDate'
-import { Calendar } from "icons";
-
-const styles = theme =>({
-  root: {
-    backgroundColor: 'rgba(231, 240, 255, 0.2)',
-    height: '600px'
-  },
-  gridItem: {
-    flex: '1',
-    paddingTop: theme.spacing.unit*7,
-    height: '600px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    width: '70%',
-  },
-});
+import { profileValidation } from 'Validation/index'
+import { Field, reduxForm } from 'redux-form'
+import { fieldNames } from 'consts'
+import { Calendar } from 'icons'
+import { stylesProfile } from 'styles'
 
 let Profile = (props) => {
-  const {classes, handleSubmit, push} = props;
+  const { classes, handleSubmit, push } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -40,24 +21,24 @@ let Profile = (props) => {
             <div className={classes.container}>
               <Field
                 name={fieldNames.firstName}
-                required={true}
-                label="First name"
+                required
+                label='First name'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.lastName}
-                required={true}
-                label="Last name"
+                required
+                label='Last name'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.birthDate}
-                required={true}
-                label="Birth date"
+                required
+                label='Birth date'
                 component={BirthDate}
-                type="text"
+                type='text'
               >
                 <Icon>{Calendar}</Icon>
               </Field>
@@ -67,16 +48,16 @@ let Profile = (props) => {
             <div className={classes.container}>
               <Field
                 name={fieldNames.email}
-                required={true}
-                label="Email"
+                required
+                label='Email'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.address}
-                label="Address"
+                label='Address'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.gender}
@@ -84,8 +65,6 @@ let Profile = (props) => {
               />
               <ButtonGroup
                 push={push}
-                leftName='Back'
-                rightName='Forward'
                 url='/create-user/account'
               />
             </div>
@@ -93,12 +72,13 @@ let Profile = (props) => {
         </Grid>
       </div>
     </form>
-  )};
+  )
+}
 
 Profile = reduxForm({
   form: 'profile',
   destroyOnUnmount: false,
   validate: profileValidation
-})(Profile);
+})(Profile)
 
-export default withStyles(styles)(Profile);
+export default withStyles(stylesProfile)(Profile)

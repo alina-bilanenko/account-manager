@@ -1,36 +1,17 @@
-import React from 'react';
-import { withStyles, Grid } from "@material-ui/core";
+import React from 'react'
+import { withStyles, Grid } from '@material-ui/core'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
-import ButtonGroup from "components/commonComponents/ButtonGroup"
-import { Field, FieldArray, reduxForm } from "redux-form";
-import { contactsValidation } from "Validation";
-import { fieldNames } from "consts";
+import ButtonGroup from 'components/commonComponents/ButtonGroup'
+import { Field, FieldArray, reduxForm } from 'redux-form'
+import { contactsValidation } from 'Validation'
+import { fieldNames } from 'consts'
 import InputWithMask from 'components/commonComponents/InputMask'
 import RenderPhone from 'components/commonComponents/RenderPhones'
-
-const styles = theme =>({
-  root: {
-    backgroundColor: 'rgba(231, 240, 255, 0.2)',
-    height: '600px'
-  },
-  gridItem: {
-    flex: '1',
-    paddingTop: theme.spacing.unit*7,
-    height: '600px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    width: '70%',
-  }
-});
+import { stylesContacts } from 'styles'
 
 let Contacts = (props) => {
-  const {classes, handleSubmit, push} = props;
+  const { classes, handleSubmit, push } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -40,26 +21,26 @@ let Contacts = (props) => {
             <div className={classes.container}>
               <Field
                 name={fieldNames.company}
-                required={true}
-                label="Company"
+                required
+                label='Company'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.gitHubLink}
-                label="Github link"
+                label='Github link'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.facebookLink}
-                label="Facebook link"
+                label='Facebook link'
                 component={BootstrapInput}
-                type="text"
+                type='text'
               />
               <Field
                 name={fieldNames.mainLanguage}
-                label="Main language"
+                label='Main language'
                 isMulti={false}
                 component={IntegrationReactSelect}
               />
@@ -69,10 +50,10 @@ let Contacts = (props) => {
             <div className={classes.container}>
               <Field
                 name={fieldNames.fax}
-                label="Fax"
+                label='Fax'
                 component={InputWithMask}
-                type="text"
-                required={true}
+                type='text'
+                required
               />
               <FieldArray
                 name={fieldNames.phone}
@@ -80,8 +61,6 @@ let Contacts = (props) => {
               />
               <ButtonGroup
                 push={push}
-                leftName='Back'
-                rightName='Forward'
                 url='/create-user/profile'
               />
             </div>
@@ -89,15 +68,17 @@ let Contacts = (props) => {
         </Grid>
       </div>
     </form>
-  )};
+  )
+}
 
 Contacts = reduxForm({
   form: 'contacts',
   destroyOnUnmount: false,
   validate: contactsValidation,
   initialValues: {
-    phone: [null, null]
+    phone: ['', ''],
+    fax: ''
   }
-})(Contacts);
+})(Contacts)
 
-export default withStyles(styles)(Contacts);
+export default withStyles(stylesContacts)(Contacts)

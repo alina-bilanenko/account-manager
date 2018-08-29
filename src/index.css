@@ -178,12 +178,12 @@ div.react-select__value-containe > div.react-select__single-value,
   top: 20%;
 }
 
-.css-d8oujb.react-select__indicator-separator {
-  background-color: inherit;
+.react-select__indicator.react-select__clear-indicator:hover {
+  color: #9BB0CB;
 }
 
-.react-select__indicator.react-select__dropdown-indicator {
-  display: none;
+.css-d8oujb.react-select__indicator-separator {
+  background-color: inherit;
 }
 
 div.react-select__menu {

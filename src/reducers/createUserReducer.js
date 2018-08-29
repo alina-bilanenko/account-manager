@@ -6,4 +6,4 @@ export const createUser = (state = {}, action) => {
     default:
       return state
   }
-};
+}

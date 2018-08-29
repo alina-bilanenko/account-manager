@@ -1,35 +1,16 @@
-import React from 'react';
-import { withStyles, Grid} from '@material-ui/core';
+import React from 'react'
+import { withStyles, Grid } from '@material-ui/core'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
-import { capabilitiesValidation } from "Validation";
-import { fieldNames } from "../../../consts";
-import IntegrationReactSelect from "../../commonComponents/IntegrationReactSelect";
-
-const styles = theme =>({
-  root: {
-    backgroundColor: 'rgba(231, 240, 255, 0.2)',
-    height: '600px'
-  },
-  gridItem: {
-    flex: '1',
-    paddingTop: theme.spacing.unit*7,
-    height: '600px',
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    width: '70%',
-  }
-});
+import { capabilitiesValidation } from 'Validation'
+import { fieldNames } from 'consts'
+import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
+import { stylesCapabilities } from 'styles'
 
 let Capabilities = (props) => {
-  const {classes, handleSubmit, push} = props;
+  const { classes, handleSubmit, push } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -39,15 +20,17 @@ let Capabilities = (props) => {
             <div className={classes.container}>
               <Field
                 name={fieldNames.skills}
-                label="Skills"
-                isMulti={true}
+                label='Skills'
+                isMulti
+                indicator
                 component={IntegrationReactSelect}
               />
               <Field
                 name={fieldNames.additionalInformation}
-                label="Additional information"
+                label='Additional information'
                 component={BootstrapInput}
-                type="text"
+                type='text'
+                maxLength='300'
                 multiline
               />
             </div>
@@ -57,8 +40,7 @@ let Capabilities = (props) => {
               <CheckboxesGroup />
               <ButtonGroup
                 push={push}
-                leftName='Back'
-                rightName='Finish'
+                finish
                 url='/create-user/contacts'
               />
             </div>
@@ -66,12 +48,13 @@ let Capabilities = (props) => {
         </Grid>
       </div>
     </form>
-  )};
+  )
+}
 
 Capabilities = reduxForm({
   form: 'contacts',
   destroyOnUnmount: false,
   validate: capabilitiesValidation
-})(Capabilities);
+})(Capabilities)
 
-export default withStyles(styles)(Capabilities);
+export default withStyles(stylesCapabilities)(Capabilities)
