@@ -14,22 +14,23 @@ import classNames from 'classnames'
 import { stylesAdd } from 'styles'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
-import { createUser } from 'actions/createUserAction'
 import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
+import {addUsers} from 'actions/listOfUsersActions'
 
 const AddingNewUsers = (props) => {
-  // const handleChange = (event, val) => {
-  //   props.history.push(`/create-user/${val}`)
-  // };
 
-  const { classes, push } = props
+  const { classes, push, handlerAddUsers } = props
   const tabName = props.match.params.name
 
   if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
     props.history.push('/create-user/account')
     return null
   }
+
+  const finish = () => {
+    handlerAddUsers();
+  };
 
   return (
     <div>
@@ -128,7 +129,7 @@ const AddingNewUsers = (props) => {
             <Capabilities
               {...props}
               push={push}
-              onSubmit={() => {}}
+              onSubmit={finish}
             />
           )}
         />
@@ -139,18 +140,17 @@ const AddingNewUsers = (props) => {
 
 const mapStateToProps = (props) => {
   return {
-    user: props.createUser.addNewUser
+
   }
 }
 
 const mapDispatchToProps = {
-  changeUser: createUser.addNewUser,
-  push: push
+  push: push,
+  handlerAddUsers: addUsers,
 }
 
 AddingNewUsers.propTypes = {
   classes: PropsTypes.object,
-  changeUser: PropsTypes.func,
   push: PropsTypes.func
 }
 

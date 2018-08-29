@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import { createUser } from 'reducers/createUserReducer'
 import { usersList } from 'reducers/listOfUserReducer'
 import { reducer as formReducer } from 'redux-form'
 
@@ -18,7 +17,6 @@ const collectiveState = (state = {}, action) => {
 }
 
 export const reducer = combineReducers({
-  createUser,
   usersList,
   collectiveState,
   form: formReducer

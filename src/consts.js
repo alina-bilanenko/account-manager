@@ -85,12 +85,5 @@ export const initialState = {
     showPassword: false,
     showConfirmPassword: false
   },
-  usersList: {
-    listOfUsers: []
-  },
-  createUser: {
-    addNewUser: {
-      photo: null
-    }
-  }
+  usersList: []
 }

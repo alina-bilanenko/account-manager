@@ -3,6 +3,8 @@ import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core'
 import Table from 'components/listOfUsers/TableList'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { usersList } from "../../reducers/listOfUserReducer";
 
 const styles = theme => ({
   caption: {
@@ -28,7 +30,7 @@ const ListOfAllUsers = (props) => {
       <Typography variant='display1' gutterBottom className={classes.caption}>
     List of users
       </Typography>
-      <Table />
+      <Table usersList={usersList} />
     </div>
   )
 }
@@ -37,4 +39,10 @@ ListOfAllUsers.propTypes = {
   classes: PropTypes.object
 }
 
-export default withStyles(styles)(ListOfAllUsers)
+const mapStateToProps = (props) => {
+  return {
+    usersList
+  }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(ListOfAllUsers))

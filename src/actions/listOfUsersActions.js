@@ -1,10 +1,49 @@
-const usersListConst = {
-  LIST_OF_USER: 'LIST_OF_USER'
+import db from 'db'
+
+const usersConst = {
+  LOAD_USERS: 'LOAD_USERS',
+  ADD_USERS: 'ADD_USERS',
+  UPDATE_USERS: 'UPDATE_USERS',
+  DELETE_USERS: 'DELETE_USERS'
+};
+
+export function loadUsers() {
+  return async  (dispatch) => {
+    const users = await db.table('users').toArray();
+    dispatch({
+      type: usersConst.LOAD_USERS,
+      payload: users,
+    });
+  }
 }
 
-export const usersList = {
-  listOfUsers: value => ({
-    type: usersListConst.LIST_OF_USER,
-    users: value
-  })
+export function addUsers(value) {
+  return async  (dispatch) => {
+    const userToAdd = { value, done: false };
+    const id = await db.table('users').add(userToAdd);
+    dispatch({
+      type: usersConst.ADD_USERS,
+      payload: Object.assign({}, userToAdd, { id }),
+    });
+  }
+}
+
+export function deleteUsers(id) {
+  return async  (dispatch) => {
+    const id = await db.table('users').delete(id);
+    dispatch({
+      type: usersConst.DELETE_USERS,
+      payload: id,
+    });
+  }
+}
+
+export function updateUsers(id, done) {
+  return async  (dispatch) => {
+    const users = await db.table('users').update(id, { done });
+    dispatch({
+      type: usersConst.UPDATE_USERS,
+      payload: { id, done },
+    });
+  }
 }

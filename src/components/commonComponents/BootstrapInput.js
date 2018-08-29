@@ -50,7 +50,6 @@ const BootstrapInput = (props) => {
         classes: {
           input: classes.bootstrapInput
         },
-
         endAdornment: endAdornment ? (
           <InputAdornment position='end'>
             <IconButton

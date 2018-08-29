@@ -7,11 +7,18 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
+import TablePlaceholder from 'components/listOfUsers/TablePlaceholder'
+import {fieldNames} from "../../consts";
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    backgroundColor: '#4E86E4',
+    color: '#FFFFFF',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    fontSize: '14px',
+
   },
   body: {
     fontSize: 14
@@ -22,10 +29,11 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto'
+    overflowX: 'auto',
+    boxShadow: 'unset'
   },
   table: {
-    minWidth: 700
+    minWidth: 600,
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -34,49 +42,37 @@ const styles = theme => ({
   }
 })
 
-let id = 0
-function createData (name, calories, fat, carbs, protein) {
-  id += 1
-  return { id, name, calories, fat, carbs, protein }
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9)
-]
 
 function TableList (props) {
-  const { classes } = props
+  const { classes, usersList } = props
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
-        <TableHead>
+        <TableHead >
           <TableRow>
-            <CustomTableCell>Dessert (100g serving)</CustomTableCell>
-            <CustomTableCell numeric>Calories</CustomTableCell>
-            <CustomTableCell numeric>Fat (g)</CustomTableCell>
-            <CustomTableCell numeric>Carbs (g)</CustomTableCell>
-            <CustomTableCell numeric>Protein (g)</CustomTableCell>
+            <CustomTableCell>name</CustomTableCell>
+            <CustomTableCell>company</CustomTableCell>
+            <CustomTableCell>contacts</CustomTableCell>
+            <CustomTableCell>last update</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
-            return (
-              <TableRow className={classes.row} key={row.id}>
-                <CustomTableCell component='th' scope='row'>
-                  {row.name}
-                </CustomTableCell>
-                <CustomTableCell numeric>{row.calories}</CustomTableCell>
-                <CustomTableCell numeric>{row.fat}</CustomTableCell>
-                <CustomTableCell numeric>{row.carbs}</CustomTableCell>
-                <CustomTableCell numeric>{row.protein}</CustomTableCell>
-              </TableRow>
-            )
-          })}
+          {usersList.length
+            ? usersList.map(user => {
+              return (
+                <TableRow className={classes.row} key={user.id}>
+                  <CustomTableCell component='td' scope='row'>
+                    {user[fieldNames.lastName]}
+                  </CustomTableCell>
+                  <CustomTableCell>{user[fieldNames.company]}</CustomTableCell>
+                  <CustomTableCell>{user[fieldNames.email]}</CustomTableCell>
+                  <CustomTableCell>{user[fieldNames.gender]}</CustomTableCell>
+                </TableRow>
+              )
+            })
+            : <TablePlaceholder />
+          }
         </TableBody>
       </Table>
     </Paper>
