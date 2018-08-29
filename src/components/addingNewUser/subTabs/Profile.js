@@ -9,6 +9,7 @@ import { Field, reduxForm } from 'redux-form'
 import { fieldNames } from 'consts'
 import { Calendar } from 'icons'
 import { stylesProfile } from 'styles'
+import PropTypes from 'prop-types'
 
 let Profile = (props) => {
   const { classes, handleSubmit, push } = props
@@ -80,5 +81,11 @@ Profile = reduxForm({
   destroyOnUnmount: false,
   validate: profileValidation
 })(Profile)
+
+Profile.propTypes = {
+  classes: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  push: PropTypes.func
+}
 
 export default withStyles(stylesProfile)(Profile)

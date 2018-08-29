@@ -4,6 +4,7 @@ import MyHobbies from 'components/commonComponents/MyHobbies'
 import { Field } from 'redux-form'
 import { fieldNames } from 'consts'
 import { stylesCheckbox } from 'styles'
+import PropTypes from 'prop-types'
 
 class CheckboxesGroup extends React.Component {
   render () {
@@ -49,6 +50,10 @@ class CheckboxesGroup extends React.Component {
       </div>
     )
   }
+}
+
+CheckboxesGroup.propTypes = {
+  classes: PropTypes.object
 }
 
 export default withStyles(stylesCheckbox)(CheckboxesGroup)

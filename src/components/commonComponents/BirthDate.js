@@ -10,6 +10,7 @@ import {
 import moment from 'moment'
 import { Calendar } from 'icons'
 import { stylesBirthDate } from 'styles'
+import PropTypes from 'prop-types'
 
 moment.updateLocale('en', {
   week: {
@@ -19,20 +20,20 @@ moment.updateLocale('en', {
 })
 
 const BirthDate = (props) => {
-  const { classes, input: { onChange, value }, label, meta } = props
+  const { classes, input, label, meta } = props
 
   return (
     <Fragment>
       <DatePicker
-        onChange={onChange}
+        onChange={input.onChange}
         placeholderText='DD/MM/YYY'
         dateFormat='DD/MM/YYYY'
-        selected={!value ? null : value}
+        selected={!input.value ? null : input.value}
         className={classes.bootstrapInput}
         openToDate={
-          !value
+          !input.value
             ? moment('1997-01-01')
-            : value
+            : input.value
         }
         customInput={
           (<BirthDateInput
@@ -92,6 +93,22 @@ class BirthDateInput extends Component {
       />
     )
   }
+}
+
+BirthDate.propTypes = {
+  classes: PropTypes.object,
+  label: PropTypes.string,
+  meta: PropTypes.object,
+  input: PropTypes.object
+}
+
+BirthDateInput.propTypes = {
+  value: PropTypes.object,
+  onClick: PropTypes.func,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  meta: PropTypes.object,
+  classes: PropTypes.object
 }
 
 export default withStyles(stylesBirthDate)(BirthDate)

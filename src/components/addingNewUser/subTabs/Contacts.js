@@ -9,6 +9,7 @@ import { fieldNames } from 'consts'
 import InputWithMask from 'components/commonComponents/InputMask'
 import RenderPhone from 'components/commonComponents/RenderPhones'
 import { stylesContacts } from 'styles'
+import PropTypes from 'prop-types'
 
 let Contacts = (props) => {
   const { classes, handleSubmit, push } = props
@@ -80,5 +81,11 @@ Contacts = reduxForm({
     fax: ''
   }
 })(Contacts)
+
+Contacts.propTypes = {
+  classes: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  push: PropTypes.func
+}
 
 export default withStyles(stylesContacts)(Contacts)

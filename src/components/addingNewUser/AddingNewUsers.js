@@ -16,6 +16,7 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { createUser } from 'actions/createUserAction'
 import { push } from 'connected-react-router'
+import PropsTypes from 'prop-types'
 
 const AddingNewUsers = (props) => {
   // const handleChange = (event, val) => {
@@ -145,6 +146,12 @@ const mapStateToProps = (props) => {
 const mapDispatchToProps = {
   changeUser: createUser.addNewUser,
   push: push
+}
+
+AddingNewUsers.propTypes = {
+  classes: PropsTypes.object,
+  changeUser: PropsTypes.func,
+  push: PropsTypes.func
 }
 
 export default connect(

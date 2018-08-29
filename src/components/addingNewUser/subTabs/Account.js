@@ -16,6 +16,7 @@ import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { collectiveActions } from 'actions/action'
 import { stylesAccount } from 'styles'
+import PropTypes from 'prop-types'
 
 let Account = (props) => {
   let {
@@ -126,6 +127,17 @@ const mapStateToProps = (props) => {
 const mapDispatchToProps = {
   changeShowPassword: collectiveActions.showPassword,
   changeShowConfirmPassword: collectiveActions.showConfirmPassword
+}
+
+Account.propTypes = {
+  classes: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  showPassword: PropTypes.bool,
+  changeShowPassword: PropTypes.func,
+  showConfirmPassword: PropTypes.bool,
+  changeShowConfirmPassword: PropTypes.func,
+  photo: PropTypes.object,
+  push: PropTypes.func
 }
 
 export default connect(

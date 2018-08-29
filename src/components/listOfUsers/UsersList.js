@@ -1,6 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   caption: {
@@ -29,6 +30,10 @@ const UsersList = (props) => {
 
     </div>
   )
+}
+
+UsersList.propTypes = {
+  classes: PropTypes.object
 }
 
 export default withStyles(styles)(UsersList)

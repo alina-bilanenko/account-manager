@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import { Eye, EyeStrike } from 'icons'
 import { stylesInput } from 'styles'
+import PropTypes from 'prop-types'
 
 const BootstrapInput = (props) => {
   const {
@@ -17,7 +18,7 @@ const BootstrapInput = (props) => {
     name,
     required = false,
     endAdornment = false,
-    input: inputProps,
+    input,
     meta,
     show,
     changeShow,
@@ -64,7 +65,7 @@ const BootstrapInput = (props) => {
             </IconButton>
           </InputAdornment>
         ) : null,
-        ...inputProps
+        ...input
       }}
       InputLabelProps={{
         shrink: true,
@@ -79,6 +80,22 @@ const BootstrapInput = (props) => {
       className={classes.textField}
     />
   )
+}
+
+BootstrapInput.propTypes = {
+  classes: PropTypes.object,
+  label: PropTypes.string,
+  handleChangeInput: PropTypes.func,
+  name: PropTypes.string,
+  required: PropTypes.bool,
+  endAdornment: PropTypes.bool,
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  show: PropTypes.bool,
+  changeShow: PropTypes.func,
+  type: PropTypes.string,
+  multiline: PropTypes.bool,
+  maxLength: PropTypes.string
 }
 
 export default withStyles(stylesInput)(BootstrapInput)

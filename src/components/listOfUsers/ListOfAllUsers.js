@@ -2,6 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core'
 import Table from 'components/listOfUsers/TableList'
+import PropTypes from 'prop-types'
 
 const styles = theme => ({
   caption: {
@@ -30,6 +31,10 @@ const ListOfAllUsers = (props) => {
       <Table />
     </div>
   )
+}
+
+ListOfAllUsers.propTypes = {
+  classes: PropTypes.object
 }
 
 export default withStyles(styles)(ListOfAllUsers)

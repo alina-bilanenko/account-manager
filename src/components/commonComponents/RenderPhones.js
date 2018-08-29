@@ -5,6 +5,7 @@ import { Typography, withStyles } from '@material-ui/core'
 import { Add, ButtonDelete } from 'icons'
 import Button from '@material-ui/core/Button/Button'
 import { stylesRenderPhone } from 'styles'
+import PropTypes from 'prop-types'
 
 const RenderPhone = ({ fields, classes }) => {
   return (
@@ -42,6 +43,11 @@ const RenderPhone = ({ fields, classes }) => {
       </li>)}
     </ul>
   )
+}
+
+RenderPhone.propTypes = {
+  fields: PropTypes.object,
+  classes: PropTypes.object
 }
 
 export default withStyles(stylesRenderPhone)(RenderPhone)

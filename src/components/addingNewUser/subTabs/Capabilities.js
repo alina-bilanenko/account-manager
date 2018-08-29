@@ -8,6 +8,7 @@ import { capabilitiesValidation } from 'Validation'
 import { fieldNames } from 'consts'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import { stylesCapabilities } from 'styles'
+import PropTypes from 'prop-types'
 
 let Capabilities = (props) => {
   const { classes, handleSubmit, push } = props
@@ -56,5 +57,11 @@ Capabilities = reduxForm({
   destroyOnUnmount: false,
   validate: capabilitiesValidation
 })(Capabilities)
+
+Capabilities.propTypes = {
+  classes: PropTypes.object,
+  handleSubmit: PropTypes.func,
+  push: PropTypes.func
+}
 
 export default withStyles(stylesCapabilities)(Capabilities)

@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core'
 import classNames from 'classnames'
 import { stylesRadio } from 'styles'
+import PropTypes from 'prop-types'
 
 const RadioButton = (props) => {
   const { classes, input, name, ...rest } = props
@@ -75,6 +76,13 @@ const RadioButton = (props) => {
       </RadioGroup>
     </Fragment>
   )
+}
+
+RadioButton.propTypes = {
+  classes: PropTypes.object,
+  input: PropTypes.object,
+  name: PropTypes.string,
+  rest: PropTypes.object
 }
 
 export default withStyles(stylesRadio)(RadioButton)

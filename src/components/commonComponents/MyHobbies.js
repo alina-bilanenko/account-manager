@@ -2,6 +2,7 @@ import React from 'react'
 import { Checkbox, FormControlLabel, withStyles } from '@material-ui/core'
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
 import { stylesMyHobbies } from 'styles'
+import PropTypes from 'prop-types'
 
 const MyHobbies = ({ input, label, classes }) => (
   <FormControlLabel
@@ -25,5 +26,11 @@ const MyHobbies = ({ input, label, classes }) => (
     label={label}
   />
 )
+
+MyHobbies.propTypes = {
+  input: PropTypes.object,
+  label: PropTypes.string,
+  classes: PropTypes.object
+}
 
 export default withStyles(stylesMyHobbies)(MyHobbies)

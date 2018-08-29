@@ -2,6 +2,7 @@ import React from 'react'
 import InputMask from 'react-input-mask'
 import { FormHelperText, InputLabel, withStyles } from '@material-ui/core'
 import { stylesMask } from 'styles'
+import PropTypes from 'prop-types'
 
 const InputWithMask = ({
   input: inputProps,
@@ -33,6 +34,13 @@ const InputWithMask = ({
     </div>
 
   )
+}
+
+InputMask.propTypes = {
+  inputProps: PropTypes.object,
+  classes: PropTypes.object,
+  meta: PropTypes.object,
+  label: PropTypes.string
 }
 
 export default withStyles(stylesMask)(InputWithMask)

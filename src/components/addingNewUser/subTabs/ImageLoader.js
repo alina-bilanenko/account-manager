@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core'
 import { Add } from 'icons'
 import { stylesImgLoader } from 'styles'
+import PropTypes from 'prop-types'
 
 function ImageLoader (props) {
   const { classes, input, meta, type } = props
@@ -74,6 +75,13 @@ function ImageLoader (props) {
 
 ImageLoader.propTypes = {
   classes: PropTypes.object.isRequired
+}
+
+ImageLoader.propTypes = {
+  classes: PropTypes.object,
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  type: PropTypes.string
 }
 
 export default withStyles(stylesImgLoader)(ImageLoader)

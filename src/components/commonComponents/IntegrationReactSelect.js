@@ -3,6 +3,7 @@ import Select from 'react-select'
 import { withStyles, InputLabel, FormHelperText } from '@material-ui/core'
 import { skills, mainLanguage } from 'consts'
 import { stylesSelect } from 'styles'
+import PropTypes from 'prop-types'
 
 class IntegrationReactSelect extends React.Component {
   render () {
@@ -58,6 +59,16 @@ class IntegrationReactSelect extends React.Component {
       </div>
     )
   }
+}
+
+IntegrationReactSelect.propTypes = {
+  input: PropTypes.object,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  classes: PropTypes.object,
+  meta: PropTypes.object,
+  isMulti: PropTypes.bool,
+  indicator: PropTypes.bool
 }
 
 export default withStyles(
