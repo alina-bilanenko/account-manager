@@ -18,7 +18,7 @@ const CustomTableCell = withStyles(theme => ({
     fontWeight: '500',
     lineHeight: 'normal',
     fontSize: '14px',
-
+    paddingLeft: theme.spacing.unit*8
   },
   body: {
     fontSize: 14
