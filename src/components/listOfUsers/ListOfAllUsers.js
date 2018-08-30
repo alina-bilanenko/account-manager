@@ -1,10 +1,10 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { withStyles } from '@material-ui/core'
-import Table from 'components/listOfUsers/TableList'
+import TableList from 'components/listOfUsers/TableList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { usersList } from "../../reducers/listOfUserReducer";
+import { push } from "connected-react-router";
 
 const styles = theme => ({
   caption: {
@@ -24,25 +24,29 @@ const styles = theme => ({
 })
 
 const ListOfAllUsers = (props) => {
-  const { classes } = props
+  const { classes, usersList, push } = props
   return (
     <div className={classes.root}>
       <Typography variant='display1' gutterBottom className={classes.caption}>
     List of users
       </Typography>
-      <Table usersList={usersList} />
+      <TableList usersList={usersList} push={push}/>
     </div>
   )
 }
 
 ListOfAllUsers.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
 }
 
 const mapStateToProps = (props) => {
   return {
-    usersList
+    usersList: props.usersList
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(ListOfAllUsers))
+const mapDispatchToProps = {
+  push: push,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ListOfAllUsers))

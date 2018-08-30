@@ -43,9 +43,9 @@ const CustomCell = withStyles(theme => ({
   }
 }))(TableCell)
 
-const TablePlaceholder = ({classes}) => {
+const TablePlaceholder = ({classes, push}) => {
   const handleClick = () => {
-
+    push('/create-user/account')
   };
 
   return (

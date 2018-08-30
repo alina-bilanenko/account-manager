@@ -10,6 +10,7 @@ import { fieldNames } from 'consts'
 import { Calendar } from 'icons'
 import { stylesProfile } from 'styles'
 import PropTypes from 'prop-types'
+import Address from 'components/commonComponents/Address';
 
 let Profile = (props) => {
   const { classes, handleSubmit, push } = props
@@ -60,6 +61,7 @@ let Profile = (props) => {
                 component={BootstrapInput}
                 type='text'
               />
+              {/*<Address />*/}
               <Field
                 name={fieldNames.gender}
                 component={RadioButton}

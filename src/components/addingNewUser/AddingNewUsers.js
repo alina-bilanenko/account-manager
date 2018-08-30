@@ -62,6 +62,7 @@ const AddingNewUsers = (props) => {
     resetForm('profile');
     resetForm('contacts');
     resetForm('capabilities');
+    push('/create-user/account')
   };
 
   return (

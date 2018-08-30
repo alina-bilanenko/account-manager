@@ -1,5 +1,6 @@
 import db from 'db'
 import {fieldNames} from 'consts'
+import moment from 'moment'
 
 const usersConst = {
   LOAD_USERS: 'LOAD_USERS',
@@ -20,7 +21,13 @@ export function loadUsers() {
 
 export function addUsers(value) {
   return async  (dispatch) => {
-    const user = {...value, [fieldNames.birthDate]: value[fieldNames.birthDate]? value[fieldNames.birthDate].toString():value[fieldNames.birthDate]}
+    const user = {...value,
+      [fieldNames.birthDate]:
+        value[fieldNames.birthDate]
+          ? value[fieldNames.birthDate].format('MM/DD/YYYY').toString()
+          :value[fieldNames.birthDate],
+      [fieldNames.lastUpdate]: moment().format('MM/DD/YYYY').toString()
+    }
     const id = await db.table('users').add(user);
     dispatch({
       type: usersConst.ADD_USERS,

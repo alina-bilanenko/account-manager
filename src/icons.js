@@ -81,3 +81,19 @@ export const ButtonDelete = (
     <path d='M10 1L1 1' stroke='#CED9E5' strokeWidth='2' strokeLinecap='round' />
   </svg>
 )
+
+export const Edit = (
+  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="15" height="15" fill="black" fillOpacity="0"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M11.5263 3.47349C12.0887 4.03581 12.1567 4.87942 11.6784 5.35774L6.16674 10.8695L4.13043 8.83313L9.64211 3.32141C10.1204 2.84309 10.964 2.91118 11.5263 3.47349Z" fill="#B1BCC9"/>
+    <path d="M2.90557 12.0924L3.60118 9.50606L5.49318 11.4016L2.90557 12.0924Z" fill="#B1BCC9"/>
+  </svg>
+)
+
+export const Delete = (
+  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="15" height="15" fill="black" fillOpacity="0"/>
+    <path d="M5 5L9.99995 10" stroke="#B1BCC9" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M10 5L5.00005 10" stroke="#B1BCC9" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+)

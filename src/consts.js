@@ -76,7 +76,8 @@ export const fieldNames = {
   checkBox4: 'checkBox4',
   checkBox5: 'checkBox5',
   checkBox6: 'checkBox6',
-  additionalInformation: 'additionalInformation'
+  additionalInformation: 'additionalInformation',
+  lastUpdate: 'lastUpdate'
 }
 
 export const initialState = {
