@@ -39,6 +39,9 @@ export const mainStyles = theme => ({
     color: '#FFFFFF',
     lineHeight: '16px',
     fontWeight: 'medium'
+  },
+  linkUnderlain: {
+    textDecoration: 'none'
   }
 })
 

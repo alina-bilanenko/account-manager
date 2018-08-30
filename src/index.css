@@ -4,33 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-button.fieldHeader span,
-.MuiTab-label-187,
-.MuiTab-label-203,
-.MuiTab-label-205 {
-  font-size: 1.5rem !important;
-}
-
-.TabIndicator-colorSecondary-209 {
-  background-color: #4E86E4 !important;
-}
-
-.MuiBottomNavigationAction-wrapper-109 {
-  flex-direction: row !important;
-  justify-content: flex-start !important;
-}
-
-.MuiTypography-root-114.MuiTypography-body1-123 {
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 400;
-  color: #657C9A
-}
-
-.MuiFormHelperText-root-283 {
-  color: #EB5757 !important
-}
-
 .react-datepicker {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   background-color: #ffffff;
@@ -228,3 +201,4 @@ div.react-select__option:hover {
   background-color: inherit;
   color: #9BB0CB;
 }
+

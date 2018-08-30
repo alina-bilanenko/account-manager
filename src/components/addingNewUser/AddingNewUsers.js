@@ -17,10 +17,21 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
 import {addUsers} from 'actions/listOfUsersActions'
+import { getFormValues, isValid, reset } from 'redux-form'
 
 const AddingNewUsers = (props) => {
 
-  const { classes, push, handlerAddUsers } = props
+  const {
+    classes,
+    push,
+    handlerAddUsers,
+    account,
+    profile,
+    contacts,
+    capabilities,
+    isValid,
+    resetForm
+  } = props
   const tabName = props.match.params.name
 
   if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
@@ -29,7 +40,28 @@ const AddingNewUsers = (props) => {
   }
 
   const finish = () => {
-    handlerAddUsers();
+    if(
+      !isValid.account ||
+      !isValid.profile ||
+      !isValid.capabilities ||
+      !isValid.contacts ||
+      !account ||
+      !profile ||
+      !contacts ||
+      !capabilities
+    ) return
+
+    let row = {
+      ...account,
+      ...profile,
+      ...contacts,
+      ...capabilities
+    }
+    handlerAddUsers(row);
+    resetForm('account');
+    resetForm('profile');
+    resetForm('contacts');
+    resetForm('capabilities');
   };
 
   return (
@@ -46,10 +78,16 @@ const AddingNewUsers = (props) => {
           position='static'
           className={classes.header}
         >
-          <Tabs value={tabName} onChange={() => {}}>
+          <Tabs
+            value={tabName}
+            onChange={() => {}}
+            classes={{
+              indicator: classes.activeTab
+            }}
+          >
             <Tab
               value='account'
-              label='1. Account'
+              label={<span style={{ fontSize: '1.5rem' }}>1. Account</span>}
               className={
                 classNames(
                   classes.fieldHeader,
@@ -61,7 +99,7 @@ const AddingNewUsers = (props) => {
             />
             <Tab
               value='profile'
-              label='2. Profile'
+              label={<span style={{ fontSize: '1.5rem' }}>2. Profile</span>}
               className={
                 classNames(
                   classes.fieldHeader,
@@ -73,7 +111,7 @@ const AddingNewUsers = (props) => {
             />
             <Tab
               value='contacts'
-              label='3. Contacts'
+              label={<span style={{ fontSize: '1.5rem' }}>3. Contacts</span>}
               className={
                 classNames(
                   classes.fieldHeader,
@@ -85,7 +123,7 @@ const AddingNewUsers = (props) => {
             />
             <Tab
               value='capabilities'
-              label='4. Capabilities'
+              label={<span style={{ fontSize: '1.5rem' }}>4. Capabilities</span>}
               className={
                 classNames(
                   classes.fieldHeader,
@@ -98,40 +136,40 @@ const AddingNewUsers = (props) => {
           </Tabs>
         </AppBar>
         <Route exact path='/create-user/account'
-          render={(props) => (
-            <Account
-              {...props}
-              push={push}
-              onSubmit={() => { push('/create-user/profile') }}
-            />
-          )}
+               render={(props) => (
+                 <Account
+                   {...props}
+                   push={push}
+                   onSubmit={() => { push('/create-user/profile') }}
+                 />
+               )}
         />
         <Route exact path='/create-user/profile'
-          render={(props) => (
-            <Profile
-              {...props}
-              push={push}
-              onSubmit={() => { push('/create-user/contacts') }}
-            />
-          )}
+               render={(props) => (
+                 <Profile
+                   {...props}
+                   push={push}
+                   onSubmit={() => { push('/create-user/contacts') }}
+                 />
+               )}
         />
         <Route exact path='/create-user/contacts'
-          render={(props) => (
-            <Contacts
-              {...props}
-              push={push}
-              onSubmit={() => { push('/create-user/capabilities') }}
-            />
-          )}
+               render={(props) => (
+                 <Contacts
+                   {...props}
+                   push={push}
+                   onSubmit={() => { push('/create-user/capabilities') }}
+                 />
+               )}
         />
         <Route exact path='/create-user/capabilities'
-          render={(props) => (
-            <Capabilities
-              {...props}
-              push={push}
-              onSubmit={finish}
-            />
-          )}
+               render={(props) => (
+                 <Capabilities
+                   {...props}
+                   push={push}
+                   onSubmit={finish}
+                 />
+               )}
         />
       </div>
     </div>
@@ -140,13 +178,23 @@ const AddingNewUsers = (props) => {
 
 const mapStateToProps = (props) => {
   return {
-
+    account: getFormValues('account')(props),
+    profile: getFormValues('profile')(props),
+    contacts: getFormValues('contacts')(props),
+    capabilities: getFormValues('capabilities')(props),
+    isValid: {
+      account: isValid('account')(props),
+      profile: isValid('profile')(props),
+      contacts: isValid('contacts')(props),
+      capabilities: isValid('capabilities')(props)
+    },
   }
 }
 
 const mapDispatchToProps = {
   push: push,
   handlerAddUsers: addUsers,
+  resetForm: reset
 }
 
 AddingNewUsers.propTypes = {

@@ -103,7 +103,7 @@ BirthDate.propTypes = {
 }
 
 BirthDateInput.propTypes = {
-  value: PropTypes.object,
+  value: PropTypes.string,
   onClick: PropTypes.func,
   label: PropTypes.string,
   type: PropTypes.string,

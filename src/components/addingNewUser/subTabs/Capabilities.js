@@ -53,7 +53,7 @@ let Capabilities = (props) => {
 }
 
 Capabilities = reduxForm({
-  form: 'contacts',
+  form: 'capabilities',
   destroyOnUnmount: false,
   validate: capabilitiesValidation
 })(Capabilities)

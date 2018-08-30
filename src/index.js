@@ -22,7 +22,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
 )
 
-store.dispatch(loadUsers);
+store.dispatch(loadUsers('LOAD_USERS'));
 
 render(
   <Provider store={store}>

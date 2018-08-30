@@ -1,4 +1,5 @@
 import db from 'db'
+import {fieldNames} from 'consts'
 
 const usersConst = {
   LOAD_USERS: 'LOAD_USERS',
@@ -19,11 +20,11 @@ export function loadUsers() {
 
 export function addUsers(value) {
   return async  (dispatch) => {
-    const userToAdd = { value, done: false };
-    const id = await db.table('users').add(userToAdd);
+    const user = {...value, [fieldNames.birthDate]: value[fieldNames.birthDate]? value[fieldNames.birthDate].toString():value[fieldNames.birthDate]}
+    const id = await db.table('users').add(user);
     dispatch({
       type: usersConst.ADD_USERS,
-      payload: Object.assign({}, userToAdd, { id }),
+      payload: {...value, id }
     });
   }
 }
