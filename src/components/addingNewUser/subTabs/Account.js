@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import { collectiveActions } from 'actions/action'
 import { stylesAccount } from 'styles'
 import PropTypes from 'prop-types'
+// import {asyncValidateName} from 'Validation/asyncValidate'
 
 let Account = (props) => {
   let {
@@ -44,10 +45,12 @@ let Account = (props) => {
           <BottomNavigationAction
             icon='Continue'
             className={classes.unsavedUserDataTextBlack}
+            disableRipple
           />
           <BottomNavigationAction
             icon={Close}
             className={classes.rightIcons}
+            disableRipple
           />
         </div>
         <Grid container>
@@ -112,6 +115,8 @@ Account = reduxForm({
   form: 'account',
   destroyOnUnmount: false,
   validate: accountValidation
+  // asyncValidate: asyncValidateName,
+  // asyncBlurFields: [fieldNames.userName]
 })(Account)
 
 const selector = formValueSelector('account')

@@ -202,3 +202,8 @@ div.react-select__option:hover {
   color: #9BB0CB;
 }
 
+div .GoogleAddress-bootstrapInput-272 + div {
+  margin-left: 0;
+  box-shadow: unset;
+  width: calc(100% + 2px);
+}

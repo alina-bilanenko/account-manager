@@ -33,6 +33,7 @@ const RenderPhone = ({ fields, classes }) => {
           variant='outlined'
           component='span'
           className={classes.addNumber}
+          disableRipple
           onClick={() => { if (fields.length < 3) fields.push() }}
         >
           <Typography variant='body2' gutterBottom>

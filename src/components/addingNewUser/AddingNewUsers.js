@@ -16,11 +16,10 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
-import {addUsers} from 'actions/listOfUsersActions'
+import { addUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
 
 const AddingNewUsers = (props) => {
-
   const {
     classes,
     push,
@@ -40,7 +39,7 @@ const AddingNewUsers = (props) => {
   }
 
   const finish = () => {
-    if(
+    if (
       !isValid.account ||
       !isValid.profile ||
       !isValid.capabilities ||
@@ -57,13 +56,13 @@ const AddingNewUsers = (props) => {
       ...contacts,
       ...capabilities
     }
-    handlerAddUsers(row);
-    resetForm('account');
-    resetForm('profile');
-    resetForm('contacts');
-    resetForm('capabilities');
+    handlerAddUsers(row)
+    resetForm('account')
+    resetForm('profile')
+    resetForm('contacts')
+    resetForm('capabilities')
     push('/create-user/account')
-  };
+  }
 
   return (
     <div>
@@ -137,40 +136,40 @@ const AddingNewUsers = (props) => {
           </Tabs>
         </AppBar>
         <Route exact path='/create-user/account'
-               render={(props) => (
-                 <Account
-                   {...props}
-                   push={push}
-                   onSubmit={() => { push('/create-user/profile') }}
-                 />
-               )}
+          render={(props) => (
+            <Account
+              {...props}
+              push={push}
+              onSubmit={() => { push('/create-user/profile') }}
+            />
+          )}
         />
         <Route exact path='/create-user/profile'
-               render={(props) => (
-                 <Profile
-                   {...props}
-                   push={push}
-                   onSubmit={() => { push('/create-user/contacts') }}
-                 />
-               )}
+          render={(props) => (
+            <Profile
+              {...props}
+              push={push}
+              onSubmit={() => { push('/create-user/contacts') }}
+            />
+          )}
         />
         <Route exact path='/create-user/contacts'
-               render={(props) => (
-                 <Contacts
-                   {...props}
-                   push={push}
-                   onSubmit={() => { push('/create-user/capabilities') }}
-                 />
-               )}
+          render={(props) => (
+            <Contacts
+              {...props}
+              push={push}
+              onSubmit={() => { push('/create-user/capabilities') }}
+            />
+          )}
         />
         <Route exact path='/create-user/capabilities'
-               render={(props) => (
-                 <Capabilities
-                   {...props}
-                   push={push}
-                   onSubmit={finish}
-                 />
-               )}
+          render={(props) => (
+            <Capabilities
+              {...props}
+              push={push}
+              onSubmit={finish}
+            />
+          )}
         />
       </div>
     </div>
@@ -188,7 +187,7 @@ const mapStateToProps = (props) => {
       profile: isValid('profile')(props),
       contacts: isValid('contacts')(props),
       capabilities: isValid('capabilities')(props)
-    },
+    }
   }
 }
 

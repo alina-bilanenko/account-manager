@@ -57,6 +57,7 @@ function ImageLoader (props) {
           variant='outlined'
           component='span'
           className={classes.avatar}
+          disableRipple
         >
           {meta.error &&
           <FormHelperText

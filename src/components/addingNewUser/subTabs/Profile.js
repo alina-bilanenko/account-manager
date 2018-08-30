@@ -10,7 +10,7 @@ import { fieldNames } from 'consts'
 import { Calendar } from 'icons'
 import { stylesProfile } from 'styles'
 import PropTypes from 'prop-types'
-import Address from 'components/commonComponents/Address';
+import GoogleAddress from 'components/commonComponents/GoogleAddress'
 
 let Profile = (props) => {
   const { classes, handleSubmit, push } = props
@@ -58,10 +58,9 @@ let Profile = (props) => {
               <Field
                 name={fieldNames.address}
                 label='Address'
-                component={BootstrapInput}
+                component={GoogleAddress}
                 type='text'
               />
-              {/*<Address />*/}
               <Field
                 name={fieldNames.gender}
                 component={RadioButton}

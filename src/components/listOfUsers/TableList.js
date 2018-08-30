@@ -12,9 +12,10 @@ import {
   Button
 } from '@material-ui/core'
 import TablePlaceholder from 'components/listOfUsers/TablePlaceholder'
-import {fieldNames} from "consts";
+import { fieldNames } from 'consts'
 import moment from 'moment'
-import {Edit, Delete} from 'icons'
+import { Edit, Delete } from 'icons'
+import { stylesTable } from 'styles'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -23,70 +24,27 @@ const CustomTableCell = withStyles(theme => ({
     fontStyle: 'normal',
     fontWeight: '500',
     lineHeight: 'normal',
-    fontSize: '14px',
+    fontSize: '14px'
   },
   body: {
     fontSize: 14,
     '&:first-child': {
-      padding: '0',
+      padding: '0'
     },
     border: 'none',
     fontWeight: '500',
     color: '#475666',
-    lineHeight: 'normal',
+    lineHeight: 'normal'
   }
 }))(TableCell)
-
-const styles = theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-    boxShadow: 'unset'
-  },
-  table: {
-    minWidth: 600,
-  },
-  body: {
-    backgroundColor: '#FFFFFF',
-    '&:before': {
-      content: '"-"',
-      display: 'block',
-      lineHeight: '2em',
-      color: 'transparent'
-    }
-  },
-  row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: '#E7F0FF'
-    },
-  },
-  bigAvatar: {
-    width: 40,
-    height: 40,
-    margin: '20px auto',
-    padding: '0',
-    backgroundColor: '#FAFCFF'
-  },
-  userName: {
-    fontSize: '9px',
-    fontWeight: 'normal',
-    marginTop: '0'
-  },
-  button: {
-    '&:hover': {
-      backgroundColor: 'unset'
-    },
-  }
-})
 
 function TableList (props) {
   const { classes, usersList, push } = props
 
   const createContact = (user) => {
-    return user[fieldNames.phone]
-    && user[fieldNames.phone].length
-    && user[fieldNames.phone][0]
+    return user[fieldNames.phone] &&
+    user[fieldNames.phone].length &&
+    user[fieldNames.phone][0]
       ? user[fieldNames.phone][0]
       : user[fieldNames.email]
   }
@@ -111,7 +69,7 @@ function TableList (props) {
                 <TableRow className={classes.row} key={user.id}>
                   <CustomTableCell component='td' scope='row'>
                     <Avatar
-                      alt="photo"
+                      alt='photo'
                       src={user[fieldNames.photo]}
                       className={classes.bigAvatar}
                     />
@@ -131,13 +89,23 @@ function TableList (props) {
                     {moment(user[fieldNames.lastUpdate]).fromNow()}
                   </CustomTableCell>
                   <CustomTableCell>
-                    <Button className={classes.button}>{Edit}</Button>
-                    <Button className={classes.button}>{Delete}</Button>
+                    <Button
+                      disableRipple
+                      className={classes.button}
+                    >
+                      {Edit}
+                    </Button>
+                    <Button
+                      disableRipple
+                      className={classes.button}
+                    >
+                      {Delete}
+                    </Button>
                   </CustomTableCell>
                 </TableRow>
               )
             })
-            : <TablePlaceholder push={push}/>
+            : <TablePlaceholder push={push} />
           }
         </TableBody>
       </Table>
@@ -146,7 +114,9 @@ function TableList (props) {
 }
 
 TableList.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  userList: PropTypes.array,
+  push: PropTypes.func
 }
 
-export default withStyles(styles)(TableList)
+export default withStyles(stylesTable)(TableList)

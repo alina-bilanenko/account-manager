@@ -519,3 +519,128 @@ export const stylesRenderPhone = theme => ({
     position: 'relative'
   }
 })
+
+export const stylesGoogleAddress = theme => ({
+  root: {
+    marginBottom: '10px'
+  },
+  bootstrapFormLabel: {
+    fontSize: 14,
+    lineHeight: '16px',
+    fontWeight: 400,
+    color: '#657C9A !important',
+    transform: 'translate(0, -5.5px) scale(1)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%'
+  },
+  bootstrapInput: {
+    borderRadius: 0,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #C1CFE0',
+    fontSize: 14,
+    lineHeight: '16px',
+    fontWeight: 500,
+    padding: '10px 12px',
+    width: 'calc(100% - 24px)',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    color: '#000000',
+    '& + div': {
+      marginLeft: '-16px'
+    }
+  },
+  customAddress: {
+    boxShadow: 'unset',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 14,
+    lineHeight: '16px',
+    fontWeight: 400,
+    borderRadius: 0,
+    padding: '5px'
+  },
+  addressSelect: {
+    backgroundColor: 'red'
+  }
+})
+
+export const stylesTablePlaceholder = {
+  root: {
+    width: '100%',
+    maxWidth: 500
+  },
+  button: {
+    backgroundColor: '#5E97F3',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    fontSize: '14px',
+    textAlign: 'center',
+    color: '#FFFFFF',
+    textTransform: 'unset',
+    borderRadius: 'unset',
+    padding: '12px 30px',
+    '&:hover': {
+      backgroundColor: '#5E97F3'
+    }
+  }
+}
+
+export const stylesListUsers = () => ({
+  caption: {
+    width: '100%',
+    maxWidth: 500,
+    fontSize: '2.2rem',
+    fontWeight: 'bold',
+    lineHeight: '41px',
+    color: '#475666',
+    textAlign: 'center',
+    margin: '1.5em auto 1em auto'
+  },
+  root: {
+    width: '71%',
+    margin: 'auto'
+  }
+})
+
+export const stylesTable = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+    boxShadow: 'unset'
+  },
+  table: {
+    minWidth: 600
+  },
+  body: {
+    backgroundColor: '#FFFFFF',
+    '&:before': {
+      content: '"-"',
+      display: 'block',
+      lineHeight: '2em',
+      color: 'transparent'
+    }
+  },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: '#E7F0FF'
+    }
+  },
+  bigAvatar: {
+    width: 40,
+    height: 40,
+    margin: '20px auto',
+    padding: '0',
+    backgroundColor: '#FAFCFF'
+  },
+  userName: {
+    fontSize: '9px',
+    fontWeight: 'normal',
+    marginTop: '0'
+  },
+  button: {
+    '&:hover': {
+      backgroundColor: 'unset'
+    }
+  }
+})

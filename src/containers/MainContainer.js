@@ -48,16 +48,21 @@ class MainContainer extends Component {
                 {Logo}
               </div>
               <div className={classes.logo}>
-                <Link to={'/create-user/account'} className={classes.linkUnderlain}>
+                <Link
+                  to={'/create-user/account'}
+                  className={classes.linkUnderlain}
+                >
                   <BottomNavigationAction
                     icon={this.AddNewUser}
                     className={classes.link}
+                    disableRipple
                   />
                 </Link>
                 <Link to={'/list-of-user'} className={classes.linkUnderlain}>
                   <BottomNavigationAction
                     icon={this.ListAllUsers}
                     className={classes.link}
+                    disableRipple
                   />
                 </Link>
               </div>
