@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 import { collectiveActions } from 'actions/action'
 import { stylesAccount } from 'styles'
 import PropTypes from 'prop-types'
-// import {asyncValidateName} from 'Validation/asyncValidate'
+import {asyncValidateName} from 'Validation/asyncValidate'
 
 let Account = (props) => {
   let {
@@ -114,9 +114,9 @@ let Account = (props) => {
 Account = reduxForm({
   form: 'account',
   destroyOnUnmount: false,
-  validate: accountValidation
-  // asyncValidate: asyncValidateName,
-  // asyncBlurFields: [fieldNames.userName]
+  validate: accountValidation,
+  asyncValidate: asyncValidateName,
+  asyncBlurFields: [fieldNames.userName]
 })(Account)
 
 const selector = formValueSelector('account')

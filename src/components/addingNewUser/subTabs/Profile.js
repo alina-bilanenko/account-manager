@@ -11,6 +11,7 @@ import { Calendar } from 'icons'
 import { stylesProfile } from 'styles'
 import PropTypes from 'prop-types'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
+import { asyncValidateEmail } from "Validation/asyncValidate";
 
 let Profile = (props) => {
   const { classes, handleSubmit, push } = props
@@ -80,7 +81,9 @@ let Profile = (props) => {
 Profile = reduxForm({
   form: 'profile',
   destroyOnUnmount: false,
-  validate: profileValidation
+  validate: profileValidation,
+  asyncValidate: asyncValidateEmail,
+  asyncBlurFields: [fieldNames.email]
 })(Profile)
 
 Profile.propTypes = {
