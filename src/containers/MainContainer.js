@@ -9,7 +9,7 @@ import {
 import { Logo, AddUser, ListOfUsers } from 'icons'
 import { mainStyles } from 'styles'
 import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
-import UsersList from 'components/listOfUsers/UsersList'
+import UsersList from 'components/listOfUsers/UserView'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -82,7 +82,7 @@ class MainContainer extends Component {
               />
               <Route
                 exact
-                path='/view-user/'
+                path='/user/:id'
                 component={UsersList}
               />
               <Route

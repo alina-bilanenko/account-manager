@@ -4,6 +4,7 @@ import { withStyles, InputLabel, FormHelperText } from '@material-ui/core'
 import { skills, mainLanguage } from 'consts'
 import { stylesSelect } from 'styles'
 import PropTypes from 'prop-types'
+import classNames from "classnames";
 
 class IntegrationReactSelect extends React.Component {
   render () {
@@ -26,7 +27,8 @@ class IntegrationReactSelect extends React.Component {
         </InputLabel>
         <Select
           classNamePrefix='react-select'
-          className='react-select-container'
+          className={classNames('react-select-container', {'error': meta.error && meta.touched})}
+
           value={input.value}
           onChange={input.onChange}
           onBlur={() => input.onBlur(input.value)}

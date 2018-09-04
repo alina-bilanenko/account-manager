@@ -97,3 +97,9 @@ export const Delete = (
     <path d='M10 5L5.00005 10' stroke='#B1BCC9' strokeWidth='2' strokeLinecap='round' />
   </svg>
 )
+
+export const Rectangle = (
+  <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 1.5L2.10048 5.49998L6 9.5" stroke="#9BB0CB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)

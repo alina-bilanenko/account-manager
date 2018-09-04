@@ -9,9 +9,10 @@ import { fieldNames } from 'consts'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import { stylesCapabilities } from 'styles'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 let Capabilities = (props) => {
-  const { classes, handleSubmit, push } = props
+  const { classes, handleSubmit, push, isCreateUser } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -43,6 +44,7 @@ let Capabilities = (props) => {
                 push={push}
                 finish
                 url='/create-user/contacts'
+                isCreateUser={isCreateUser}
               />
             </div>
           </Grid>
@@ -64,4 +66,12 @@ Capabilities.propTypes = {
   push: PropTypes.func
 }
 
-export default withStyles(stylesCapabilities)(Capabilities)
+const mapStateToProps = (props) => {
+  return {
+    isCreateUser: props.collectiveState.createUser,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(withStyles(stylesCapabilities)(Capabilities))

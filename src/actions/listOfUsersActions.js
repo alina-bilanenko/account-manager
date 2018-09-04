@@ -36,15 +36,16 @@ export function addUsers (value) {
   }
 }
 
-// export function deleteUsers(id) {
-//   return async  (dispatch) => {
-//     const id = await db.table('users').delete(id);
-//     dispatch({
-//       type: usersConst.DELETE_USERS,
-//       payload: id,
-//     });
-//   }
-// }
+export function deleteUsers(id) {
+
+  return async  (dispatch) => {
+    const idDelete = await db.table('users').delete(id);
+    dispatch({
+      type: usersConst.DELETE_USERS,
+      id: id,
+    });
+  }
+}
 //
 // export function updateUsers(id, done) {
 //   return async  (dispatch) => {

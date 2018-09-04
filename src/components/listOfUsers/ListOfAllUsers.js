@@ -5,9 +5,15 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { stylesListUsers } from 'styles'
+import {deleteUsers } from 'actions/listOfUsersActions'
 
 const ListOfAllUsers = (props) => {
-  const { classes, usersList, push } = props
+  const { classes, usersList, push, deleteUsers } = props
+
+  const deleteRow = (id) => {
+    deleteUsers(id)
+  }
+
   return (
     <div className={classes.root}>
       <Typography
@@ -17,7 +23,7 @@ const ListOfAllUsers = (props) => {
       >
     List of users
       </Typography>
-      <TableList usersList={usersList} push={push} />
+      <TableList usersList={usersList} push={push} deleteRow={deleteRow}/>
     </div>
   )
 }
@@ -35,7 +41,8 @@ const mapStateToProps = (props) => {
 }
 
 const mapDispatchToProps = {
-  push: push
+  push: push,
+  deleteUsers: deleteUsers
 }
 
 export default connect(

@@ -10,7 +10,8 @@ const ButtonGroup = (props) => {
     finish,
     hidden,
     url = undefined,
-    push
+    push,
+    isCreateUser
   } = props
 
   const handleClickBack = () => {
@@ -26,7 +27,7 @@ const ButtonGroup = (props) => {
         className={
           classNames(
             classes.button,
-            { [classes.hidden]: hidden }
+            { [classes.hidden]: hidden || !isCreateUser }
           )
         }>
         Back
@@ -38,10 +39,11 @@ const ButtonGroup = (props) => {
         className={
           classNames(
             classes.button,
-            { [classes.finish]: finish }
+            { [classes.finish]: finish && isCreateUser}
           )
         }>
-        {finish ? 'Finish' : 'Forward'}
+        {isCreateUser && (finish ? 'Finish' : 'Forward')}
+        {!isCreateUser && 'Save'}
       </Button>
     </div>
   )

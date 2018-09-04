@@ -12,9 +12,10 @@ import { stylesProfile } from 'styles'
 import PropTypes from 'prop-types'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import { asyncValidateEmail } from "Validation/asyncValidate";
+import { connect } from 'react-redux'
 
 let Profile = (props) => {
-  const { classes, handleSubmit, push } = props
+  const { classes, handleSubmit, push, isCreateUser } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -69,6 +70,7 @@ let Profile = (props) => {
               <ButtonGroup
                 push={push}
                 url='/create-user/account'
+                isCreateUser={isCreateUser}
               />
             </div>
           </Grid>
@@ -92,4 +94,12 @@ Profile.propTypes = {
   push: PropTypes.func
 }
 
-export default withStyles(stylesProfile)(Profile)
+const mapStateToProps = (props) => {
+  return {
+    isCreateUser: props.collectiveState.createUser,
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(withStyles(stylesProfile)(Profile))

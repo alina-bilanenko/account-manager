@@ -197,6 +197,10 @@ div.react-select__option:hover {
   color:  #9BB0CB;
 }
 
+.react-select-container.error > .react-select__control {
+  border-color: #EB5757;
+}
+
 .css-1alnv5e.react-select__multi-value__remove:hover {
   background-color: inherit;
   color: #9BB0CB;

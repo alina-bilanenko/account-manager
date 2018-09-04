@@ -18,6 +18,7 @@ import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
 import { addUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
+import ButtonUsersList from "../commonComponents/ButtonUsersList";
 
 const AddingNewUsers = (props) => {
   const {
@@ -29,16 +30,36 @@ const AddingNewUsers = (props) => {
     contacts,
     capabilities,
     isValid,
-    resetForm
+    resetForm,
+    isCreateUser
   } = props
   const tabName = props.match.params.name
 
   if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
-    props.history.push('/create-user/account')
+    push('/create-user/account')
     return null
   }
 
+  const handleChangeTab = (e, value) => {
+   if(!isCreateUser) push(`/create-user/${value}`)
+  }
+
+  const resetAllForm = () => {
+    resetForm('account')
+    resetForm('profile')
+    resetForm('contacts')
+    resetForm('capabilities')
+    push('/create-user/account')
+  }
+
+  const save = () => {
+    if(isCreateUser) return
+    console.log('save')
+  }
+
   const finish = () => {
+    if(!isCreateUser) return
+
     if (
       !isValid.account ||
       !isValid.profile ||
@@ -50,6 +71,7 @@ const AddingNewUsers = (props) => {
       !capabilities
     ) return
 
+
     let row = {
       ...account,
       ...profile,
@@ -57,30 +79,29 @@ const AddingNewUsers = (props) => {
       ...capabilities
     }
     handlerAddUsers(row)
-    resetForm('account')
-    resetForm('profile')
-    resetForm('contacts')
-    resetForm('capabilities')
-    push('/create-user/account')
+    resetAllForm();
   }
 
   return (
-    <div>
-      <Typography
-        variant='display1'
-        gutterBottom
-        className={classes.caption}
-      >
-        Adding new user
-      </Typography>
-      <div className={classes.root}>
+    <div className={classes.root}>
+      <div className={classes.captions}>
+        {!isCreateUser && <ButtonUsersList url='/list-of-user' push={push}/>}
+        <Typography
+          variant='display1'
+          gutterBottom
+          className={classes.caption}
+        >
+          {isCreateUser ? 'Adding new user' : 'Editing'}
+        </Typography>
+      </div>
+      <div>
         <AppBar
           position='static'
           className={classes.header}
         >
           <Tabs
             value={tabName}
-            onChange={() => {}}
+            onChange={handleChangeTab}
             classes={{
               indicator: classes.activeTab
             }}
@@ -140,7 +161,9 @@ const AddingNewUsers = (props) => {
             <Account
               {...props}
               push={push}
-              onSubmit={() => { push('/create-user/profile') }}
+              onSubmit={() => { if(isCreateUser) {
+                push('/create-user/profile')
+              } else save()}}
             />
           )}
         />
@@ -149,7 +172,9 @@ const AddingNewUsers = (props) => {
             <Profile
               {...props}
               push={push}
-              onSubmit={() => { push('/create-user/contacts') }}
+              onSubmit={() => {if(isCreateUser) {
+                push('/create-user/contacts')
+              } else save()}}
             />
           )}
         />
@@ -158,7 +183,9 @@ const AddingNewUsers = (props) => {
             <Contacts
               {...props}
               push={push}
-              onSubmit={() => { push('/create-user/capabilities') }}
+              onSubmit={() => { if(isCreateUser) {
+                push('/create-user/capabilities')
+              } else save()}}
             />
           )}
         />
@@ -167,7 +194,7 @@ const AddingNewUsers = (props) => {
             <Capabilities
               {...props}
               push={push}
-              onSubmit={finish}
+              onSubmit={ isCreateUser ? finish : save}
             />
           )}
         />
@@ -178,6 +205,7 @@ const AddingNewUsers = (props) => {
 
 const mapStateToProps = (props) => {
   return {
+    isCreateUser: props.collectiveState.createUser,
     account: getFormValues('account')(props),
     profile: getFormValues('profile')(props),
     contacts: getFormValues('contacts')(props),

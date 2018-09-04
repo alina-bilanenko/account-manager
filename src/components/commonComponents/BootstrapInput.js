@@ -9,6 +9,7 @@ import {
 import { Eye, EyeStrike } from 'icons'
 import { stylesInput } from 'styles'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
 const BootstrapInput = (props) => {
   const {
@@ -48,7 +49,7 @@ const BootstrapInput = (props) => {
       InputProps={{
         disableUnderline: true,
         classes: {
-          input: classes.bootstrapInput
+          input: classNames(classes.bootstrapInput, {[classes.error]: meta.error && meta.touched})
         },
         endAdornment: endAdornment ? (
           <InputAdornment position='end'>

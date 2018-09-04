@@ -12,7 +12,7 @@ export const usersList = (state = {}, action) => {
       ]
     }
     case 'DELETE_USERS':
-      return [state.filter((user) => user.id !== action.payload)]
+      return state.filter((user) => user.id !== action.id)
 
     default:
       return state

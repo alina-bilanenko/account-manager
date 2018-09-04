@@ -11,6 +11,7 @@ import moment from 'moment'
 import { Calendar } from 'icons'
 import { stylesBirthDate } from 'styles'
 import PropTypes from 'prop-types'
+import classNames from "classnames";
 
 moment.updateLocale('en', {
   week: {
@@ -67,7 +68,7 @@ class BirthDateInput extends Component {
         InputProps={{
           disableUnderline: true,
           classes: {
-            input: classes.bootstrapInput
+            input: classNames(classes.bootstrapInput, {[classes.error]: meta.error && meta.touched})
           },
 
           endAdornment: (

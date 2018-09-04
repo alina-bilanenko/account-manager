@@ -10,9 +10,10 @@ import InputWithMask from 'components/commonComponents/InputMask'
 import RenderPhone from 'components/commonComponents/RenderPhones'
 import { stylesContacts } from 'styles'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 let Contacts = (props) => {
-  const { classes, handleSubmit, push } = props
+  const { classes, handleSubmit, push, isCreateUser } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -63,6 +64,7 @@ let Contacts = (props) => {
               <ButtonGroup
                 push={push}
                 url='/create-user/profile'
+                isCreateUser={isCreateUser}
               />
             </div>
           </Grid>
@@ -88,4 +90,13 @@ Contacts.propTypes = {
   push: PropTypes.func
 }
 
-export default withStyles(stylesContacts)(Contacts)
+const mapStateToProps = (props) => {
+  return {
+    isCreateUser: props.collectiveState.createUser,
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+)(withStyles(stylesContacts)(Contacts))

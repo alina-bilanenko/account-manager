@@ -10,6 +10,10 @@ const collectiveState = (state = {}, action) => {
       return { ...state, showPassword: !state.showPassword }
     case 'SHOW_CONFIRM_PASSWORD':
       return { ...state, showConfirmPassword: !state.showConfirmPassword }
+    case 'EDITING_ID':
+      return { ...state, editingId: action.id }
+    case 'EDITING_USER':
+      return { ...state, editingUser: {...action.editingUser}}
 
     default:
       return state

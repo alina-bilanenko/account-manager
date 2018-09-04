@@ -28,7 +28,8 @@ let Account = (props) => {
     showConfirmPassword,
     changeShowConfirmPassword,
     photo,
-    push
+    push,
+    isCreateUser
   } = props
 
   return (
@@ -102,6 +103,7 @@ let Account = (props) => {
                 push={push}
                 hidden
                 url='profile'
+                isCreateUser={isCreateUser}
               />
             </div>
           </Grid>
@@ -125,13 +127,14 @@ const mapStateToProps = (props) => {
   return {
     showPassword: props.collectiveState.showPassword,
     showConfirmPassword: props.collectiveState.showConfirmPassword,
-    photo: selector(props, 'photo')
+    photo: selector(props, 'photo'),
+    isCreateUser: props.collectiveState.createUser,
   }
 }
 
 const mapDispatchToProps = {
   changeShowPassword: collectiveActions.showPassword,
-  changeShowConfirmPassword: collectiveActions.showConfirmPassword
+  changeShowConfirmPassword: collectiveActions.showConfirmPassword,
 }
 
 Account.propTypes = {

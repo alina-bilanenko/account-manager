@@ -84,7 +84,85 @@ export const initialState = {
   collectiveState: {
     createUser:  true,
     showPassword: false,
-    showConfirmPassword: false
+    showConfirmPassword: false,
+    editingId: null,
+    editingUser: {}
   },
   usersList: []
 }
+
+export const srtuctureUser = [
+  {
+    title: 'Account:',
+    data: [
+      {
+        name: fieldNames.userName,
+        title: 'User name:',
+      },
+      {
+        name: fieldNames.password,
+        title: 'Password:',
+      }
+    ]
+  },
+  {
+    title: 'Personal:',
+    data: [
+      {
+        name: fieldNames.firstName,
+        title: 'First name:',
+      },
+      {
+        name: fieldNames.lastName,
+        title: 'Last name:',
+      },
+      {
+        name: fieldNames.birthDate,
+        title: 'Birth date:',
+      },
+      {
+        name: fieldNames.email,
+        title: 'Email:',
+      },
+      {
+        name: fieldNames.address,
+        title: 'Adress:',
+      }
+    ]
+  },
+  {
+    title: 'Contacts:',
+    data: [
+      {
+        name: fieldNames.company,
+        title: 'Company:',
+      },
+      {
+        name: fieldNames.fax,
+        title: 'Fax:',
+      },
+      {
+        name: fieldNames.facebookLink,
+        title: 'Facebook Link:',
+      },
+      {
+        name: fieldNames.phone,
+        title: 'Phone #1:',
+      }
+    ]
+  },
+  {
+    title: 'Capabilities:',
+    data: [
+      {
+        name: fieldNames.skills,
+        title: 'Skills:',
+      },
+      {
+        name: 'checkBox',
+        title: 'Hobies:',
+      }
+    ]
+  },
+
+];

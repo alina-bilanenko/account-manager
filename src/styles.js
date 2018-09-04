@@ -46,6 +46,10 @@ export const mainStyles = theme => ({
 })
 
 export const stylesAdd = () => ({
+  captions: {
+    display: 'flex',
+    margin: '3.5em auto 1em auto'
+  },
   caption: {
     width: '100%',
     maxWidth: 500,
@@ -284,7 +288,10 @@ export const stylesBirthDate = theme => ({
   },
   visibleIcon: {
     marginLeft: theme.spacing.unit * (-4)
-  }
+  },
+  error: {
+    borderColor: '#EB5757'
+  },
 })
 
 export const stylesInput = theme => ({
@@ -442,7 +449,7 @@ export const stylesSelect = theme => ({
   textHelper: {
     color: '#EB5757',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
-  }
+  },
 })
 
 export const stylesMyHobbies = {
@@ -631,7 +638,7 @@ export const stylesTable = theme => ({
     height: 40,
     margin: '20px auto',
     padding: '0',
-    backgroundColor: '#FAFCFF'
+    backgroundColor: '#ffffff'
   },
   userName: {
     fontSize: '9px',

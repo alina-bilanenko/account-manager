@@ -39,7 +39,7 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell)
 
 function TableList (props) {
-  const { classes, usersList, push } = props
+  const { classes, usersList, push, deleteRow } = props
 
   const createContact = (user) => {
     return user[fieldNames.phone] &&
@@ -47,6 +47,10 @@ function TableList (props) {
     user[fieldNames.phone][0]
       ? user[fieldNames.phone][0]
       : user[fieldNames.email]
+  }
+
+  function rowClick(url) {
+    if (url) push(url)
   }
 
   return (
@@ -66,7 +70,9 @@ function TableList (props) {
           {usersList.length
             ? usersList.map(user => {
               return (
-                <TableRow className={classes.row} key={user.id}>
+                <TableRow className={classes.row} key={user.id}
+                          // onClick={()=>rowClick(`user/${user.id}`)}
+                >
                   <CustomTableCell component='td' scope='row'>
                     <Avatar
                       alt='photo'
@@ -92,12 +98,14 @@ function TableList (props) {
                     <Button
                       disableRipple
                       className={classes.button}
+                      onClick={()=>rowClick(`user/${user.id}`)}
                     >
                       {Edit}
                     </Button>
                     <Button
                       disableRipple
                       className={classes.button}
+                      onClick={() => deleteRow(user.id)}
                     >
                       {Delete}
                     </Button>
