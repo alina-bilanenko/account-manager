@@ -32,10 +32,6 @@ const BootstrapInput = (props) => {
     event.preventDefault()
   }
 
-  const handleClickShowPassword = () => {
-    changeShow()
-  }
-
   return (
     <TextField
       required={required}
@@ -55,7 +51,7 @@ const BootstrapInput = (props) => {
           <InputAdornment position='end'>
             <IconButton
               aria-label='Toggle password visibility'
-              onClick={handleClickShowPassword}
+              onClick={changeShow}
               onMouseDown={handleMouseDownPassword}
               className={classes.visibleIcon}
             >

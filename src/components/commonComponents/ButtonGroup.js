@@ -9,7 +9,7 @@ const ButtonGroup = (props) => {
     classes,
     finish,
     hidden,
-    url = undefined,
+    url,
     push,
     isCreateUser
   } = props

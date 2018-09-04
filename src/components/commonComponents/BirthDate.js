@@ -11,7 +11,7 @@ import moment from 'moment'
 import { Calendar } from 'icons'
 import { stylesBirthDate } from 'styles'
 import PropTypes from 'prop-types'
-import classNames from "classnames";
+import classNames from 'classnames'
 
 moment.updateLocale('en', {
   week: {

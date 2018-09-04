@@ -18,6 +18,7 @@ import { collectiveActions } from 'actions/action'
 import { stylesAccount } from 'styles'
 import PropTypes from 'prop-types'
 import {asyncValidateName} from 'Validation/asyncValidate'
+import { compose } from "redux";
 
 let Account = (props) => {
   let {
@@ -113,22 +114,15 @@ let Account = (props) => {
   )
 }
 
-Account = reduxForm({
-  form: 'account',
-  destroyOnUnmount: false,
-  validate: accountValidation,
-  asyncValidate: asyncValidateName,
-  asyncBlurFields: [fieldNames.userName]
-})(Account)
-
 const selector = formValueSelector('account')
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    showPassword: props.collectiveState.showPassword,
-    showConfirmPassword: props.collectiveState.showConfirmPassword,
-    photo: selector(props, 'photo'),
-    isCreateUser: props.collectiveState.createUser,
+    showPassword: store.collectiveState.showPassword,
+    showConfirmPassword: store.collectiveState.showConfirmPassword,
+    photo: selector(store, 'photo'),
+    isCreateUser: store.collectiveState.createUser,
+    initialValues: store.collectiveState.editingUser
   }
 }
 
@@ -148,7 +142,17 @@ Account.propTypes = {
   push: PropTypes.func
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(stylesAccount)(Account))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(stylesAccount),
+  reduxForm({
+    form: 'account',
+    destroyOnUnmount: false,
+    validate: accountValidation,
+    asyncValidate: asyncValidateName,
+    asyncBlurFields: [fieldNames.userName]
+  })
+)(Account)

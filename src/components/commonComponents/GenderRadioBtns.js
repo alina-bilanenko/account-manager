@@ -10,7 +10,7 @@ import classNames from 'classnames'
 import { stylesRadio } from 'styles'
 import PropTypes from 'prop-types'
 
-const RadioButton = (props) => {
+const GenderRadioBtns = (props) => {
   const { classes, input, name, ...rest } = props
 
   return (
@@ -78,11 +78,11 @@ const RadioButton = (props) => {
   )
 }
 
-RadioButton.propTypes = {
+GenderRadioBtns.propTypes = {
   classes: PropTypes.object,
   input: PropTypes.object,
   name: PropTypes.string,
   rest: PropTypes.object
 }
 
-export default withStyles(stylesRadio)(RadioButton)
+export default withStyles(stylesRadio)(GenderRadioBtns)

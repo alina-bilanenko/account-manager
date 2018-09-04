@@ -10,6 +10,7 @@ import IntegrationReactSelect from 'components/commonComponents/IntegrationReact
 import { stylesCapabilities } from 'styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { compose } from "redux";
 
 let Capabilities = (props) => {
   const { classes, handleSubmit, push, isCreateUser } = props
@@ -54,24 +55,26 @@ let Capabilities = (props) => {
   )
 }
 
-Capabilities = reduxForm({
-  form: 'capabilities',
-  destroyOnUnmount: false,
-  validate: capabilitiesValidation
-})(Capabilities)
-
 Capabilities.propTypes = {
   classes: PropTypes.object,
   handleSubmit: PropTypes.func,
   push: PropTypes.func
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    isCreateUser: props.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser,
   }
 }
 
-export default connect(
-  mapStateToProps,
-)(withStyles(stylesCapabilities)(Capabilities))
+export default compose(
+  connect(
+    mapStateToProps,
+  ),
+  withStyles(stylesCapabilities),
+  reduxForm({
+    form: 'capabilities',
+    destroyOnUnmount: false,
+    validate: capabilitiesValidation
+  })
+)(Capabilities)

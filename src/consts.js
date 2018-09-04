@@ -23,34 +23,27 @@ export const mainLanguage = [
   { value: 'pa', label: 'Punjabi' },
   { value: 'th', label: 'Thai' },
   { value: 'ko', label: 'Korean' }
-].map(suggestion => ({
-  value: suggestion.value,
-  label: suggestion.label
-}))
+]
 
 export const skills = [
-  { label: 'HTML' },
-  { label: 'CSS' },
-  { label: 'Javascript' },
-  { label: 'React' },
-  { label: 'Angular' },
-  { label: 'jQuery' },
-  { label: 'NodeJS' },
-  { label: 'Python' },
-  { label: 'PHP' },
-  { label: 'Ruby On Rails' },
-  { label: 'SQL' },
-  { label: 'BackboneJS' },
-  { label: 'Web Design' },
-  { label: 'Project management' },
-  { label: 'Git' },
-  { label: 'Docker' },
-  { label: 'AWS Lambda' },
-  { label: 'Firebase' }
-].map(suggestion => ({
-  value: suggestion.label,
-  label: suggestion.label
-}))
+  'HTML',
+  'CSS',
+  'Javascript',
+  'React',
+  'Angular',
+  'jQuery',
+  'NodeJS',
+  'Python',
+  'PHP',
+  'Ruby On Rails',
+  'SQL',
+  'BackboneJS',
+  'Web Design',
+  'Project management',
+  'Git',
+  'Docker',
+  'AWS Lambda',
+  'Firebase'].map(item => ({label: item, value: item}));
 
 export const fieldNames = {
   photo: 'photo',
@@ -85,7 +78,6 @@ export const initialState = {
     createUser:  true,
     showPassword: false,
     showConfirmPassword: false,
-    editingId: null,
     editingUser: {}
   },
   usersList: []
@@ -93,6 +85,7 @@ export const initialState = {
 
 export const srtuctureUser = [
   {
+    name: 'account',
     title: 'Account:',
     data: [
       {
@@ -106,6 +99,7 @@ export const srtuctureUser = [
     ]
   },
   {
+    name: 'profile',
     title: 'Personal:',
     data: [
       {
@@ -131,6 +125,7 @@ export const srtuctureUser = [
     ]
   },
   {
+    name: 'contacts',
     title: 'Contacts:',
     data: [
       {
@@ -152,6 +147,7 @@ export const srtuctureUser = [
     ]
   },
   {
+    name: 'capabilities',
     title: 'Capabilities:',
     data: [
       {
@@ -164,5 +160,50 @@ export const srtuctureUser = [
       }
     ]
   },
-
 ];
+
+export const tabList = [
+  {
+    name: 'account',
+    title: '1. Account'
+  },
+  {
+    name: 'profile',
+    title: '2. Profile'
+  },
+  {
+    name: 'contacts',
+    title: '3. Contacts'
+  },
+  {
+    name: 'capabilities',
+    title: '4. Capabilities'
+  }
+]
+
+export const myHobbiesList = [
+  {
+    name: fieldNames.checkBox1,
+    title: 'Art'
+  },
+  {
+    name: fieldNames.checkBox2,
+    title: 'Sport, fitness, aerobica and staff like that'
+  },
+  {
+    name: fieldNames.checkBox3,
+    title: 'I just want to play games, I’m not living in this life'
+  },
+  {
+    name: fieldNames.checkBox4,
+    title: 'I’m a female... I’m doing nothing. Every day.'
+  },
+  {
+    name: fieldNames.checkBox5,
+    title: 'Guitar, guitar and guitar again. I’m fall in love with it.'
+  },
+  {
+    name: fieldNames.checkBox6,
+    title: 'WTF is “hobbies”???'
+  }
+]

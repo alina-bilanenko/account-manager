@@ -9,7 +9,8 @@ const InputWithMask = ({
                          input: inputProps,
                          classes,
                          meta,
-                         label
+                         label,
+                         mask
                        }) => {
   return (
     <div className={classes.inputField}>
@@ -18,7 +19,7 @@ const InputWithMask = ({
       >
         {label}
       </InputLabel>
-      <InputMask mask='+7 (999) 999-99-99'
+      <InputMask mask={mask}
                  maskChar={'X'}
                  alwaysShowMask={false}
                  className={classNames(classes.bootstrapInput, {[classes.error]: meta.error && meta.touched})}

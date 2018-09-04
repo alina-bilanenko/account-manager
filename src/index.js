@@ -9,8 +9,8 @@ import { Provider } from 'react-redux'
 import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { initialState } from 'consts'
 import { createBrowserHistory } from 'history'
-import { loadUsers } from 'actions/listOfUsersActions'
 import thunk from 'redux-thunk'
+import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory()
 
@@ -22,11 +22,10 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
 )
 
-store.dispatch(loadUsers('LOAD_USERS'))
-
 render(
   <Provider store={store}>
     <App history={history} />
   </Provider>,
   document.getElementById('root')
 )
+registerServiceWorker();

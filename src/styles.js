@@ -570,11 +570,7 @@ export const stylesGoogleAddress = theme => ({
   }
 })
 
-export const stylesTablePlaceholder = {
-  root: {
-    width: '100%',
-    maxWidth: 500
-  },
+export const stylesListPlaceholder = {
   button: {
     backgroundColor: '#5E97F3',
     fontStyle: 'normal',
@@ -589,10 +585,21 @@ export const stylesTablePlaceholder = {
     '&:hover': {
       backgroundColor: '#5E97F3'
     }
+  },
+  body: {
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    lineHeight: 'normal',
+    fontSize: '35px',
+    textAlign: 'center',
+    color: '#9BB0CB',
+    height: '300px',
+    verticalAlign: 'middle',
+    backgroundColor: '#FAFCFF'
   }
 }
 
-export const stylesListUsers = () => ({
+export const stylesList = () => ({
   caption: {
     width: '100%',
     maxWidth: 500,
@@ -609,15 +616,23 @@ export const stylesListUsers = () => ({
   }
 })
 
-export const stylesTable = theme => ({
+export const stylesUsersList = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     boxShadow: 'unset'
   },
-  table: {
-    minWidth: 600
+  usersList: {
+    minWidth: 600,
+  },
+  headerList: {
+    backgroundColor: '#4E86E4',
+    color: '#FFFFFF',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: '45px',
+    fontSize: '14px'
   },
   body: {
     backgroundColor: '#FFFFFF',
@@ -626,12 +641,21 @@ export const stylesTable = theme => ({
       display: 'block',
       lineHeight: '2em',
       color: 'transparent'
-    }
+    },
+    fontSize: 14,
+    '&:first-child': {
+      padding: '0'
+    },
+    border: 'none',
+    fontWeight: '500',
+    color: '#475666',
+    lineHeight: 'normal',
   },
   row: {
     '&:nth-of-type(odd)': {
       backgroundColor: '#E7F0FF'
-    }
+    },
+    alignItems: 'center'
   },
   bigAvatar: {
     width: 40,
@@ -649,5 +673,5 @@ export const stylesTable = theme => ({
     '&:hover': {
       backgroundColor: 'unset'
     }
-  }
+  },
 })

@@ -31,7 +31,7 @@ function ImageLoader (props) {
       return
     }
 
-    let reader = new FileReader()
+    const reader = new FileReader()
 
     reader.onloadend = () => {
       input.onChange(reader.result)
@@ -72,10 +72,6 @@ function ImageLoader (props) {
       </label>
     </div>
   )
-}
-
-ImageLoader.propTypes = {
-  classes: PropTypes.object.isRequired
 }
 
 ImageLoader.propTypes = {

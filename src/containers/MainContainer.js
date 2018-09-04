@@ -7,12 +7,15 @@ import {
   Typography
 } from '@material-ui/core'
 import { Logo, AddUser, ListOfUsers } from 'icons'
-import { mainStyles } from 'styles'
+import { mainStyles, stylesListUsers } from "styles";
 import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
 import UsersList from 'components/listOfUsers/UserView'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { push } from "connected-react-router";
+import { compose } from "redux";
 
 class MainContainer extends Component {
   AddNewUser = (
@@ -49,7 +52,7 @@ class MainContainer extends Component {
               </div>
               <div className={classes.logo}>
                 <Link
-                  to={'/create-user/account'}
+                  to='/create-user/account'
                   className={classes.linkUnderlain}
                 >
                   <BottomNavigationAction
@@ -58,7 +61,10 @@ class MainContainer extends Component {
                     disableRipple
                   />
                 </Link>
-                <Link to={'/list-of-user'} className={classes.linkUnderlain}>
+                <Link
+                  to='/list-of-user'
+                  className={classes.linkUnderlain}
+                >
                   <BottomNavigationAction
                     icon={this.ListAllUsers}
                     className={classes.link}
@@ -70,27 +76,27 @@ class MainContainer extends Component {
           </Grid>
           <Grid item xs={12}>
             <Switch>
-              <Route
-                exact
-                path='/create-user/:name'
-                component={AddingNewUsers}
-              />
-              <Route
-                exact
-                path='/list-of-user'
-                component={ListOfAllUsers}
-              />
-              <Route
-                exact
-                path='/user/:id'
-                component={UsersList}
-              />
-              <Route
-                exact
-                path='/edit-user/:id'
-                component={AddingNewUsers}
-              />
-              <Route component={AddingNewUsers} />
+                <Route
+                  exact
+                  path='/create-user/:name'
+                  component={AddingNewUsers}
+                />
+                <Route
+                  exact
+                  path='/list-of-user'
+                  component={ListOfAllUsers}
+                />
+                <Route
+                  exact
+                  path='/user/:id'
+                  component={UsersList}
+                />
+                <Route
+                  exact
+                  path='/edit-user/:id'
+                  component={AddingNewUsers}
+                />
+                <Route component={AddingNewUsers} />
             </Switch>
           </Grid>
         </Grid>
@@ -103,4 +109,21 @@ MainContainer.propTypes = {
   classes: PropTypes.object
 }
 
-export default withStyles(mainStyles)(MainContainer)
+const mapStateToProps = (store) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = {
+
+}
+
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(mainStyles)
+)(MainContainer)
+

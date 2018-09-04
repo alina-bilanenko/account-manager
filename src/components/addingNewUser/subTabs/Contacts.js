@@ -11,6 +11,7 @@ import RenderPhone from 'components/commonComponents/RenderPhones'
 import { stylesContacts } from 'styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { compose } from "redux";
 
 let Contacts = (props) => {
   const { classes, handleSubmit, push, isCreateUser } = props
@@ -56,6 +57,7 @@ let Contacts = (props) => {
                 component={InputWithMask}
                 type='text'
                 required
+                mask='+7 (999) 999-99-99'
               />
               <FieldArray
                 name={fieldNames.phone}
@@ -74,29 +76,31 @@ let Contacts = (props) => {
   )
 }
 
-Contacts = reduxForm({
-  form: 'contacts',
-  destroyOnUnmount: false,
-  validate: contactsValidation,
-  initialValues: {
-    phone: ['', ''],
-    fax: ''
-  }
-})(Contacts)
-
 Contacts.propTypes = {
   classes: PropTypes.object,
   handleSubmit: PropTypes.func,
   push: PropTypes.func
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    isCreateUser: props.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser,
   }
 }
 
 
-export default connect(
-  mapStateToProps,
-)(withStyles(stylesContacts)(Contacts))
+export default compose(
+  connect(
+    mapStateToProps,
+  ),
+  withStyles(stylesContacts),
+  reduxForm({
+    form: 'contacts',
+    destroyOnUnmount: false,
+    validate: contactsValidation,
+    initialValues: {
+      phone: ['', ''],
+      fax: ''
+    }
+  })
+)(Contacts)

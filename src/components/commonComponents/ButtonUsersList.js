@@ -25,12 +25,11 @@ const stylesButtonUsersList = (theme) => ({
 const ButtonUsersList = (props) => {
   const {
     classes,
-    url = undefined,
+    url,
     push
   } = props
 
   const handleClickBack = () => {
-    console.log(url)
     if (url) push(url)
   }
 

@@ -1,4 +1,4 @@
-export const usersList = (state = {}, action) => {
+export const usersList = (state = [], action) => {
   switch (action.type) {
     case 'LOAD_USERS':
       return [...action.payload]

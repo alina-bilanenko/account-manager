@@ -19,6 +19,8 @@ import PropsTypes from 'prop-types'
 import { addUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
 import ButtonUsersList from "../commonComponents/ButtonUsersList";
+import {tabList} from 'consts'
+import { compose } from "redux";
 
 const AddingNewUsers = (props) => {
   const {
@@ -41,7 +43,7 @@ const AddingNewUsers = (props) => {
   }
 
   const handleChangeTab = (e, value) => {
-   if(!isCreateUser) push(`/create-user/${value}`)
+    if(!isCreateUser) push(`/create-user/${value}`)
   }
 
   const resetAllForm = () => {
@@ -54,7 +56,6 @@ const AddingNewUsers = (props) => {
 
   const save = () => {
     if(isCreateUser) return
-    console.log('save')
   }
 
   const finish = () => {
@@ -82,6 +83,8 @@ const AddingNewUsers = (props) => {
     resetAllForm();
   }
 
+
+
   return (
     <div className={classes.root}>
       <div className={classes.captions}>
@@ -106,115 +109,81 @@ const AddingNewUsers = (props) => {
               indicator: classes.activeTab
             }}
           >
-            <Tab
-              value='account'
-              label={<span style={{ fontSize: '1.5rem' }}>1. Account</span>}
-              className={
-                classNames(
-                  classes.fieldHeader,
-                  {
-                    [classes.activeTab]: tabName === 'account'
-                  }
-                )
-              }
-            />
-            <Tab
-              value='profile'
-              label={<span style={{ fontSize: '1.5rem' }}>2. Profile</span>}
-              className={
-                classNames(
-                  classes.fieldHeader,
-                  {
-                    [classes.activeTab]: tabName === 'profile'
-                  }
-                )
-              }
-            />
-            <Tab
-              value='contacts'
-              label={<span style={{ fontSize: '1.5rem' }}>3. Contacts</span>}
-              className={
-                classNames(
-                  classes.fieldHeader,
-                  {
-                    [classes.activeTab]: tabName === 'contacts'
-                  }
-                )
-              }
-            />
-            <Tab
-              value='capabilities'
-              label={<span style={{ fontSize: '1.5rem' }}>4. Capabilities</span>}
-              className={
-                classNames(
-                  classes.fieldHeader,
-                  {
-                    [classes.activeTab]: tabName === 'capabilities'
-                  }
-                )
-              }
-            />
+            {tabList.map((item, ind) => (
+              <Tab
+                key={ind}
+                value={item.name}
+                label={<span style={{ fontSize: '1.5rem' }}>{item.title}</span>}
+                className={
+                  classNames(
+                    classes.fieldHeader,
+                    {
+                      [classes.activeTab]: tabName === item.name
+                    }
+                  )}
+              />
+            ))}
           </Tabs>
         </AppBar>
         <Route exact path='/create-user/account'
-          render={(props) => (
-            <Account
-              {...props}
-              push={push}
-              onSubmit={() => { if(isCreateUser) {
-                push('/create-user/profile')
-              } else save()}}
-            />
-          )}
+        render={(props) => (
+                 <Account
+                   {...props}
+                   push={push}
+                   onSubmit={() => { if(isCreateUser) {
+                     push('/create-user/profile')
+                   } else save()}}
+                 />
+               )}
         />
         <Route exact path='/create-user/profile'
-          render={(props) => (
-            <Profile
-              {...props}
-              push={push}
-              onSubmit={() => {if(isCreateUser) {
-                push('/create-user/contacts')
-              } else save()}}
-            />
-          )}
+               render={(props) => (
+                 <Profile
+                   {...props}
+                   push={push}
+                   onSubmit={() => {if(isCreateUser) {
+                     push('/create-user/contacts')
+                   } else save()}}
+                 />
+               )}
         />
         <Route exact path='/create-user/contacts'
-          render={(props) => (
-            <Contacts
-              {...props}
-              push={push}
-              onSubmit={() => { if(isCreateUser) {
-                push('/create-user/capabilities')
-              } else save()}}
-            />
-          )}
+               render={(props) => (
+                 <Contacts
+                   {...props}
+                   push={push}
+                   onSubmit={() => { if(isCreateUser) {
+                     push('/create-user/capabilities')
+                   } else save()}}
+                 />
+               )}
         />
         <Route exact path='/create-user/capabilities'
-          render={(props) => (
-            <Capabilities
-              {...props}
-              push={push}
-              onSubmit={ isCreateUser ? finish : save}
-            />
-          )}
+               render={(props) => (
+                 <Capabilities
+                   {...props}
+                   push={push}
+                   onSubmit={ isCreateUser ? finish : save}
+                 />
+               )}
         />
       </div>
     </div>
   )
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    isCreateUser: props.collectiveState.createUser,
-    account: getFormValues('account')(props),
-    profile: getFormValues('profile')(props),
-    contacts: getFormValues('contacts')(props),
-    capabilities: getFormValues('capabilities')(props),
+    isCreateUser: store.collectiveState.createUser,
+    account: getFormValues('account')(store),
+    profile: getFormValues('profile')(store),
+    contacts: getFormValues('contacts')(store),
+    capabilities: getFormValues('capabilities')(store),
     isValid: {
-      account: isValid('account')(props),
-      profile: isValid('profile')(props),
-      contacts: isValid('contacts')(props),
-      capabilities: isValid('capabilities')(props)
+      account: isValid('account')(store),
+      profile: isValid('profile')(store),
+      contacts: isValid('contacts')(store),
+      capabilities: isValid('capabilities')(store)
     }
   }
 }
@@ -230,7 +199,10 @@ AddingNewUsers.propTypes = {
   push: PropsTypes.func
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(stylesAdd)(AddingNewUsers))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(stylesAdd)
+)(AddingNewUsers)

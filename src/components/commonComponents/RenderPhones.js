@@ -24,7 +24,9 @@ const RenderPhone = ({ fields, classes }) => {
             name={name}
             type='text'
             component={InputWithMask}
-            label={`Phone #${index + 1}`} />
+            label={`Phone #${index + 1}`}
+            mask='+7 (999) 999-99-99'
+          />
         </li>
       )}
       {(fields.length < 3) &&

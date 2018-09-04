@@ -7,6 +7,9 @@ import { push } from "connected-react-router";
 import connect from "react-redux/es/connect/connect";
 import { fieldNames, srtuctureUser } from "consts";
 import classNames from 'classnames'
+import { compose } from "redux"
+import { Edit } from 'icons'
+import {collectiveActions} from 'actions/action'
 
 const styles = theme => ({
   captions: {
@@ -58,13 +61,25 @@ const styles = theme => ({
     fontSize: '14px',
     color: '#657C9A',
     borderBottom: 'none'
+  },
+  button: {
+    '&:hover': {
+      backgroundColor: 'unset'
+    },
+    padding: '4px',
+    minWidth: '20px'
   }
 })
 
 
 const UserView = (props) => {
 
-  const { classes, push, match: { params: id }, usersList } = props
+  const { classes, push, user, isCreateUser } = props
+
+  const editUser = (tabName) => {
+    isCreateUser()
+    push(`/create-user/${tabName}`)
+  }
 
   return (
     <div className={classes.root}>
@@ -77,7 +92,7 @@ const UserView = (props) => {
       <div className={classes.body}>
         <Avatar
           alt='photo'
-          // src={user[fieldNames.photo]}
+          src={user[fieldNames.photo]}
           className={classes.bigAvatar}
         />
 
@@ -95,12 +110,19 @@ const UserView = (props) => {
                     <TableRow>
                       <TableCell rowSpan={item.data.length}  className={classNames(classes.tableText, classes.firstRow)}>
                         {item.title}
+                        <Button
+                          disableRipple
+                          className={classes.button}
+                          onClick={()=>editUser(item.name)}
+                        >
+                          {Edit}
+                        </Button>
                       </TableCell>
                       <TableCell  className={classes.tableText}>
-                        {item.data[0].title}
+                        {elem.title}
                       </TableCell>
                       <TableCell  className={classes.tableValue}>
-                        {item.data[0].name}
+                        {elem.name}
                       </TableCell>
                     </TableRow>
                   </Fragment>
@@ -111,7 +133,7 @@ const UserView = (props) => {
                       {elem.title}
                     </TableCell>
                     <TableCell className={classes.tableValue}>
-                      {elem.name}
+                      {user[elem.name]}
                     </TableCell>
                   </TableRow>
                 )
@@ -129,17 +151,21 @@ UserView.propTypes = {
   classes: PropTypes.object
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    usersList: props.usersList
+    user: store.collectiveState.editingUser
   }
 }
 
 const mapDispatchToProps = {
-  push: push
+  push: push,
+  isCreateUser: collectiveActions.createUser
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(UserView))
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withStyles(styles)
+)(UserView)

@@ -6,7 +6,8 @@ const usersConst = {
   LOAD_USERS: 'LOAD_USERS',
   ADD_USERS: 'ADD_USERS',
   UPDATE_USERS: 'UPDATE_USERS',
-  DELETE_USERS: 'DELETE_USERS'
+  DELETE_USERS: 'DELETE_USERS',
+  EDITING_USER: 'EDITING_USER'
 }
 
 export function loadUsers () {
@@ -56,3 +57,13 @@ export function deleteUsers(id) {
 //     });
 //   }
 // }
+
+export function editingUser (id) {
+  return async (dispatch) => {
+    const user = await db.table('users').get({id: id});
+    dispatch({
+      type: usersConst.EDITING_USER,
+      user: user
+    })
+  }
+}

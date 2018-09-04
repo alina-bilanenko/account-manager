@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles, Grid, Icon } from '@material-ui/core'
 import BootstrapInput from '../../commonComponents/BootstrapInput'
-import RadioButton from 'components/commonComponents/RadioButton'
+import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import BirthDate from 'components/commonComponents/BirthDate'
 import { profileValidation } from 'Validation/index'
@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import { asyncValidateEmail } from "Validation/asyncValidate";
 import { connect } from 'react-redux'
+import { compose } from "redux";
 
 let Profile = (props) => {
   const { classes, handleSubmit, push, isCreateUser } = props
@@ -42,7 +43,7 @@ let Profile = (props) => {
                 required
                 label='Birth date'
                 component={BirthDate}
-                type='text'
+                type='data time'
               >
                 <Icon>{Calendar}</Icon>
               </Field>
@@ -55,7 +56,7 @@ let Profile = (props) => {
                 required
                 label='Email'
                 component={BootstrapInput}
-                type='text'
+                type='email'
               />
               <Field
                 name={fieldNames.address}
@@ -65,7 +66,7 @@ let Profile = (props) => {
               />
               <Field
                 name={fieldNames.gender}
-                component={RadioButton}
+                component={GenderRadioBtns}
               />
               <ButtonGroup
                 push={push}
@@ -80,26 +81,28 @@ let Profile = (props) => {
   )
 }
 
-Profile = reduxForm({
-  form: 'profile',
-  destroyOnUnmount: false,
-  validate: profileValidation,
-  asyncValidate: asyncValidateEmail,
-  asyncBlurFields: [fieldNames.email]
-})(Profile)
-
 Profile.propTypes = {
   classes: PropTypes.object,
   handleSubmit: PropTypes.func,
   push: PropTypes.func
 }
 
-const mapStateToProps = (props) => {
+const mapStateToProps = (store) => {
   return {
-    isCreateUser: props.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser,
   }
 }
 
-export default connect(
-  mapStateToProps,
-)(withStyles(stylesProfile)(Profile))
+export default compose(
+  connect(
+    mapStateToProps,
+  ),
+  withStyles(stylesProfile),
+  reduxForm({
+    form: 'profile',
+    destroyOnUnmount: false,
+    validate: profileValidation,
+    asyncValidate: asyncValidateEmail,
+    asyncBlurFields: [fieldNames.email]
+  })
+)(Profile)
