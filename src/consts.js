@@ -78,7 +78,8 @@ export const initialState = {
     createUser:  true,
     showPassword: false,
     showConfirmPassword: false,
-    editingUser: {}
+    editingUser: {},
+    indDeleteUser: 0
   },
   usersList: []
 }

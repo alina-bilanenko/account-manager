@@ -618,7 +618,7 @@ export const stylesList = () => ({
 
 export const stylesUsersList = theme => ({
   root: {
-    width: '100%',
+    width: '110%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     boxShadow: 'unset'
@@ -672,6 +672,31 @@ export const stylesUsersList = theme => ({
   button: {
     '&:hover': {
       backgroundColor: 'unset'
-    }
+    },
+    minWidth: '20px'
   },
+  deleteRow: {
+
+  },
+  noWrap: {
+    whiteSpace: 'nowrap'
+  },
+  hiddenDelete: {
+    visibility: 'visible !important'
+  },
+  columnDelete: {
+    visibility: 'hidden'
+  },
+  deleteButton: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    fontSize: '14px',
+    textAlign: 'right',
+    color: '#FF8989',
+    textTransform: 'lowercase',
+    '&:hover': {
+      backgroundColor: 'unset'
+    }
+  }
 })

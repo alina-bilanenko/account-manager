@@ -12,9 +12,10 @@ import { fieldNames } from 'consts'
 import moment from 'moment'
 import { Edit, Delete, RedDelete } from 'icons'
 import { stylesUsersList } from "styles";
+import classNames from "classnames";
 
 function UsersList (props) {
-  const { classes, usersList, push, deleteRow, editingUser, isCreateUser } = props
+  const { classes, usersList, push, deleteRow, editingUser, isCreateUser,  deleteUser, indDeleteUser } = props
 
   const createContact = (user) => {
     return user[fieldNames.phone] &&
@@ -44,7 +45,7 @@ function UsersList (props) {
           ?  <Grid container className={classes.body}>
             {usersList.map(user => {
               return (
-                <Grid container className={classes.row} key={user.id}>
+                <Grid container className={classNames(classes.row, {[classes.deleteRow]: user.id === indDeleteUser})} key={user.id}>
                   <Grid item xs={2} sm={2}>
                     <Avatar
                       alt='photo'
@@ -66,7 +67,7 @@ function UsersList (props) {
                   <Grid item xs={2} sm={2}>
                     {moment(user[fieldNames.lastUpdate]).fromNow()}
                   </Grid>
-                  <Grid item xs={2} sm={2}>
+                  <Grid item xs={1} sm={1} className={classes.noWrap}>
                     <Button
                       disableRipple
                       className={classes.button}
@@ -77,21 +78,21 @@ function UsersList (props) {
                     <Button
                       disableRipple
                       className={classes.button}
-                      // onClick={() => deleteRow(user.id)}
+                      onClick={() => deleteUser(user.id)}
                     >
                       {Delete}
                     </Button>
                   </Grid>
-                  {/*<Grid item xs={2} sm={2}>*/}
-                    {/*<Button*/}
-                      {/*disableRipple*/}
-                      {/*className={classes.button}*/}
-                      {/*onClick={() => deleteRow(user.id)}*/}
-                    {/*>*/}
-                      {/*{RedDelete}*/}
-                      {/*<span>delete</span>*/}
-                    {/*</Button>*/}
-                  {/*</Grid>*/}
+                  <Grid item xs={1} sm={1} className={classNames(classes.columnDelete, {[classes.hiddenDelete]: user.id === indDeleteUser})}>
+                    <Button
+                      disableRipple
+                      className={classes.deleteButton}
+                      onClick={() => deleteRow(user.id)}
+                    >
+                      {RedDelete}
+                      <span>delete</span>
+                    </Button>
+                  </Grid>
                 </Grid>
               )
             })}

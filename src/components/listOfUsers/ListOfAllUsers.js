@@ -15,7 +15,7 @@ class ListOfAllUsers extends Component {
   }
 
   render() {
-    const { classes, usersList, push, deleteUsers, editingUser, isCreateUser } = this.props
+    const { classes, usersList, push, deleteUsers, editingUser, isCreateUser, deleteUserId, indDeleteUser } = this.props
     return (
       <div className={classes.root}>
         <Typography
@@ -31,6 +31,8 @@ class ListOfAllUsers extends Component {
           deleteRow={id => deleteUsers(id)}
           editingUser={editingUser}
           isCreateUser={isCreateUser}
+          indDeleteUser={indDeleteUser}
+          deleteUser={deleteUserId}
         />
       </div>
     )
@@ -45,7 +47,8 @@ ListOfAllUsers.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    usersList: store.usersList
+    usersList: store.usersList,
+    indDeleteUser: store.collectiveState.deleteUserId
   }
 }
 
@@ -54,7 +57,8 @@ const mapDispatchToProps = {
   deleteUsers: deleteUsers,
   editingUser: editingUser,
   loadUsersList: loadUsers,
-  isCreateUser: collectiveActions.createUser
+  isCreateUser: collectiveActions.createUser,
+  deleteUserId: collectiveActions.deleteUserId
 }
 
 export default compose(

@@ -1,7 +1,7 @@
 export const usersList = (state = [], action) => {
   switch (action.type) {
     case 'LOAD_USERS':
-      return [...action.payload]
+      return action.payload
     case 'ADD_USERS':
       return [...state, action.payload]
     case 'UPDATE_USERS': {
