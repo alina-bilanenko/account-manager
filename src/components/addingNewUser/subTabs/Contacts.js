@@ -84,7 +84,7 @@ Contacts.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    isCreateUser: store.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser
   }
 }
 
@@ -97,10 +97,10 @@ export default compose(
   reduxForm({
     form: 'contacts',
     destroyOnUnmount: false,
-    validate: contactsValidation,
     initialValues: {
       phone: ['', ''],
       fax: ''
-    }
+    },
+    validate: contactsValidation
   })
 )(Contacts)

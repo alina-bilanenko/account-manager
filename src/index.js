@@ -11,8 +11,15 @@ import { initialState } from 'consts'
 import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk'
 import registerServiceWorker from './registerServiceWorker';
+import { homepage } from '../package.json'
 
-const history = createBrowserHistory()
+const historyOptions = {};
+
+if (process.env.NODE_ENV === 'production') {
+  historyOptions.basename = new URL(homepage).pathname+'/'
+}
+
+const history = createBrowserHistory(historyOptions);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

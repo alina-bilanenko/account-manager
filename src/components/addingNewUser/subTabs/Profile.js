@@ -14,6 +14,7 @@ import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import { asyncValidateEmail } from "Validation/asyncValidate";
 import { connect } from 'react-redux'
 import { compose } from "redux";
+import moment from "moment";
 
 let Profile = (props) => {
   const { classes, handleSubmit, push, isCreateUser } = props
@@ -89,7 +90,7 @@ Profile.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    isCreateUser: store.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser
   }
 }
 

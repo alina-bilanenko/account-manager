@@ -121,8 +121,7 @@ const mapStateToProps = (store) => {
     showPassword: store.collectiveState.showPassword,
     showConfirmPassword: store.collectiveState.showConfirmPassword,
     photo: selector(store, 'photo'),
-    isCreateUser: store.collectiveState.createUser,
-    initialValues: store.collectiveState.editingUser
+    isCreateUser: store.collectiveState.createUser
   }
 }
 

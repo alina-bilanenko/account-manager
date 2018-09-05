@@ -16,6 +16,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from "connected-react-router";
 import { compose } from "redux";
+import {collectiveActions } from 'actions/action'
 
 class MainContainer extends Component {
   AddNewUser = (
@@ -40,6 +41,10 @@ class MainContainer extends Component {
     </Typography>
   );
 
+  heandlerClickAddUser = () => {
+    this.props.isCreateUser(true)
+  }
+
   render () {
     const { classes } = this.props
     return (
@@ -54,6 +59,7 @@ class MainContainer extends Component {
                 <Link
                   to='/create-user/account'
                   className={classes.linkUnderlain}
+                  onClick={this.heandlerClickAddUser}
                 >
                   <BottomNavigationAction
                     icon={this.AddNewUser}
@@ -76,27 +82,27 @@ class MainContainer extends Component {
           </Grid>
           <Grid item xs={12}>
             <Switch>
-                <Route
-                  exact
-                  path='/create-user/:name'
-                  component={AddingNewUsers}
-                />
-                <Route
-                  exact
-                  path='/list-of-user'
-                  component={ListOfAllUsers}
-                />
-                <Route
-                  exact
-                  path='/user/:id'
-                  component={UsersList}
-                />
-                <Route
-                  exact
-                  path='/edit-user/:id'
-                  component={AddingNewUsers}
-                />
-                <Route component={AddingNewUsers} />
+              <Route
+                exact
+                path='/create-user/:name'
+                component={AddingNewUsers}
+              />
+              <Route
+                exact
+                path='/list-of-user'
+                component={ListOfAllUsers}
+              />
+              <Route
+                exact
+                path='/user/:id'
+                component={UsersList}
+              />
+              <Route
+                exact
+                path='/edit-user/:id'
+                component={AddingNewUsers}
+              />
+              <Route component={AddingNewUsers} />
             </Switch>
           </Grid>
         </Grid>
@@ -111,11 +117,12 @@ MainContainer.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
+
   }
 }
 
 const mapDispatchToProps = {
-
+  isCreateUser: collectiveActions.createUser
 }
 
 

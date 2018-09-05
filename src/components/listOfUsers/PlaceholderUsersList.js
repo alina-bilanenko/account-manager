@@ -4,8 +4,9 @@ import { stylesListPlaceholder } from 'styles'
 import PropTypes from 'prop-types'
 
 
-const PlaceholderUsersList = ({ classes, push }) => {
+const PlaceholderUsersList = ({ classes, push, isCreateUser }) => {
   const handleClick = () => {
+    isCreateUser(true)
     push('/create-user/account')
   }
 

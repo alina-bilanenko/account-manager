@@ -5,8 +5,9 @@ const collectiveActionsConst = {
 }
 
 export const collectiveActions = {
-  createUser: () => ({
-    type: collectiveActionsConst.CREATE_USER
+  createUser: (bool) => ({
+    type: collectiveActionsConst.CREATE_USER,
+    isCreateUser: bool
   }),
   showPassword: () => ({
     type: collectiveActionsConst.SHOW_PASSWORD

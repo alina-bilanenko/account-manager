@@ -1,6 +1,20 @@
 import db from 'db'
 import { fieldNames } from 'consts'
 import moment from 'moment'
+import { initialize } from 'redux-form'
+import {tabList} from 'consts'
+
+function returnWithDateRight(value) {
+
+  return { ...value,
+    [fieldNames.birthDate]:
+      value[fieldNames.birthDate]
+        ? value[fieldNames.birthDate].toISOString()
+        : value[fieldNames.birthDate],
+    [fieldNames.lastUpdate]: moment().toISOString()
+  }
+}
+
 
 const usersConst = {
   LOAD_USERS: 'LOAD_USERS',
@@ -22,13 +36,7 @@ export function loadUsers () {
 
 export function addUsers (value) {
   return async (dispatch) => {
-    const user = { ...value,
-      [fieldNames.birthDate]:
-        value[fieldNames.birthDate]
-          ? value[fieldNames.birthDate].format('MM/DD/YYYY').toString()
-          : value[fieldNames.birthDate],
-      [fieldNames.lastUpdate]: moment().format('MM/DD/YYYY').toString()
-    }
+    const user = returnWithDateRight(value)
     const id = await db.table('users').add(user)
     dispatch({
       type: usersConst.ADD_USERS,
@@ -47,16 +55,17 @@ export function deleteUsers(id) {
     });
   }
 }
-//
-// export function updateUsers(id, done) {
-//   return async  (dispatch) => {
-//     const users = await db.table('users').update(id, { done });
-//     dispatch({
-//       type: usersConst.UPDATE_USERS,
-//       payload: { id, done },
-//     });
-//   }
-// }
+
+export function updateUsers(id, data) {
+  return async  (dispatch) => {
+    const user = returnWithDateRight(data)
+    const userUpdate = await db.table('users').update(id, user);
+    dispatch({
+      type: usersConst.UPDATE_USERS,
+      payload: { id, user },
+    });
+  }
+}
 
 export function editingUser (id) {
   return async (dispatch) => {
@@ -65,5 +74,14 @@ export function editingUser (id) {
       type: usersConst.EDITING_USER,
       user: user
     })
+
+    tabList.forEach(item => {
+        dispatch(initialize(item.name, {...user, birthDate:
+            user.birthDate
+              ? moment(user.birthDate)
+              : user.birthDate
+        }))
+      }
+    )
   }
 }

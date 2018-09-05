@@ -16,7 +16,7 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
-import { addUsers } from 'actions/listOfUsersActions'
+import { addUsers, updateUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
 import ButtonUsersList from "../commonComponents/ButtonUsersList";
 import {tabList} from 'consts'
@@ -27,13 +27,12 @@ const AddingNewUsers = (props) => {
     classes,
     push,
     handlerAddUsers,
-    account,
-    profile,
-    contacts,
-    capabilities,
+    formData,
     isValid,
     resetForm,
-    isCreateUser
+    isCreateUser,
+    handlerUpdateUsers,
+    user
   } = props
   const tabName = props.match.params.name
 
@@ -54,8 +53,9 @@ const AddingNewUsers = (props) => {
     push('/create-user/account')
   }
 
-  const save = () => {
-    if(isCreateUser) return
+  const save = (formName) => {
+    if(isCreateUser || !isValid[formName]) return
+    handlerUpdateUsers(user.id, formData[formName])
   }
 
   const finish = () => {
@@ -66,18 +66,18 @@ const AddingNewUsers = (props) => {
       !isValid.profile ||
       !isValid.capabilities ||
       !isValid.contacts ||
-      !account ||
-      !profile ||
-      !contacts ||
-      !capabilities
+      !formData.account ||
+      !formData.profile ||
+      !formData.contacts ||
+      !formData.capabilities
     ) return
 
 
     let row = {
-      ...account,
-      ...profile,
-      ...contacts,
-      ...capabilities
+      ...formData.account,
+      ...formData.profile,
+      ...formData.contacts,
+      ...formData.capabilities
     }
     handlerAddUsers(row)
     resetAllForm();
@@ -126,13 +126,13 @@ const AddingNewUsers = (props) => {
           </Tabs>
         </AppBar>
         <Route exact path='/create-user/account'
-        render={(props) => (
+               render={(props) => (
                  <Account
                    {...props}
                    push={push}
                    onSubmit={() => { if(isCreateUser) {
                      push('/create-user/profile')
-                   } else save()}}
+                   } else save('account')}}
                  />
                )}
         />
@@ -143,7 +143,7 @@ const AddingNewUsers = (props) => {
                    push={push}
                    onSubmit={() => {if(isCreateUser) {
                      push('/create-user/contacts')
-                   } else save()}}
+                   } else save('profile')}}
                  />
                )}
         />
@@ -154,7 +154,7 @@ const AddingNewUsers = (props) => {
                    push={push}
                    onSubmit={() => { if(isCreateUser) {
                      push('/create-user/capabilities')
-                   } else save()}}
+                   } else save('contacts')}}
                  />
                )}
         />
@@ -163,7 +163,7 @@ const AddingNewUsers = (props) => {
                  <Capabilities
                    {...props}
                    push={push}
-                   onSubmit={ isCreateUser ? finish : save}
+                   onSubmit={ isCreateUser ? finish : () => save('capabilities')}
                  />
                )}
         />
@@ -175,23 +175,27 @@ const AddingNewUsers = (props) => {
 const mapStateToProps = (store) => {
   return {
     isCreateUser: store.collectiveState.createUser,
-    account: getFormValues('account')(store),
-    profile: getFormValues('profile')(store),
-    contacts: getFormValues('contacts')(store),
-    capabilities: getFormValues('capabilities')(store),
+    formData: {
+      account: getFormValues('account')(store),
+      profile: getFormValues('profile')(store),
+      contacts: getFormValues('contacts')(store),
+      capabilities: getFormValues('capabilities')(store)
+    },
     isValid: {
       account: isValid('account')(store),
       profile: isValid('profile')(store),
       contacts: isValid('contacts')(store),
       capabilities: isValid('capabilities')(store)
-    }
+    },
+    user: store.collectiveState.editingUser
   }
 }
 
 const mapDispatchToProps = {
   push: push,
   handlerAddUsers: addUsers,
-  resetForm: reset
+  resetForm: reset,
+  handlerUpdateUsers: updateUsers
 }
 
 AddingNewUsers.propTypes = {

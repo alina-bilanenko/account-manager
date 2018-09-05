@@ -63,7 +63,7 @@ Capabilities.propTypes = {
 
 const mapStateToProps = (store) => {
   return {
-    isCreateUser: store.collectiveState.createUser,
+    isCreateUser: store.collectiveState.createUser
   }
 }
 

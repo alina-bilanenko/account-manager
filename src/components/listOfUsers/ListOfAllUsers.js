@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { withStyles, Typography } from '@material-ui/core'
-import TableList from 'components/listOfUsers/UsersList'
+import UsersList from 'components/listOfUsers/UsersList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { stylesList } from 'styles'
 import {deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
 import { compose } from 'redux'
+import { collectiveActions } from "actions/action";
 
 class ListOfAllUsers extends Component {
   componentDidMount(){
@@ -14,7 +15,7 @@ class ListOfAllUsers extends Component {
   }
 
   render() {
-    const { classes, usersList, push, deleteUsers, editingUser } = this.props
+    const { classes, usersList, push, deleteUsers, editingUser, isCreateUser } = this.props
     return (
       <div className={classes.root}>
         <Typography
@@ -24,7 +25,13 @@ class ListOfAllUsers extends Component {
         >
           List of users
         </Typography>
-        <TableList usersList={usersList} push={push} deleteRow={id => deleteUsers(id)} editingUser={editingUser}/>
+        <UsersList
+          usersList={usersList}
+          push={push}
+          deleteRow={id => deleteUsers(id)}
+          editingUser={editingUser}
+          isCreateUser={isCreateUser}
+        />
       </div>
     )
   }
@@ -46,7 +53,8 @@ const mapDispatchToProps = {
   push: push,
   deleteUsers: deleteUsers,
   editingUser: editingUser,
-  loadUsersList: loadUsers
+  loadUsersList: loadUsers,
+  isCreateUser: collectiveActions.createUser
 }
 
 export default compose(

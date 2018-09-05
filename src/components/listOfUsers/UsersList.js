@@ -14,7 +14,7 @@ import { Edit, Delete, RedDelete } from 'icons'
 import { stylesUsersList } from "styles";
 
 function UsersList (props) {
-  const { classes, usersList, push, deleteRow, editingUser } = props
+  const { classes, usersList, push, deleteRow, editingUser, isCreateUser } = props
 
   const createContact = (user) => {
     return user[fieldNames.phone] &&
@@ -25,8 +25,8 @@ function UsersList (props) {
   }
 
   function rowClick(id) {
-    if (id) push(`user/${id}`)
     editingUser(id)
+    if (id) push(`user/${id}`)
   }
 
   return (
@@ -96,7 +96,10 @@ function UsersList (props) {
               )
             })}
           </Grid>
-          : <PlaceholderUsersList push={push} />
+          : <PlaceholderUsersList
+            push={push}
+            isCreateUser={isCreateUser}
+          />
         }
       </Grid>
     </Paper>

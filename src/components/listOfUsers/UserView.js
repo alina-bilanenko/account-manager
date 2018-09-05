@@ -77,7 +77,7 @@ const UserView = (props) => {
   const { classes, push, user, isCreateUser } = props
 
   const editUser = (tabName) => {
-    isCreateUser()
+    isCreateUser(false)
     push(`/create-user/${tabName}`)
   }
 
@@ -122,7 +122,7 @@ const UserView = (props) => {
                         {elem.title}
                       </TableCell>
                       <TableCell  className={classes.tableValue}>
-                        {elem.name}
+                        {/*{user[elem.name]}*/}
                       </TableCell>
                     </TableRow>
                   </Fragment>
