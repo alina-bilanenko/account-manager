@@ -9,7 +9,7 @@ import PropTypes from 'prop-types'
 const MY_API_KEY = 'AIzaSyD6o3pVfK5AraeDIOnmUI1wQsK5nv8U6v0'
 
 class GoogleAddress extends React.Component {
-  handleSelectSuggest = (geocodedPrediction, originalPrediction) => {
+  handleSelectSuggest = (geocodedPrediction) => {
     this.props.input.onChange(geocodedPrediction.formatted_address)
   }
 
@@ -38,7 +38,11 @@ class GoogleAddress extends React.Component {
                 onSelectSuggest={this.handleSelectSuggest}
                 textNoResults={null}
                 customRender={prediction => (
-                  <div className={classNames('customWrapper', classes.customAddress)}>
+                  <div className={
+                    classNames(
+                      'customWrapper',
+                      classes.customAddress)
+                  }>
                     {prediction
                       ? prediction.description
                       : ''}

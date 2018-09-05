@@ -17,8 +17,8 @@ import { connect } from 'react-redux'
 import { collectiveActions } from 'actions/action'
 import { stylesAccount } from 'styles'
 import PropTypes from 'prop-types'
-import {asyncValidateName} from 'Validation/asyncValidate'
-import { compose } from "redux";
+import { asyncValidateName } from 'Validation/asyncValidate'
+import { compose } from 'redux'
 
 let Account = (props) => {
   let {
@@ -127,7 +127,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = {
   changeShowPassword: collectiveActions.showPassword,
-  changeShowConfirmPassword: collectiveActions.showConfirmPassword,
+  changeShowConfirmPassword: collectiveActions.showConfirmPassword
 }
 
 Account.propTypes = {
@@ -138,7 +138,8 @@ Account.propTypes = {
   showConfirmPassword: PropTypes.bool,
   changeShowConfirmPassword: PropTypes.func,
   photo: PropTypes.string,
-  push: PropTypes.func
+  push: PropTypes.func,
+  isCreateUser: PropTypes.bool
 }
 
 export default compose(

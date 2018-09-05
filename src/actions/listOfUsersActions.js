@@ -1,11 +1,9 @@
 import db from 'db'
-import { fieldNames } from 'consts'
+import { fieldNames, tabList } from 'consts'
 import moment from 'moment'
 import { initialize } from 'redux-form'
-import {tabList} from 'consts'
 
-function returnWithDateRight(value) {
-
+function returnWithDateRight (value) {
   return { ...value,
     [fieldNames.birthDate]:
       value[fieldNames.birthDate]
@@ -14,7 +12,6 @@ function returnWithDateRight(value) {
     [fieldNames.lastUpdate]: moment().toISOString()
   }
 }
-
 
 const usersConst = {
   LOAD_USERS: 'LOAD_USERS',
@@ -45,43 +42,43 @@ export function addUsers (value) {
   }
 }
 
-export function deleteUsers(id) {
-
-  return async  (dispatch) => {
-    const idDelete = await db.table('users').delete(id);
+export function deleteUsers (id) {
+  return async (dispatch) => {
+    await db.table('users').delete(id)
     dispatch({
       type: usersConst.DELETE_USERS,
-      id: id,
-    });
+      id: id
+    })
   }
 }
 
-export function updateUsers(id, data) {
-  return async  (dispatch) => {
+export function updateUsers (id, data) {
+  return async (dispatch) => {
     const user = returnWithDateRight(data)
-    const userUpdate = await db.table('users').update(id, user);
+    await db.table('users').update(id, user)
     dispatch({
       type: usersConst.UPDATE_USERS,
-      payload: { id, user },
-    });
+      payload: { id, user }
+    })
   }
 }
 
 export function editingUser (id) {
   return async (dispatch) => {
-    const user = await db.table('users').get({id: parseInt(id, 10)});
+    const user = id ? await db.table('users').get({ id: parseInt(id, 10) }) : {}
     dispatch({
       type: usersConst.EDITING_USER,
       user: user
     })
-    if(!user) return
+    if (!user) return
     tabList.forEach(item => {
-        dispatch(initialize(item.name, {...user, birthDate:
+      dispatch(initialize(item.name, { ...user,
+        birthDate:
             user.birthDate
               ? moment(user.birthDate)
               : user.birthDate
-        }))
-      }
+      }))
+    }
     )
   }
 }

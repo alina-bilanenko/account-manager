@@ -1,21 +1,33 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import { withStyles, Typography } from '@material-ui/core'
 import UsersList from 'components/listOfUsers/UsersList'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { stylesList } from 'styles'
-import {deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
+import { deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
 import { compose } from 'redux'
-import { collectiveActions } from "actions/action";
+import { collectiveActions } from 'actions/action'
 
 class ListOfAllUsers extends Component {
-  componentDidMount(){
+  componentDidMount () {
     this.props.loadUsersList()
   }
 
-  render() {
-    const { classes, usersList, push, deleteUsers, editingUser, isCreateUser, deleteUserId, indDeleteUser } = this.props
+  render () {
+    const {
+      classes,
+      usersList,
+      push,
+      deleteUsers,
+      editingUser,
+      isCreateUser,
+      deleteUserId,
+      indDeleteUser,
+      openConfirmation,
+      changeConfirmation
+    } = this.props
+
     return (
       <div className={classes.root}>
         <Typography
@@ -33,6 +45,8 @@ class ListOfAllUsers extends Component {
           isCreateUser={isCreateUser}
           indDeleteUser={indDeleteUser}
           deleteUser={deleteUserId}
+          openConfirmation={openConfirmation}
+          changeConfirmation={changeConfirmation}
         />
       </div>
     )
@@ -41,14 +55,23 @@ class ListOfAllUsers extends Component {
 
 ListOfAllUsers.propTypes = {
   classes: PropTypes.object,
-  userList: PropTypes.array,
-  push: PropTypes.func
+  usersList: PropTypes.array,
+  push: PropTypes.func,
+  loadUsersList: PropTypes.func,
+  deleteUsers: PropTypes.func,
+  editingUser: PropTypes.func,
+  isCreateUser: PropTypes.func,
+  deleteUserId: PropTypes.func,
+  indDeleteUser: PropTypes.number,
+  openConfirmation: PropTypes.bool,
+  changeConfirmation: PropTypes.func
 }
 
 const mapStateToProps = (store) => {
   return {
     usersList: store.usersList,
-    indDeleteUser: store.collectiveState.deleteUserId
+    indDeleteUser: store.collectiveState.deleteUserId,
+    openConfirmation: store.collectiveState.openConfirmation
   }
 }
 
@@ -58,7 +81,8 @@ const mapDispatchToProps = {
   editingUser: editingUser,
   loadUsersList: loadUsers,
   isCreateUser: collectiveActions.createUser,
-  deleteUserId: collectiveActions.deleteUserId
+  deleteUserId: collectiveActions.deleteUserId,
+  changeConfirmation: collectiveActions.openConfirmation
 }
 
 export default compose(

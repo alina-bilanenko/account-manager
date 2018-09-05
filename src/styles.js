@@ -291,7 +291,7 @@ export const stylesBirthDate = theme => ({
   },
   error: {
     borderColor: '#EB5757'
-  },
+  }
 })
 
 export const stylesInput = theme => ({
@@ -349,7 +349,7 @@ export const stylesInput = theme => ({
   }
 })
 
-export const stylesButtonGroup = theme => ({
+export const stylesButtonGroup = () => ({
   buttonGroup: {
     display: 'flex',
     marginTop: '20%',
@@ -375,7 +375,7 @@ export const stylesButtonGroup = theme => ({
   }
 })
 
-export const stylesCheckbox = theme => ({
+export const stylesCheckbox = () => ({
   root: {
     display: 'flex',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -432,7 +432,7 @@ export const stylesMask = theme => ({
   }
 })
 
-export const stylesSelect = theme => ({
+export const stylesSelect = () => ({
   root: {
     marginBottom: '10px'
   },
@@ -449,7 +449,7 @@ export const stylesSelect = theme => ({
   textHelper: {
     color: '#EB5757',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif'
-  },
+  }
 })
 
 export const stylesMyHobbies = {
@@ -470,7 +470,7 @@ export const stylesMyHobbies = {
   }
 }
 
-export const stylesRadio = theme => ({
+export const stylesRadio = () => ({
   bootstrapFormLabel: {
     fontSize: 14,
     lineHeight: '16px',
@@ -495,7 +495,7 @@ export const stylesRadio = theme => ({
   label: {}
 })
 
-export const stylesRenderPhone = theme => ({
+export const stylesRenderPhone = () => ({
   root: {
     listStyle: 'none',
     padding: '0',
@@ -625,6 +625,7 @@ export const stylesUsersList = theme => ({
   },
   usersList: {
     minWidth: 600,
+    padding: '0 50px'
   },
   headerList: {
     backgroundColor: '#4E86E4',
@@ -640,7 +641,8 @@ export const stylesUsersList = theme => ({
       content: '"-"',
       display: 'block',
       lineHeight: '2em',
-      color: 'transparent'
+      color: 'transparent',
+      width: '100%'
     },
     fontSize: 14,
     '&:first-child': {
@@ -649,7 +651,7 @@ export const stylesUsersList = theme => ({
     border: 'none',
     fontWeight: '500',
     color: '#475666',
-    lineHeight: 'normal',
+    lineHeight: 'normal'
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -676,13 +678,17 @@ export const stylesUsersList = theme => ({
     minWidth: '20px'
   },
   deleteRow: {
-
+    marginLeft: '-50px'
   },
   noWrap: {
     whiteSpace: 'nowrap'
   },
   hiddenDelete: {
-    visibility: 'visible !important'
+    visibility: 'visible !important',
+    paddingLeft: '50px',
+    backgroundColor: '#FFFFFF',
+    width: '100%',
+    height: '100%'
   },
   columnDelete: {
     visibility: 'hidden'
@@ -690,7 +696,7 @@ export const stylesUsersList = theme => ({
   deleteButton: {
     fontStyle: 'normal',
     fontWeight: '500',
-    lineHeight: 'normal',
+    lineHeight: '4rem',
     fontSize: '14px',
     textAlign: 'right',
     color: '#FF8989',
@@ -698,5 +704,84 @@ export const stylesUsersList = theme => ({
     '&:hover': {
       backgroundColor: 'unset'
     }
+  },
+  dialog: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    color: '#475666',
+    '& > h2': {
+      fontStyle: 'normal',
+      fontWeight: '500',
+      lineHeight: 'normal',
+      color: '#475666'
+    }
+  },
+  buttonDialog: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    color: '#4E86E4'
+  }
+})
+
+export const stylesUserView = theme => ({
+  captions: {
+    display: 'flex',
+    margin: '3.5em auto 1em auto'
+  },
+  caption: {
+    width: '100%',
+    maxWidth: 500,
+    fontSize: '2.2rem',
+    fontWeight: 'bold',
+    lineHeight: '41px',
+    color: '#475666',
+    textAlign: 'center'
+  },
+  root: {
+    width: '70%',
+    margin: 'auto'
+  },
+  body: {
+    backgroundColor: 'rgba(231, 240, 255, 0.2)',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  bigAvatar: {
+    width: 200,
+    height: 200,
+    margin: '35px 58px',
+    padding: '0',
+    backgroundColor: '#FFFFFF'
+  },
+  firstRow: {
+    verticalAlign: 'top',
+    paddingTop: theme.spacing.unit * 2
+  },
+  tableText: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: 'normal',
+    fontSize: '14px',
+    color: '#475666',
+    borderBottom: 'none',
+    whiteSpace: 'nowrap'
+  },
+  tableValue: {
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    lineHeight: 'normal',
+    fontSize: '14px',
+    color: '#657C9A',
+    borderBottom: 'none'
+  },
+  button: {
+    '&:hover': {
+      backgroundColor: 'unset'
+    },
+    padding: '4px',
+    minWidth: '20px'
   }
 })

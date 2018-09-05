@@ -30,7 +30,9 @@ export const confirmPassword = (input) =>
   input ? undefined : `Required`
 
 export const matchInput = (input, allInputs) =>
-  input === allInputs[fieldNames.password] ? undefined : 'Passwords don’t match'
+  input === allInputs[fieldNames.password]
+    ? undefined
+    : 'Passwords don’t match'
 
 export const profileValidation = inputs => {
   const errors = {}
@@ -43,7 +45,9 @@ export const profileValidation = inputs => {
     errors[fieldNames.lastName] = 'Required'
   }
 
-  if (inputs[fieldNames.birthDate] && moment().diff(inputs[fieldNames.birthDate], 'years') < 18) {
+  if (inputs[fieldNames.birthDate] &&
+    moment().diff(inputs[fieldNames.birthDate], 'years') < 18
+  ) {
     errors[fieldNames.birthDate] = 'You must be over 18 years of age'
   }
 

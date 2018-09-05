@@ -6,8 +6,6 @@ import { myHobbiesList } from 'consts'
 import { stylesCheckbox } from 'styles'
 import PropTypes from 'prop-types'
 
-
-
 class CheckboxesGroup extends React.Component {
   render () {
     const { classes } = this.props

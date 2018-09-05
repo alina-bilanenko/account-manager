@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   withStyles,
   AppBar,
@@ -18,48 +18,44 @@ import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
 import { addUsers, updateUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
-import ButtonUsersList from "../commonComponents/ButtonUsersList";
-import {tabList} from 'consts'
-import { compose } from "redux";
+import ButtonUsersList from 'components/commonComponents/ButtonUsersList'
+import { tabList } from 'consts'
+import { compose } from 'redux'
 
-const AddingNewUsers = (props) => {
-  const {
-    classes,
-    push,
-    handlerAddUsers,
-    formData,
-    isValid,
-    resetForm,
-    isCreateUser,
-    handlerUpdateUsers,
-    user
-  } = props
-  const tabName = props.match.params.name
-
-  if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
-    push('/create-user/account')
-    return null
+class AddingNewUsers extends Component {
+  handleChangeTab = (e, value) => {
+    if (!this.props.isCreateUser) this.props.push(`/create-user/${value}`)
   }
 
-  const handleChangeTab = (e, value) => {
-    if(!isCreateUser) push(`/create-user/${value}`)
+  resetAllForm = () => {
+    this.props.resetForm('account')
+    this.props.resetForm('profile')
+    this.props.resetForm('contacts')
+    this.props.resetForm('capabilities')
+    this.props.push('/create-user/account')
   }
 
-  const resetAllForm = () => {
-    resetForm('account')
-    resetForm('profile')
-    resetForm('contacts')
-    resetForm('capabilities')
-    push('/create-user/account')
-  }
-
-  const save = (formName) => {
-    if(isCreateUser || !isValid[formName]) return
+  save = (formName) => {
+    const {
+      isCreateUser,
+      isValid,
+      handlerUpdateUsers,
+      user,
+      formData
+    } = this.props
+    if (isCreateUser || !isValid[formName]) return
     handlerUpdateUsers(user.id, formData[formName])
   }
 
-  const finish = () => {
-    if(!isCreateUser) return
+  finish = () => {
+    const {
+      isCreateUser,
+      isValid,
+      formData,
+      handlerAddUsers
+    } = this.props
+
+    if (!isCreateUser) return
 
     if (
       !isValid.account ||
@@ -72,7 +68,6 @@ const AddingNewUsers = (props) => {
       !formData.capabilities
     ) return
 
-
     let row = {
       ...formData.account,
       ...formData.profile,
@@ -80,96 +75,114 @@ const AddingNewUsers = (props) => {
       ...formData.capabilities
     }
     handlerAddUsers(row)
-    resetAllForm();
+    this.resetAllForm()
   }
 
+  render () {
+    const {
+      classes,
+      push,
+      isCreateUser
+    } = this.props
 
+    const tabName = this.props.match.params.name
+    if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
+      push('/create-user/account')
+      return null
+    }
 
-  return (
-    <div className={classes.root}>
-      <div className={classes.captions}>
-        {!isCreateUser && <ButtonUsersList url='/list-of-user' push={push}/>}
-        <Typography
-          variant='display1'
-          gutterBottom
-          className={classes.caption}
-        >
-          {isCreateUser ? 'Adding new user' : 'Editing'}
-        </Typography>
-      </div>
-      <div>
-        <AppBar
-          position='static'
-          className={classes.header}
-        >
-          <Tabs
-            value={tabName}
-            onChange={handleChangeTab}
-            classes={{
-              indicator: classes.activeTab
-            }}
+    return (
+      <div className={classes.root}>
+        <div className={classes.captions}>
+          {!isCreateUser && <ButtonUsersList url='/list-of-user' push={push} />}
+          <Typography
+            variant='display1'
+            gutterBottom
+            className={classes.caption}
           >
-            {tabList.map((item, ind) => (
-              <Tab
-                key={ind}
-                value={item.name}
-                label={<span style={{ fontSize: '1.5rem' }}>{item.title}</span>}
-                className={
-                  classNames(
-                    classes.fieldHeader,
-                    {
-                      [classes.activeTab]: tabName === item.name
-                    }
-                  )}
+            {isCreateUser ? 'Adding new user' : 'Editing'}
+          </Typography>
+        </div>
+        <div>
+          <AppBar
+            position='static'
+            className={classes.header}
+          >
+            <Tabs
+              value={tabName}
+              onChange={this.handleChangeTab}
+              classes={{
+                indicator: classes.activeTab
+              }}
+            >
+              {tabList.map((item, ind) => (
+                <Tab
+                  key={ind}
+                  value={item.name}
+                  label={<span style={{ fontSize: '1.5rem' }}>{item.title}</span>}
+                  className={
+                    classNames(
+                      classes.fieldHeader,
+                      {
+                        [classes.activeTab]: tabName === item.name
+                      }
+                    )}
+                />
+              ))}
+            </Tabs>
+          </AppBar>
+          <Route exact path='/create-user/account'
+            render={(props) => (
+              <Account
+                {...props}
+                push={push}
+                onSubmit={() => {
+                  if (isCreateUser) {
+                    push('/create-user/profile')
+                  } else this.save('account')
+                }}
               />
-            ))}
-          </Tabs>
-        </AppBar>
-        <Route exact path='/create-user/account'
-               render={(props) => (
-                 <Account
-                   {...props}
-                   push={push}
-                   onSubmit={() => { if(isCreateUser) {
-                     push('/create-user/profile')
-                   } else save('account')}}
-                 />
-               )}
-        />
-        <Route exact path='/create-user/profile'
-               render={(props) => (
-                 <Profile
-                   {...props}
-                   push={push}
-                   onSubmit={() => {if(isCreateUser) {
-                     push('/create-user/contacts')
-                   } else save('profile')}}
-                 />
-               )}
-        />
-        <Route exact path='/create-user/contacts'
-               render={(props) => (
-                 <Contacts
-                   {...props}
-                   push={push}
-                   onSubmit={() => { if(isCreateUser) {
-                     push('/create-user/capabilities')
-                   } else save('contacts')}}
-                 />
-               )}
-        />
-        <Route exact path='/create-user/capabilities'
-               render={(props) => (
-                 <Capabilities
-                   {...props}
-                   push={push}
-                   onSubmit={ isCreateUser ? finish : () => save('capabilities')}
-                 />
-               )}
-        />
+            )}
+          />
+          <Route exact path='/create-user/profile'
+            render={(props) => (
+              <Profile
+                {...props}
+                push={push}
+                onSubmit={() => {
+                  if (isCreateUser) {
+                    push('/create-user/contacts')
+                  } else this.save('profile')
+                }}
+              />
+            )}
+          />
+          <Route exact path='/create-user/contacts'
+            render={(props) => (
+              <Contacts
+                {...props}
+                push={push}
+                onSubmit={() => {
+                  if (isCreateUser) {
+                    push('/create-user/capabilities')
+                  } else this.save('contacts')
+                }}
+              />
+            )}
+          />
+          <Route exact path='/create-user/capabilities'
+            render={(props) => (
+              <Capabilities
+                {...props}
+                push={push}
+                onSubmit={isCreateUser ? this.finish : () => this.save('capabilities')}
+              />
+            )}
+          />
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (store) => {

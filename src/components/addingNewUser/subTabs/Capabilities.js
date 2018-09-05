@@ -5,12 +5,12 @@ import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from 'Validation'
-import { fieldNames } from 'consts'
+import { fieldNames, skills } from 'consts'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import { stylesCapabilities } from 'styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { compose } from "redux";
+import { compose } from 'redux'
 
 let Capabilities = (props) => {
   const { classes, handleSubmit, push, isCreateUser } = props
@@ -27,6 +27,7 @@ let Capabilities = (props) => {
                 isMulti
                 indicator
                 component={IntegrationReactSelect}
+                options={skills}
               />
               <Field
                 name={fieldNames.additionalInformation}
@@ -58,18 +59,19 @@ let Capabilities = (props) => {
 Capabilities.propTypes = {
   classes: PropTypes.object,
   handleSubmit: PropTypes.func,
-  push: PropTypes.func
+  push: PropTypes.func,
+  isCreateUser: PropTypes.bool
 }
 
-const mapStateToProps = (store) => {
+const mapStateToProps = ({ collectiveState }) => {
   return {
-    isCreateUser: store.collectiveState.createUser
+    isCreateUser: collectiveState.createUser
   }
 }
 
 export default compose(
   connect(
-    mapStateToProps,
+    mapStateToProps
   ),
   withStyles(stylesCapabilities),
   reduxForm({

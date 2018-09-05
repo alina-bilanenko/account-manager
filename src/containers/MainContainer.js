@@ -7,16 +7,16 @@ import {
   Typography
 } from '@material-ui/core'
 import { Logo, AddUser, ListOfUsers } from 'icons'
-import { mainStyles, stylesListUsers } from "styles";
+import { mainStyles } from 'styles'
 import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
 import UsersList from 'components/listOfUsers/UserView'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { push } from "connected-react-router";
-import { compose } from "redux";
-import {collectiveActions } from 'actions/action'
+import { compose } from 'redux'
+import { collectiveActions } from 'actions/action'
+import { editingUser } from 'actions/listOfUsersActions'
 
 class MainContainer extends Component {
   AddNewUser = (
@@ -41,8 +41,9 @@ class MainContainer extends Component {
     </Typography>
   );
 
-  heandlerClickAddUser = () => {
+  handlerClickAddUser = () => {
     this.props.isCreateUser(true)
+    this.props.editingUser()
   }
 
   render () {
@@ -59,7 +60,7 @@ class MainContainer extends Component {
                 <Link
                   to='/create-user/account'
                   className={classes.linkUnderlain}
-                  onClick={this.heandlerClickAddUser}
+                  onClick={this.handlerClickAddUser}
                 >
                   <BottomNavigationAction
                     icon={this.AddNewUser}
@@ -112,19 +113,17 @@ class MainContainer extends Component {
 }
 
 MainContainer.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  isCreateUser: PropTypes.func,
+  editingUser: PropTypes.func
 }
 
-const mapStateToProps = (store) => {
-  return {
-
-  }
-}
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = {
-  isCreateUser: collectiveActions.createUser
+  isCreateUser: collectiveActions.createUser,
+  changeEditingUser: editingUser
 }
-
 
 export default compose(
   connect(
@@ -133,4 +132,3 @@ export default compose(
   ),
   withStyles(mainStyles)
 )(MainContainer)
-

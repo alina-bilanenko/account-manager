@@ -39,7 +39,7 @@ const ButtonGroup = (props) => {
         className={
           classNames(
             classes.button,
-            { [classes.finish]: finish && isCreateUser}
+            { [classes.finish]: finish && isCreateUser }
           )
         }>
         {isCreateUser && (finish ? 'Finish' : 'Forward')}
@@ -54,7 +54,8 @@ ButtonGroup.propTypes = {
   finish: PropTypes.bool,
   hidden: PropTypes.bool,
   url: PropTypes.string,
-  push: PropTypes.func
+  push: PropTypes.func,
+  isCreateUser: PropTypes.bool
 }
 
 export default withStyles(stylesButtonGroup)(ButtonGroup)

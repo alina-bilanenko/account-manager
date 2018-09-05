@@ -3,15 +3,15 @@ import InputMask from 'react-input-mask'
 import { FormHelperText, InputLabel, withStyles } from '@material-ui/core'
 import { stylesMask } from 'styles'
 import PropTypes from 'prop-types'
-import classNames from "classnames";
+import classNames from 'classnames'
 
 const InputWithMask = ({
-                         input: inputProps,
-                         classes,
-                         meta,
-                         label,
-                         mask
-                       }) => {
+  input: inputProps,
+  classes,
+  meta,
+  label,
+  mask
+}) => {
   return (
     <div className={classes.inputField}>
       <InputLabel
@@ -20,10 +20,13 @@ const InputWithMask = ({
         {label}
       </InputLabel>
       <InputMask mask={mask}
-                 maskChar={'X'}
-                 alwaysShowMask={false}
-                 className={classNames(classes.bootstrapInput, {[classes.error]: meta.error && meta.touched})}
-                 {...inputProps}
+        maskChar={'X'}
+        alwaysShowMask={false}
+        className={classNames(
+          classes.bootstrapInput,
+          { [classes.error]: meta.error && meta.touched }
+        )}
+        {...inputProps}
       />
       {meta.touched &&
       meta.error &&
@@ -34,7 +37,6 @@ const InputWithMask = ({
       </FormHelperText>
       }
     </div>
-
   )
 }
 

@@ -1,11 +1,9 @@
 import React from 'react'
 import { withStyles, Button } from '@material-ui/core'
-import classNames from 'classnames'
-import { stylesButtonGroup } from 'styles'
 import PropTypes from 'prop-types'
-import {Rectangle} from "icons";
+import { Rectangle } from 'icons'
 
-const stylesButtonUsersList = (theme) => ({
+const stylesButtonUsersList = () => ({
   root: {
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -15,7 +13,7 @@ const stylesButtonUsersList = (theme) => ({
     textTransform: 'inherit',
     '&:hover': {
       backgroundColor: 'inherit'
-    },
+    }
   },
   name: {
     margin: '8px'
@@ -38,7 +36,7 @@ const ButtonUsersList = (props) => {
       onClick={handleClickBack}
       disableRipple
       className={
-       classes.root
+        classes.root
       }
     >
       {Rectangle}

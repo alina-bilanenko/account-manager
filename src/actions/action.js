@@ -2,7 +2,8 @@ const collectiveActionsConst = {
   CREATE_USER: 'CREATE_USER',
   SHOW_PASSWORD: 'SHOW_PASSWORD',
   SHOW_CONFIRM_PASSWORD: 'SHOW_CONFIRM_PASSWORD',
-  DELETE_USER_ID: 'DELETE_USER_ID'
+  DELETE_USER_ID: 'DELETE_USER_ID',
+  OPEN_CONFIRMATION: 'OPEN_CONFIRMATION'
 }
 
 export const collectiveActions = {
@@ -19,5 +20,8 @@ export const collectiveActions = {
   deleteUserId: (ind) => ({
     type: collectiveActionsConst.DELETE_USER_ID,
     index: ind
+  }),
+  openConfirmation: () => ({
+    type: collectiveActionsConst.OPEN_CONFIRMATION
   })
 }

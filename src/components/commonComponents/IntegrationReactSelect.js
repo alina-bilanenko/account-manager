@@ -1,10 +1,9 @@
 import React from 'react'
 import Select from 'react-select'
 import { withStyles, InputLabel, FormHelperText } from '@material-ui/core'
-import { skills, mainLanguage } from 'consts'
 import { stylesSelect } from 'styles'
 import PropTypes from 'prop-types'
-import classNames from "classnames";
+import classNames from 'classnames'
 
 class IntegrationReactSelect extends React.Component {
   render () {
@@ -15,7 +14,8 @@ class IntegrationReactSelect extends React.Component {
       classes,
       meta,
       isMulti,
-      indicator
+      indicator,
+      options
     } = this.props
 
     return (
@@ -27,13 +27,16 @@ class IntegrationReactSelect extends React.Component {
         </InputLabel>
         <Select
           classNamePrefix='react-select'
-          className={classNames('react-select-container', {'error': meta.error && meta.touched})}
+          className={classNames(
+            'react-select-container',
+            { 'error': meta.error && meta.touched }
+          )}
           value={input.value}
           onChange={input.onChange}
           onBlur={() => input.onBlur(input.value)}
           label={label}
           name={name}
-          options={isMulti ? skills : mainLanguage}
+          options={options}
           onBlurResetsInput={false}
           placeholder=''
           isMulti={isMulti}
@@ -69,7 +72,8 @@ IntegrationReactSelect.propTypes = {
   classes: PropTypes.object,
   meta: PropTypes.object,
   isMulti: PropTypes.bool,
-  indicator: PropTypes.bool
+  indicator: PropTypes.bool,
+  options: PropTypes.array
 }
 
 export default withStyles(

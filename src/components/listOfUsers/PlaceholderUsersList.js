@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
-import { Button, withStyles, Grid} from '@material-ui/core'
+import React from 'react'
+import { Button, withStyles, Grid } from '@material-ui/core'
 import { stylesListPlaceholder } from 'styles'
 import PropTypes from 'prop-types'
-
 
 const PlaceholderUsersList = ({ classes, push, isCreateUser }) => {
   const handleClick = () => {
@@ -29,7 +28,8 @@ const PlaceholderUsersList = ({ classes, push, isCreateUser }) => {
 
 PlaceholderUsersList.propTypes = {
   classes: PropTypes.object.isRequired,
-  push: PropTypes.func
+  push: PropTypes.func,
+  isCreateUser: PropTypes.func
 }
 
 export default withStyles(stylesListPlaceholder)(PlaceholderUsersList)

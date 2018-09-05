@@ -1,3 +1,10 @@
+import BirthDate from 'components/commonComponents/BirthDate'
+import { Calendar } from 'icons'
+import BootstrapInput from 'components/commonComponents/BootstrapInput'
+import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
+import GoogleAddress from 'components/commonComponents/GoogleAddress'
+import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
+
 export const mainLanguage = [
   { value: 'en', label: 'English' },
   { value: 'fr', label: 'French' },
@@ -43,7 +50,8 @@ export const skills = [
   'Git',
   'Docker',
   'AWS Lambda',
-  'Firebase'].map(item => ({label: item, value: item}));
+  'Firebase'
+].map(item => ({ label: item, value: item }))
 
 export const fieldNames = {
   photo: 'photo',
@@ -79,7 +87,8 @@ export const initialState = {
     showPassword: false,
     showConfirmPassword: false,
     editingUser: {},
-    indDeleteUser: 0
+    indDeleteUser: 0,
+    openConfirmation: false
   },
   usersList: []
 }
@@ -91,11 +100,11 @@ export const srtuctureUser = [
     data: [
       {
         name: fieldNames.userName,
-        title: 'User name:',
+        title: 'User name:'
       },
       {
         name: fieldNames.password,
-        title: 'Password:',
+        title: 'Password:'
       }
     ]
   },
@@ -105,23 +114,23 @@ export const srtuctureUser = [
     data: [
       {
         name: fieldNames.firstName,
-        title: 'First name:',
+        title: 'First name:'
       },
       {
         name: fieldNames.lastName,
-        title: 'Last name:',
+        title: 'Last name:'
       },
       {
         name: fieldNames.birthDate,
-        title: 'Birth date:',
+        title: 'Birth date:'
       },
       {
         name: fieldNames.email,
-        title: 'Email:',
+        title: 'Email:'
       },
       {
         name: fieldNames.address,
-        title: 'Adress:',
+        title: 'Adress:'
       }
     ]
   },
@@ -131,19 +140,19 @@ export const srtuctureUser = [
     data: [
       {
         name: fieldNames.company,
-        title: 'Company:',
+        title: 'Company:'
       },
       {
         name: fieldNames.fax,
-        title: 'Fax:',
+        title: 'Fax:'
       },
       {
         name: fieldNames.facebookLink,
-        title: 'Facebook Link:',
+        title: 'Facebook Link:'
       },
       {
         name: fieldNames.phone,
-        title: 'Phone:',
+        title: 'Phone:'
       }
     ]
   },
@@ -153,15 +162,15 @@ export const srtuctureUser = [
     data: [
       {
         name: fieldNames.skills,
-        title: 'Skills:',
+        title: 'Skills:'
       },
       {
         name: 'checkBox',
-        title: 'Hobies:',
+        title: 'Hobies:'
       }
     ]
-  },
-];
+  }
+]
 
 export const tabList = [
   {
@@ -206,5 +215,78 @@ export const myHobbiesList = [
   {
     name: fieldNames.checkBox6,
     title: 'WTF is “hobbies”???'
+  }
+]
+
+export const columnProfile = [
+  [
+    {
+      name: fieldNames.firstName,
+      label: 'First name',
+      component: BootstrapInput,
+      type: 'text'
+    },
+    {
+      name: fieldNames.lastName,
+      label: 'Last name',
+      component: BootstrapInput,
+      type: 'text'
+    },
+    {
+      name: fieldNames.birthDate,
+      label: 'Birth date',
+      component: BirthDate,
+      type: 'data time',
+      icon: Calendar
+    }
+  ],
+  [
+    {
+      name: fieldNames.email,
+      required: true,
+      label: 'Email',
+      component: BootstrapInput,
+      type: 'email'
+    },
+    {
+      name: fieldNames.address,
+      label: 'Address',
+      component: GoogleAddress,
+      type: 'text'
+    },
+    {
+      name: fieldNames.gender,
+      component: GenderRadioBtns
+    }
+  ]
+]
+
+export const leftColumnContacts = [
+  {
+    name: fieldNames.company,
+    required: true,
+    label: 'Company',
+    component: BootstrapInput,
+    type: 'text'
+  },
+  {
+    name: fieldNames.gitHubLink,
+    label: 'Github link',
+    component: BootstrapInput,
+    type: 'text'
+  },
+  {
+    name: fieldNames.facebookLink,
+    label: 'Facebook link',
+    component: BootstrapInput,
+    type: 'text'
+  },
+  {
+    name: fieldNames.mainLanguage,
+    label: 'Main language',
+    component: IntegrationReactSelect,
+    type: 'text',
+    isMulti: false,
+    options: mainLanguage
   }
 ]

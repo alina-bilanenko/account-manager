@@ -68,7 +68,7 @@ class BirthDateInput extends Component {
         InputProps={{
           disableUnderline: true,
           classes: {
-            input: classNames(classes.bootstrapInput, {[classes.error]: meta.error && meta.touched})
+            input: classNames(classes.bootstrapInput, { [classes.error]: meta.error && meta.touched })
           },
 
           endAdornment: (

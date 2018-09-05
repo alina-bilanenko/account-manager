@@ -10,16 +10,16 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { initialState } from 'consts'
 import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk'
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from 'registerServiceWorker'
 import { homepage } from '../package.json'
 
-const historyOptions = {};
+const historyOptions = {}
 
 if (process.env.NODE_ENV === 'production') {
-  historyOptions.basename = new URL(homepage).pathname+'/'
+  historyOptions.basename = new URL(homepage).pathname + '/'
 }
 
-const history = createBrowserHistory(historyOptions);
+const history = createBrowserHistory(historyOptions)
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -35,4 +35,4 @@ render(
   </Provider>,
   document.getElementById('root')
 )
-registerServiceWorker();
+registerServiceWorker()
