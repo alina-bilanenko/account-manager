@@ -69,12 +69,12 @@ export function updateUsers(id, data) {
 
 export function editingUser (id) {
   return async (dispatch) => {
-    const user = await db.table('users').get({id: id});
+    const user = await db.table('users').get({id: parseInt(id, 10)});
     dispatch({
       type: usersConst.EDITING_USER,
       user: user
     })
-
+    if(!user) return
     tabList.forEach(item => {
         dispatch(initialize(item.name, {...user, birthDate:
             user.birthDate

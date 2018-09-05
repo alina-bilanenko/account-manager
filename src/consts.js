@@ -142,7 +142,7 @@ export const srtuctureUser = [
       },
       {
         name: fieldNames.phone,
-        title: 'Phone #1:',
+        title: 'Phone:',
       }
     ]
   },
