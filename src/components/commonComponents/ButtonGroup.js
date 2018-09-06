@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles, Button } from '@material-ui/core'
 import classNames from 'classnames'
-import { stylesButtonGroup } from 'styles'
+import { stylesButtonGroup } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 const ButtonGroup = (props) => {

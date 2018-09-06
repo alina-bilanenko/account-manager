@@ -2,7 +2,7 @@ import React from 'react'
 import ReactGoogleMapLoader from 'react-google-maps-loader'
 import ReactGooglePlacesSuggest from 'react-google-places-suggest'
 import { withStyles, InputLabel } from '@material-ui/core'
-import { stylesGoogleAddress } from 'styles'
+import { stylesGoogleAddress } from 'styles/styles'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 

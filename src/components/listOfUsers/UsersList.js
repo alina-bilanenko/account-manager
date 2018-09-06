@@ -8,10 +8,10 @@ import {
   Button
 } from '@material-ui/core'
 import PlaceholderUsersList from 'components/listOfUsers/PlaceholderUsersList'
-import { fieldNames } from 'consts'
+import { fieldNames } from 'utils/consts'
 import moment from 'moment'
-import { Edit, Delete, RedDelete } from 'icons'
-import { stylesUsersList } from 'styles'
+import { Edit, Delete, RedDelete } from 'utils/icons'
+import { stylesUsersList } from 'styles/styles'
 import classNames from 'classnames'
 import ConfirmDeleteDialog from 'components/commonComponents/ConfirmDeleteDialog'
 

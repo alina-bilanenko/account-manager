@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import { withStyles, InputLabel, FormHelperText } from '@material-ui/core'
-import { stylesSelect } from 'styles'
+import { stylesSelect } from 'styles/styles'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 

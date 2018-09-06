@@ -1,5 +1,5 @@
 import BirthDate from 'components/commonComponents/BirthDate'
-import { Calendar } from 'icons'
+import { Calendar } from 'utils/icons'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'

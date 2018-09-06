@@ -3,14 +3,14 @@ import { withStyles, Grid } from '@material-ui/core'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, FieldArray, reduxForm } from 'redux-form'
 import { contactsValidation } from 'Validation'
-import { fieldNames, leftColumnContacts } from 'consts'
+import { fieldNames, leftColumnContacts } from 'utils/consts'
 import InputWithMask from 'components/commonComponents/InputMask'
 import RenderPhone from 'components/commonComponents/RenderPhones'
-import { stylesContacts } from 'styles'
+import { stylesContacts } from 'styles/styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { saveInLocalStorage } from 'functions'
+import { saveInLocalStorage } from 'utils/functions'
 
 let Contacts = (props) => {
   const {

@@ -5,14 +5,14 @@ import PropTypes from 'prop-types'
 import ButtonUsersList from 'components/commonComponents/ButtonUsersList'
 import { push } from 'connected-react-router'
 import connect from 'react-redux/es/connect/connect'
-import { fieldNames, srtuctureUser, myHobbiesList } from 'consts'
+import { fieldNames, srtuctureUser, myHobbiesList } from 'utils/consts'
 import classNames from 'classnames'
 import { compose } from 'redux'
-import { Edit } from 'icons'
+import { Edit } from 'utils/icons'
 import { collectiveActions } from 'actions/action'
 import moment from 'moment'
 import { editingUser } from 'actions/listOfUsersActions'
-import { stylesUserView } from 'styles'
+import { stylesUserView } from 'styles/styles'
 
 class UserView extends Component {
   componentDidMount () {

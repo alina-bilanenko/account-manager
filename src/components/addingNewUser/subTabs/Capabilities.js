@@ -5,13 +5,13 @@ import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from 'Validation'
-import { fieldNames, skills } from 'consts'
+import { fieldNames, skills } from 'utils/consts'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
-import { stylesCapabilities } from 'styles'
+import { stylesCapabilities } from 'styles/styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { saveInLocalStorage } from 'functions'
+import { saveInLocalStorage } from 'utils/functions'
 
 let Capabilities = (props) => {
   const {

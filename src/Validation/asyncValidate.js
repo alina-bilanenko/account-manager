@@ -1,5 +1,5 @@
-import db from 'db'
-import { fieldNames } from 'consts'
+import db from 'db/db'
+import { fieldNames } from 'utils/consts'
 
 export async function asyncValidateName (values) {
   const name = await db.table('users').get({[fieldNames.userName]: values[fieldNames.userName]})

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox, FormControlLabel, withStyles } from '@material-ui/core'
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import { stylesMyHobbies } from 'styles'
+import { stylesMyHobbies } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 const MyHobbies = ({ input, label, classes }) => (

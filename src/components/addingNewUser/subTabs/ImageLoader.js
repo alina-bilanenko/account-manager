@@ -5,8 +5,8 @@ import {
   Typography,
   FormHelperText
 } from '@material-ui/core'
-import { Add } from 'icons'
-import { stylesImgLoader } from 'styles'
+import { Add } from 'utils/icons'
+import { stylesImgLoader } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 function ImageLoader (props) {

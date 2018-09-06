@@ -3,13 +3,13 @@ import { withStyles, Grid, Icon } from '@material-ui/core'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { profileValidation } from 'Validation/index'
 import { Field, reduxForm } from 'redux-form'
-import { fieldNames, columnProfile } from 'consts'
-import { stylesProfile } from 'styles'
+import { fieldNames, columnProfile } from 'utils/consts'
+import { stylesProfile } from 'styles/styles'
 import PropTypes from 'prop-types'
 import { asyncValidateEmail } from 'Validation/asyncValidate'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { saveInLocalStorage } from 'functions'
+import { saveInLocalStorage } from 'utils/functions'
 
 let Profile = (props) => {
   const {

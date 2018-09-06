@@ -1,7 +1,7 @@
 import React from 'react'
 import InputMask from 'react-input-mask'
 import { FormHelperText, InputLabel, withStyles } from '@material-ui/core'
-import { stylesMask } from 'styles'
+import { stylesMask } from 'styles/styles'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 

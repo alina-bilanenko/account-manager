@@ -7,7 +7,7 @@ import {
   Radio
 } from '@material-ui/core'
 import classNames from 'classnames'
-import { stylesRadio } from 'styles'
+import { stylesRadio } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 const GenderRadioBtns = (props) => {

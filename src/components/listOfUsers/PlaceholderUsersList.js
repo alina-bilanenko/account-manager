@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, withStyles, Grid } from '@material-ui/core'
-import { stylesListPlaceholder } from 'styles'
+import { stylesListPlaceholder } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 const PlaceholderUsersList = ({ classes, push, isCreateUser }) => {

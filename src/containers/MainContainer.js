@@ -6,8 +6,8 @@ import {
   BottomNavigationAction,
   Typography
 } from '@material-ui/core'
-import { Logo, AddUser, ListOfUsers } from 'icons'
-import { mainStyles } from 'styles'
+import { Logo, AddUser, ListOfUsers } from 'utils/icons'
+import { mainStyles } from 'styles/styles'
 import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
 import UsersList from 'components/listOfUsers/UserView'
 import { Route, Switch } from 'react-router'

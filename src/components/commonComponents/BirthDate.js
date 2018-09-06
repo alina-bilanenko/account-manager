@@ -8,8 +8,8 @@ import {
   Icon
 } from '@material-ui/core'
 import moment from 'moment'
-import { Calendar } from 'icons'
-import { stylesBirthDate } from 'styles'
+import { Calendar } from 'utils/icons'
+import { stylesBirthDate } from 'styles/styles'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 

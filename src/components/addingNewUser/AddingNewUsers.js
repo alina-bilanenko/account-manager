@@ -11,7 +11,7 @@ import Capabilities from 'components/addingNewUser/subTabs/Capabilities'
 import Contacts from 'components/addingNewUser/subTabs/Contacts'
 import Profile from 'components/addingNewUser/subTabs/Profile'
 import classNames from 'classnames'
-import { stylesAdd } from 'styles'
+import { stylesAdd } from 'styles/styles'
 import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
@@ -19,7 +19,7 @@ import PropsTypes from 'prop-types'
 import { addUsers, editingUser, updateUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
 import ButtonUsersList from 'components/commonComponents/ButtonUsersList'
-import { tabList } from 'consts'
+import { tabList } from 'utils/consts'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData'
@@ -73,7 +73,7 @@ class AddingNewUsers extends Component {
       !formData.capabilities
     ) return
 
-    let row = {
+    const row = {
       ...formData.account,
       ...formData.profile,
       ...formData.contacts,

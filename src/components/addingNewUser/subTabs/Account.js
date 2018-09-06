@@ -4,23 +4,23 @@ import {
   Grid,
   Card
 } from '@material-ui/core'
-import { Avatar } from 'icons'
+import { Avatar } from 'utils/icons'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
-import { fieldNames } from 'consts'
+import { fieldNames } from 'utils/consts'
 import { accountValidation, matchInput, confirmPassword } from 'Validation/index'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
 import { collectiveActions } from 'actions/action'
-import { stylesAccount } from 'styles'
+import { stylesAccount } from 'styles/styles'
 import PropTypes from 'prop-types'
 import { asyncValidateName } from 'Validation/asyncValidate'
 import { compose } from 'redux'
-import { saveInLocalStorage } from 'functions'
+import { saveInLocalStorage } from 'utils/functions'
 
 let Account = (props) => {
-  let {
+  const {
     classes,
     handleSubmit,
     showPassword,

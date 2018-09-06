@@ -1,4 +1,4 @@
-import { tabList } from './consts'
+import { tabList } from 'utils/consts'
 import { initialize } from 'redux-form'
 import moment from 'moment'
 

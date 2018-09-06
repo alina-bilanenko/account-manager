@@ -1,7 +1,7 @@
-import db from 'db'
-import { fieldNames } from 'consts'
+import db from 'db/db'
+import { fieldNames } from 'utils/consts'
 import moment from 'moment'
-import { initialValueForm } from 'functions'
+import { initialValueForm } from 'utils/functions'
 
 function returnWithDateRight (value) {
   return { ...value,
@@ -68,7 +68,7 @@ export function editingUser (id, complete = false) {
     const user = id ? await db.table('users').get({ id: parseInt(id, 10) }) || {} : {}
     dispatch({
       type: usersConst.EDITING_USER,
-      user: id ? user : {}
+      user: user
     })
     initialValueForm(user, dispatch)
     if (!id) {

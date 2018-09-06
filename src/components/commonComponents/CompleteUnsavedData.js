@@ -4,7 +4,7 @@ import {
   BottomNavigationAction,
   withStyles
 } from '@material-ui/core'
-import { Close } from 'icons'
+import { Close } from 'utils/icons'
 import PropTypes from 'prop-types'
 
 const styles = theme => ({

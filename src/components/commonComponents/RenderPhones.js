@@ -2,9 +2,9 @@ import React from 'react'
 import { Field } from 'redux-form'
 import InputWithMask from 'components/commonComponents/InputMask'
 import { Typography, withStyles } from '@material-ui/core'
-import { Add, ButtonDelete } from 'icons'
+import { Add, ButtonDelete } from 'utils/icons'
 import Button from '@material-ui/core/Button/Button'
-import { stylesRenderPhone } from 'styles'
+import { stylesRenderPhone } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 const RenderPhone = ({ fields, classes }) => {

@@ -2,8 +2,8 @@ import React from 'react'
 import { withStyles, FormLabel } from '@material-ui/core'
 import MyHobbies from 'components/commonComponents/MyHobbies'
 import { Field } from 'redux-form'
-import { myHobbiesList } from 'consts'
-import { stylesCheckbox } from 'styles'
+import { myHobbiesList } from 'utils/consts'
+import { stylesCheckbox } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 class CheckboxesGroup extends React.Component {

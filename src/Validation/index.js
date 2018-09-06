@@ -1,4 +1,4 @@
-import { fieldNames } from 'consts'
+import { fieldNames } from 'utils/consts'
 import moment from 'moment'
 
 export const accountValidation = (inputs) => {
@@ -36,6 +36,7 @@ export const matchInput = (input, allInputs) =>
 
 export const profileValidation = inputs => {
   const errors = {}
+  const regEmail = /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
 
   if (!inputs[fieldNames.firstName]) {
     errors[fieldNames.firstName] = 'Required'
@@ -55,12 +56,16 @@ export const profileValidation = inputs => {
     errors[fieldNames.email] = 'Required'
   }
 
+  if (inputs[fieldNames.email] && !regEmail.test(inputs[fieldNames.email])) {
+    errors[fieldNames.email] = 'Invalid email'
+  }
+
   return errors
 }
 
 export const contactsValidation = (inputs) => {
   const errors = {}
-  const reg = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/
+  const regPhone = /^\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}$/
 
   if (!inputs[fieldNames.company]) {
     errors[fieldNames.company] = 'Required'
@@ -70,7 +75,7 @@ export const contactsValidation = (inputs) => {
     errors[fieldNames.mainLanguage] = 'Required'
   }
 
-  if (inputs[fieldNames.fax] && !reg.test(inputs[fieldNames.fax])) {
+  if (inputs[fieldNames.fax] && !regPhone.test(inputs[fieldNames.fax])) {
     errors[fieldNames.fax] = 'Invalid number'
   }
 
@@ -78,7 +83,7 @@ export const contactsValidation = (inputs) => {
     const phoneArrayErrors = []
 
     inputs[fieldNames.phone].forEach((phone, phoneIndex) => {
-      if (phone && !reg.test(phone)) {
+      if (phone && !regPhone.test(phone)) {
         phoneArrayErrors[phoneIndex] = 'Invalid number'
       }
     })

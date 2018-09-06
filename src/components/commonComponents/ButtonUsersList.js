@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles, Button } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import { Rectangle } from 'icons'
+import { Rectangle } from 'utils/icons'
 
 const stylesButtonUsersList = () => ({
   root: {
