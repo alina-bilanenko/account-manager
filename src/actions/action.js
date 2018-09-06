@@ -3,7 +3,8 @@ const collectiveActionsConst = {
   SHOW_PASSWORD: 'SHOW_PASSWORD',
   SHOW_CONFIRM_PASSWORD: 'SHOW_CONFIRM_PASSWORD',
   DELETE_USER_ID: 'DELETE_USER_ID',
-  OPEN_CONFIRMATION: 'OPEN_CONFIRMATION'
+  OPEN_CONFIRMATION: 'OPEN_CONFIRMATION',
+  HAS_UNSAVED_DATA: 'HAS_UNSAVED_DATA'
 }
 
 export const collectiveActions = {
@@ -23,5 +24,9 @@ export const collectiveActions = {
   }),
   openConfirmation: () => ({
     type: collectiveActionsConst.OPEN_CONFIRMATION
+  }),
+  hasUnsavedData: (bool) => ({
+    type: collectiveActionsConst.HAS_UNSAVED_DATA,
+    hasUnsavedData: bool
   })
 }

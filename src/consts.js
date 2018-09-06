@@ -88,7 +88,8 @@ export const initialState = {
     showConfirmPassword: false,
     editingUser: {},
     indDeleteUser: 0,
-    openConfirmation: false
+    openConfirmation: false,
+    hasUnsavedData: false
   },
   usersList: []
 }

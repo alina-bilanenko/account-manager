@@ -1,7 +1,7 @@
 import db from 'db'
-import { fieldNames, tabList } from 'consts'
+import { fieldNames } from 'consts'
 import moment from 'moment'
-import { initialize } from 'redux-form'
+import { initialValueForm } from 'functions'
 
 function returnWithDateRight (value) {
   return { ...value,
@@ -18,7 +18,8 @@ const usersConst = {
   ADD_USERS: 'ADD_USERS',
   UPDATE_USERS: 'UPDATE_USERS',
   DELETE_USERS: 'DELETE_USERS',
-  EDITING_USER: 'EDITING_USER'
+  EDITING_USER: 'EDITING_USER',
+  HAS_UNSAVED_DATA: 'HAS_UNSAVED_DATA'
 }
 
 export function loadUsers () {
@@ -63,22 +64,28 @@ export function updateUsers (id, data) {
   }
 }
 
-export function editingUser (id) {
+export function editingUser (id, complete = false) {
   return async (dispatch) => {
-    const user = id ? await db.table('users').get({ id: parseInt(id, 10) }) : {}
+    const user = id ? await db.table('users').get({ id: parseInt(id, 10) }) || {} : {}
     dispatch({
       type: usersConst.EDITING_USER,
-      user: user
+      user: id ? user : {}
     })
-    if (!user) return
-    tabList.forEach(item => {
-      dispatch(initialize(item.name, { ...user,
-        birthDate:
-            user.birthDate
-              ? moment(user.birthDate)
-              : user.birthDate
-      }))
+    initialValueForm(user, dispatch)
+    if (!id) {
+      const userLocalStorage = await JSON.parse(localStorage.getItem('form'))
+      if (!userLocalStorage) return
+      dispatch({
+        type: 'HAS_UNSAVED_DATA',
+        hasUnsavedData: true
+      })
+      if (complete) {
+        initialValueForm(userLocalStorage, dispatch)
+        dispatch({
+          type: 'HAS_UNSAVED_DATA',
+          hasUnsavedData: false
+        })
+      }
     }
-    )
   }
 }

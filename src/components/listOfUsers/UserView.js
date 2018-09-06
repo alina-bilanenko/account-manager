@@ -71,7 +71,7 @@ class UserView extends Component {
   }
 
   render () {
-    const { classes, user } = this.props
+    const { classes, user, push } = this.props
 
     return (
       <div className={classes.root}>

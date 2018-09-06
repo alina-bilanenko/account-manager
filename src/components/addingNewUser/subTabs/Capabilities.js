@@ -11,9 +11,15 @@ import { stylesCapabilities } from 'styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { saveInLocalStorage } from 'functions'
 
 let Capabilities = (props) => {
-  const { classes, handleSubmit, push, isCreateUser } = props
+  const {
+    classes,
+    handleSubmit,
+    push,
+    isCreateUser
+  } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -77,6 +83,7 @@ export default compose(
   reduxForm({
     form: 'capabilities',
     destroyOnUnmount: false,
-    validate: capabilitiesValidation
+    validate: capabilitiesValidation,
+    onChange: saveInLocalStorage
   })
 )(Capabilities)

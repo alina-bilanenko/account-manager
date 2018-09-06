@@ -10,9 +10,15 @@ import { stylesContacts } from 'styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { saveInLocalStorage } from 'functions'
 
 let Contacts = (props) => {
-  const { classes, handleSubmit, push, isCreateUser } = props
+  const {
+    classes,
+    handleSubmit,
+    push,
+    isCreateUser
+  } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -86,6 +92,7 @@ export default compose(
       phone: ['', ''],
       fax: ''
     },
-    validate: contactsValidation
+    validate: contactsValidation,
+    onChange: saveInLocalStorage
   })
 )(Contacts)

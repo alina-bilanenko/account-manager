@@ -16,13 +16,19 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import PropsTypes from 'prop-types'
-import { addUsers, updateUsers } from 'actions/listOfUsersActions'
+import { addUsers, editingUser, updateUsers } from 'actions/listOfUsersActions'
 import { getFormValues, isValid, reset } from 'redux-form'
 import ButtonUsersList from 'components/commonComponents/ButtonUsersList'
 import { tabList } from 'consts'
 import { compose } from 'redux'
+import { collectiveActions } from 'actions/action'
+import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData'
 
 class AddingNewUsers extends Component {
+  componentDidMount () {
+    if (this.props.isCreateUser) this.props.changeEditingUser()
+  }
+
   handleChangeTab = (e, value) => {
     if (!this.props.isCreateUser) this.props.push(`/create-user/${value}`)
   }
@@ -32,7 +38,6 @@ class AddingNewUsers extends Component {
     this.props.resetForm('profile')
     this.props.resetForm('contacts')
     this.props.resetForm('capabilities')
-    this.props.push('/create-user/account')
   }
 
   save = (formName) => {
@@ -75,14 +80,27 @@ class AddingNewUsers extends Component {
       ...formData.capabilities
     }
     handlerAddUsers(row)
+    localStorage.clear()
     this.resetAllForm()
+    this.props.changeEditingUser()
+    this.props.push('/create-user/account')
+  }
+
+  completeData = () => {
+    this.props.changeEditingUser(null, true)
+  }
+
+  closeComplete = () => {
+    this.props.changehasUnsavedData(false)
+    localStorage.clear()
   }
 
   render () {
     const {
       classes,
       push,
-      isCreateUser
+      isCreateUser,
+      hasUnsavedData
     } = this.props
 
     const tabName = this.props.match.params.name
@@ -131,6 +149,11 @@ class AddingNewUsers extends Component {
               ))}
             </Tabs>
           </AppBar>
+          {hasUnsavedData && isCreateUser &&
+          <CompleteUnsavedData
+            completeData={this.completeData}
+            closeComplete={this.closeComplete}
+          />}
           <Route exact path='/create-user/account'
             render={(props) => (
               <Account
@@ -200,7 +223,8 @@ const mapStateToProps = (store) => {
       contacts: isValid('contacts')(store),
       capabilities: isValid('capabilities')(store)
     },
-    user: store.collectiveState.editingUser
+    user: store.collectiveState.editingUser,
+    hasUnsavedData: store.collectiveState.hasUnsavedData
   }
 }
 
@@ -208,7 +232,9 @@ const mapDispatchToProps = {
   push: push,
   handlerAddUsers: addUsers,
   resetForm: reset,
-  handlerUpdateUsers: updateUsers
+  handlerUpdateUsers: updateUsers,
+  changeEditingUser: editingUser,
+  changehasUnsavedData: collectiveActions.hasUnsavedData
 }
 
 AddingNewUsers.propTypes = {

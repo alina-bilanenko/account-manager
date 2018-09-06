@@ -1,12 +1,10 @@
 import React from 'react'
 import {
   withStyles,
-  Typography,
-  BottomNavigationAction,
   Grid,
   Card
 } from '@material-ui/core'
-import { Close, Avatar } from 'icons'
+import { Avatar } from 'icons'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
@@ -19,6 +17,7 @@ import { stylesAccount } from 'styles'
 import PropTypes from 'prop-types'
 import { asyncValidateName } from 'Validation/asyncValidate'
 import { compose } from 'redux'
+import { saveInLocalStorage } from 'functions'
 
 let Account = (props) => {
   let {
@@ -36,25 +35,6 @@ let Account = (props) => {
   return (
     <form encType='multipart/form-data' onSubmit={handleSubmit} noValidate>
       <div className={classes.root}>
-        <div className={classes.unsavedUserData}>
-          <Typography
-            variant='body2'
-            gutterBottom
-            className={classes.unsavedUserDataText}
-          >
-            You have an unsaved user data. Do you want to complete it?
-          </Typography>
-          <BottomNavigationAction
-            icon='Continue'
-            className={classes.unsavedUserDataTextBlack}
-            disableRipple
-          />
-          <BottomNavigationAction
-            icon={Close}
-            className={classes.rightIcons}
-            disableRipple
-          />
-        </div>
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <Card className={classes.card}>
@@ -153,6 +133,7 @@ export default compose(
     destroyOnUnmount: false,
     validate: accountValidation,
     asyncValidate: asyncValidateName,
-    asyncBlurFields: [fieldNames.userName]
+    asyncBlurFields: [fieldNames.userName],
+    onChange: saveInLocalStorage
   })
 )(Account)

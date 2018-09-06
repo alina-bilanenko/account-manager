@@ -43,7 +43,7 @@ class MainContainer extends Component {
 
   handlerClickAddUser = () => {
     this.props.isCreateUser(true)
-    this.props.editingUser()
+    this.props.changeEditingUser()
   }
 
   render () {
@@ -115,7 +115,7 @@ class MainContainer extends Component {
 MainContainer.propTypes = {
   classes: PropTypes.object,
   isCreateUser: PropTypes.func,
-  editingUser: PropTypes.func
+  changeEditingUser: PropTypes.func
 }
 
 const mapStateToProps = () => ({})

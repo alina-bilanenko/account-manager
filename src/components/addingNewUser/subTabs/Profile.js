@@ -9,9 +9,16 @@ import PropTypes from 'prop-types'
 import { asyncValidateEmail } from 'Validation/asyncValidate'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
+import { saveInLocalStorage } from 'functions'
 
 let Profile = (props) => {
-  const { classes, handleSubmit, push, isCreateUser } = props
+  const {
+    classes,
+    handleSubmit,
+    push,
+    isCreateUser
+
+  } = props
 
   return (
     <form onSubmit={handleSubmit} noValidate>
@@ -70,6 +77,7 @@ export default compose(
     destroyOnUnmount: false,
     validate: profileValidation,
     asyncValidate: asyncValidateEmail,
-    asyncBlurFields: [fieldNames.email]
+    asyncBlurFields: [fieldNames.email],
+    onChange: saveInLocalStorage
   })
 )(Profile)

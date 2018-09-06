@@ -16,6 +16,8 @@ const collectiveState = (state = {}, action) => {
       return { ...state, deleteUserId: action.index }
     case 'OPEN_CONFIRMATION':
       return { ...state, openConfirmation: !state.openConfirmation }
+    case 'HAS_UNSAVED_DATA':
+      return { ...state, hasUnsavedData: action.hasUnsavedData }
 
     default:
       return state
