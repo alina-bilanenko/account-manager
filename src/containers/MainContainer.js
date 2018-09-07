@@ -19,27 +19,30 @@ import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
 
 class MainContainer extends Component {
-  AddNewUser = (
+  static AddNewUser(classes){
+    return (
     <Typography
       variant='body2'
       gutterBottom
-      className={this.props.classes.text}
+      className={classes.text}
     >
       {AddUser}
-      <span className={this.props.classes.icon}>Add new user</span>
+      <span className={classes.icon}>Add new user</span>
     </Typography>
-  );
+  )}
 
-  ListAllUsers = (
-    <Typography
-      variant='body2'
-      gutterBottom
-      className={this.props.classes.text}
-    >
-      {ListOfUsers}
-      <span className={this.props.classes.icon}>List of users</span>
-    </Typography>
-  );
+  static ListAllUsers(classes){
+    return (
+      <Typography
+        variant='body2'
+        gutterBottom
+        className={classes.text}
+      >
+        {ListOfUsers}
+        <span className={classes.icon}>List of users</span>
+      </Typography>
+    )
+  }
 
   handlerClickAddUser = () => {
     this.props.isCreateUser(true)
@@ -63,7 +66,7 @@ class MainContainer extends Component {
                   onClick={this.handlerClickAddUser}
                 >
                   <BottomNavigationAction
-                    icon={this.AddNewUser}
+                    icon={MainContainer.AddNewUser(classes)}
                     className={classes.link}
                     disableRipple
                   />
@@ -73,7 +76,7 @@ class MainContainer extends Component {
                   className={classes.linkUnderlain}
                 >
                   <BottomNavigationAction
-                    icon={this.ListAllUsers}
+                    icon={MainContainer.ListAllUsers(classes)}
                     className={classes.link}
                     disableRipple
                   />

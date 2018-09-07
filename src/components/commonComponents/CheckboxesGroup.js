@@ -1,27 +1,26 @@
 import React from 'react'
 import { withStyles, FormLabel } from '@material-ui/core'
-import MyHobbies from 'components/commonComponents/MyHobbies'
+import CustomCompCheckBox from 'components/commonComponents/CustomCompCheckBox'
 import { Field } from 'redux-form'
-import { myHobbiesList } from 'utils/consts'
 import { stylesCheckbox } from 'styles/styles'
 import PropTypes from 'prop-types'
 
 class CheckboxesGroup extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, label, options } = this.props
 
     return (
       <div className={classes.root}>
         <FormLabel
           className={classes.label}
         >
-          My hobbies
+          {label}
         </FormLabel>
-        {myHobbiesList.map((item, ind) => (
+        {options.map((item, ind) => (
           <Field
             key={ind}
             name={item.name}
-            component={MyHobbies}
+            component={CustomCompCheckBox}
             label={item.title}
           />
         ))}

@@ -11,15 +11,16 @@ const RenderPhone = ({ fields, classes }) => {
   return (
     <ul className={classes.root}>
       {fields.map((name, index) =>
-        <li key={index} className={classes.button}>
-          {fields.length > 1 &&
-          <button
-            type='button'
-            onClick={() => { if (fields.length > 1)fields.remove(index) }}
-            className={classes.buttonRemove}
-          >
-            {ButtonDelete}
-          </button>}
+        (<li key={index} className={classes.button}>
+          {(fields.length > 1)
+            ? (<button
+              type='button'
+              onClick={(fields.length > 1) ? () => {fields.remove(index)} : null}
+              className={classes.buttonRemove}
+            >
+              {ButtonDelete}
+            </button>)
+            : null}
           <Field
             name={name}
             type='text'
@@ -27,23 +28,25 @@ const RenderPhone = ({ fields, classes }) => {
             label={`Phone #${index + 1}`}
             mask='+7 (999) 999-99-99'
           />
-        </li>
+        </li>)
       )}
-      {(fields.length < 3) &&
-      (<li>
-        <Button
-          variant='outlined'
-          component='span'
-          className={classes.addNumber}
-          disableRipple
-          onClick={() => { if (fields.length < 3) fields.push() }}
-        >
-          <Typography variant='body2' gutterBottom>
-            {Add}
-            <span className={classes.addNumberColor}>add phone number</span>
-          </Typography>
-        </Button>
-      </li>)}
+      {(fields.length < 3)
+        ? (<li>
+          <Button
+            variant='outlined'
+            component='span'
+            className={classes.addNumber}
+            disableRipple
+            onClick={(fields.length < 3) ? () => {fields.push()} : null}
+          >
+            <Typography variant='body2' gutterBottom>
+              {Add}
+              <span className={classes.addNumberColor}>add phone number</span>
+            </Typography>
+          </Button>
+        </li>)
+        : null
+      }
     </ul>
   )
 }

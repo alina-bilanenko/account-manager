@@ -1,15 +1,15 @@
 import React from 'react'
 import { Checkbox, FormControlLabel, withStyles } from '@material-ui/core'
 import CheckBoxIcon from '@material-ui/icons/CheckBox'
-import { stylesMyHobbies } from 'styles/styles'
+import { stylesCustomCheckBox } from 'styles/styles'
 import PropTypes from 'prop-types'
 
-const MyHobbies = ({ input, label, classes }) => (
+const CustomCompCheckBox = ({ input, label, classes }) => (
   <FormControlLabel
     control={
       <Checkbox
         checked={
-          !!input.value
+          Boolean(input.value)
         }
         onChange={input.onChange}
         checkedIcon={
@@ -27,10 +27,10 @@ const MyHobbies = ({ input, label, classes }) => (
   />
 )
 
-MyHobbies.propTypes = {
+CustomCompCheckBox.propTypes = {
   input: PropTypes.object,
   label: PropTypes.string,
   classes: PropTypes.object
 }
 
-export default withStyles(stylesMyHobbies)(MyHobbies)
+export default withStyles(stylesCustomCheckBox)(CustomCompCheckBox)

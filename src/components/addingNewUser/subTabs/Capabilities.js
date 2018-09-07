@@ -1,11 +1,11 @@
 import React from 'react'
-import { withStyles, Grid } from '@material-ui/core'
+import { withStyles, Grid } from "@material-ui/core";
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from 'Validation'
-import { fieldNames, skills } from 'utils/consts'
+import { fieldNames, myHobbiesList, skills } from "utils/consts";
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
 import { stylesCapabilities } from 'styles/styles'
 import PropTypes from 'prop-types'
@@ -47,7 +47,10 @@ let Capabilities = (props) => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <CheckboxesGroup />
+              <CheckboxesGroup
+                label='My hobbies'
+                options={myHobbiesList}
+              />
               <ButtonGroup
                 push={push}
                 finish

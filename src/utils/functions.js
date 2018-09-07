@@ -4,13 +4,7 @@ import moment from 'moment'
 
 export function saveInLocalStorage (value, dispatch, props) {
   if (!props.isCreateUser) return
-  let localStorageState = localStorage.getItem('form')
-
-  if (!localStorageState) {
-    localStorageState = {}
-  } else {
-    localStorageState = JSON.parse(localStorageState)
-  }
+  let localStorageState =  JSON.parse(localStorage.getItem('form')) || {}
 
   const newState = { ...localStorageState, ...value }
 

@@ -9,6 +9,7 @@ import {
 import classNames from 'classnames'
 import { stylesRadio } from 'styles/styles'
 import PropTypes from 'prop-types'
+import { gender } from 'utils/consts'
 
 const GenderRadioBtns = (props) => {
   const { classes, input, name, ...rest } = props
@@ -40,39 +41,26 @@ const GenderRadioBtns = (props) => {
           (event, value) => input.onChange(value)
         }
       >
-        <FormControlLabel
-          value='male'
-          classes={{
-            label: classes.label
-          }}
-          control={
-            <Radio
-              classes={{
-                root: classes.radio,
-                checked: classes.checked
-              }}
-            />
-          }
-          label='Male'
-          labelPlacement='end'
-          className={classes.bootstrapFormLabel}
-        />
-        <FormControlLabel
-          value='female'
-          classes={{
-            label: classes.label
-          }}
-          control={
-            <Radio
-              classes={{
-                root: classes.radio,
-                checked: classes.checked
-              }}
-            />}
-          label='Female'
-          labelPlacement='end'
-          className={classes.bootstrapFormLabel}
-        />
+        {gender.map((item, i) => (
+          <FormControlLabel
+            key={i}
+            value={item.value}
+            classes={{
+              label: classes.label
+            }}
+            control={
+              <Radio
+                classes={{
+                  root: classes.radio,
+                  checked: classes.checked
+                }}
+              />
+            }
+            label={item.label}
+            labelPlacement='end'
+            className={classes.bootstrapFormLabel}
+          />
+        ))}
       </RadioGroup>
     </Fragment>
   )

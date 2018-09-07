@@ -43,25 +43,26 @@ const BootstrapInput = (props) => {
         maxLength
       }}
       InputProps={{
+        ...input,
         disableUnderline: true,
         classes: {
           input: classNames(classes.bootstrapInput, { [classes.error]: meta.error && meta.touched })
         },
-        endAdornment: endAdornment ? (
-          <InputAdornment position='end'>
-            <IconButton
-              aria-label='Toggle password visibility'
-              onClick={changeShow}
-              onMouseDown={handleMouseDownPassword}
-              className={classes.visibleIcon}
-            >
-              {show
-                ? (<Icon>{Eye}</Icon>)
-                : (<Icon>{EyeStrike}</Icon>)}
-            </IconButton>
-          </InputAdornment>
-        ) : null,
-        ...input
+        endAdornment:
+          endAdornment
+            ? (<InputAdornment position='end'>
+              <IconButton
+                aria-label='Toggle password visibility'
+                onClick={changeShow}
+                onMouseDown={handleMouseDownPassword}
+                className={classes.visibleIcon}
+              >
+                {show
+                  ? (<Icon>{Eye}</Icon>)
+                  : (<Icon>{EyeStrike}</Icon>)}
+              </IconButton>
+            </InputAdornment>)
+            : null
       }}
       InputLabelProps={{
         shrink: true,

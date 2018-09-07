@@ -31,7 +31,6 @@ function UsersList (props) {
 
   const createContact = (user) => {
     return user[fieldNames.phone] &&
-    user[fieldNames.phone].length &&
     user[fieldNames.phone][0]
       ? user[fieldNames.phone][0]
       : user[fieldNames.email]
@@ -40,10 +39,6 @@ function UsersList (props) {
   function rowClick (id) {
     editingUser(id)
     if (id) push(`user/${id}`)
-  }
-
-  const deleteConfirmation = (id) => {
-    deleteRow(id)
   }
 
   return (
@@ -131,7 +126,7 @@ function UsersList (props) {
                         classes={classes}
                         deleteUser={deleteUser}
                         openConfirmation={openConfirmation}
-                        deleteConfirmation={() => deleteConfirmation(user.id)}
+                        deleteConfirmation={() => deleteRow(user.id)}
                       />
                     </Button>
                   </Grid>

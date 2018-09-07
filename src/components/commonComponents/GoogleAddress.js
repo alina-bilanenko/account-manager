@@ -29,35 +29,35 @@ class GoogleAddress extends React.Component {
             libraries: 'places,geocode'
           }}
           render={googleMaps =>
-            googleMaps && (
-              <ReactGooglePlacesSuggest
-                googleMaps={googleMaps}
-                autocompletionRequest={{
-                  input: input.value
-                }}
-                onSelectSuggest={this.handleSelectSuggest}
-                textNoResults={null}
-                customRender={prediction => (
-                  <div className={
-                    classNames(
-                      'customWrapper',
-                      classes.customAddress)
-                  }>
-                    {prediction
-                      ? prediction.description
-                      : ''}
-                  </div>
-                )}
-              >
-                <input
-                  type='text'
-                  value={input.value}
-                  placeholder=''
-                  onChange={input.onChange}
-                  className={classes.bootstrapInput}
-                />
-              </ReactGooglePlacesSuggest>
-            )
+            googleMaps
+              ? (<ReactGooglePlacesSuggest
+                  googleMaps={googleMaps}
+                  autocompletionRequest={{
+                    input: input.value
+                  }}
+                  onSelectSuggest={this.handleSelectSuggest}
+                  textNoResults={null}
+                  customRender={prediction => (
+                    <div className={
+                      classNames(
+                        'customWrapper',
+                        classes.customAddress)
+                    }>
+                      {prediction
+                        ? prediction.description
+                        : ''}
+                    </div>
+                  )}
+                >
+                  <input
+                    type='text'
+                    value={input.value}
+                    placeholder=''
+                    onChange={input.onChange}
+                    className={classes.bootstrapInput}
+                  />
+                </ReactGooglePlacesSuggest>)
+              : null
           }
         />
       </div>

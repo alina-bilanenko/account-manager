@@ -27,13 +27,9 @@ const ButtonUsersList = (props) => {
     push
   } = props
 
-  const handleClickBack = () => {
-    if (url) push(url)
-  }
-
   return (
     <Button
-      onClick={handleClickBack}
+      onClick={url ? () => push(url) : null}
       disableRipple
       className={
         classes.root

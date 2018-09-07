@@ -14,14 +14,10 @@ const ButtonGroup = (props) => {
     isCreateUser
   } = props
 
-  const handleClickBack = () => {
-    if (url) push(url)
-  }
-
   return (
     <div className={classes.buttonGroup}>
       <Button
-        onClick={handleClickBack}
+        onClick={url ? () => push(url) : null}
         variant='contained'
         color='primary'
         className={
@@ -42,8 +38,12 @@ const ButtonGroup = (props) => {
             { [classes.finish]: finish && isCreateUser }
           )
         }>
-        {isCreateUser && (finish ? 'Finish' : 'Forward')}
-        {!isCreateUser && 'Save'}
+        {isCreateUser
+          ? finish
+            ? 'Finish'
+            : 'Forward'
+          :'Save'
+        }
       </Button>
     </div>
   )
