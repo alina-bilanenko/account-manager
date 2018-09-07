@@ -8,6 +8,7 @@ import { stylesList } from 'styles/styles'
 import { deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
+import SearchListOfUsers from 'components/commonComponents/SearchListOfUsers'
 
 class ListOfAllUsers extends Component {
   componentDidMount () {
@@ -25,7 +26,8 @@ class ListOfAllUsers extends Component {
       deleteUserId,
       indDeleteUser,
       openConfirmation,
-      changeConfirmation
+      changeConfirmation,
+      loadUsersList
     } = this.props
 
     return (
@@ -37,6 +39,9 @@ class ListOfAllUsers extends Component {
         >
           List of users
         </Typography>
+        <SearchListOfUsers
+          loadUsersList={loadUsersList}
+        />
         <UsersList
           usersList={usersList}
           push={push}

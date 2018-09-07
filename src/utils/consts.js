@@ -89,7 +89,8 @@ export const initialState = {
     editingUser: {},
     indDeleteUser: 0,
     openConfirmation: false,
-    hasUnsavedData: false
+    hasUnsavedData: false,
+    search: 'firstName'
   },
   usersList: []
 }

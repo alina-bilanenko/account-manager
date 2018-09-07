@@ -21,9 +21,18 @@ const usersConst = {
   EDITING_USER: 'EDITING_USER'
 }
 
-export function loadUsers () {
+export function loadUsers (value) {
   return async (dispatch) => {
-    const users = await db.table('users').toArray()
+    let users = []
+    if(!value) {
+      users = await db.table('users').toArray()
+    } else {
+      const usersOne =  await db.table('users').filter(function (user) {
+        return user[fieldNames.firstName] === value || user[fieldNames.lastName] === value;
+      });
+      users = await usersOne.toArray()
+    }
+
     dispatch({
       type: usersConst.LOAD_USERS,
       payload: users
