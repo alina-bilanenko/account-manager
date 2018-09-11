@@ -31,7 +31,6 @@ class AddingNewUsers extends Component {
     const tabName = this.props.match.params.name
     if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
       this.props.push('/create-user/account')
-      return null
     }
 
     if (this.props.isCreateUser) this.props.changeEditingUser()

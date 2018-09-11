@@ -17,6 +17,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
+import { paginationActions } from "actions/paginationActions";
 
 class MainContainer extends Component {
   static AddNewUser (classes) {
@@ -51,7 +52,7 @@ class MainContainer extends Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, changePage, setFilter } = this.props
     return (
       <div className={classes.root}>
         <Grid container spacing={0} justify='center'>
@@ -75,6 +76,10 @@ class MainContainer extends Component {
                 <Link
                   to='/list-of-user'
                   className={classes.linkUnderlain}
+                  onClick={()=>{
+                    setFilter('')
+                    changePage(1)
+                  }}
                 >
                   <BottomNavigationAction
                     icon={MainContainer.ListAllUsers(classes)}
@@ -126,7 +131,9 @@ const mapStateToProps = () => ({})
 
 const mapDispatchToProps = {
   isCreateUser: collectiveActions.createUser,
-  changeEditingUser: editingUser
+  changeEditingUser: editingUser,
+  changePage: paginationActions.page,
+  setFilter: collectiveActions.filter
 }
 
 export default compose(

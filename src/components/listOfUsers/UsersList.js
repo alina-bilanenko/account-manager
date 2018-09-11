@@ -22,10 +22,10 @@ function UsersList (props) {
     classes,
     usersList,
     push,
-    deleteRow,
+    deleteUsers,
     editingUser,
     isCreateUser,
-    deleteUser,
+    deleteUserInd,
     indDeleteUser,
     openConfirmation,
     changeConfirmation,
@@ -108,7 +108,7 @@ function UsersList (props) {
                   <Grid item xs={2} sm={2}>
                     {moment(user[fieldNames.lastUpdate]).fromNow()}
                   </Grid>
-                  <Grid item xs={1} sm={1} className={classes.noWrap}>
+                  <Grid item xs={2} sm={2} className={classes.noWrap}>
                     <Button
                       disableRipple
                       className={classes.button}
@@ -120,16 +120,16 @@ function UsersList (props) {
                       disableRipple
                       className={classes.button}
                       onClick={
-                        () => deleteUser(user.id === indDeleteUser ? 0 : user.id)
+                        () => deleteUserInd(
+                          user.id === indDeleteUser
+                            ? 0
+                            : user.id)
                       }
                     >
                       {Delete}
                     </Button>
                   </Grid>
-                  <Grid
-                    item
-                    xs={1}
-                    sm={1}
+                  <div
                     className={
                       classNames(
                         classes.columnDelete,
@@ -145,12 +145,12 @@ function UsersList (props) {
                       <span>delete</span>
                       <ConfirmDeleteDialog
                         classes={classes}
-                        deleteUser={deleteUser}
+                        deleteUserInd={deleteUserInd}
                         openConfirmation={openConfirmation}
-                        deleteConfirmation={() => deleteRow(user.id)}
+                        deleteConfirmation={() => deleteUsers(indDeleteUser)}
                       />
                     </Button>
-                  </Grid>
+                  </div>
                 </Grid>
               )
             })}
@@ -167,8 +167,8 @@ function UsersList (props) {
                   labelDisplayedRows={() =>
                     `${(page - 1) * rowsPerPage + 1}-
                      ${count < rowsPerPage * page
-      ? count
-      : rowsPerPage * page}
+                      ? count
+                      : rowsPerPage * page}
                      of ${count}`}
                 />
               </Grid>
@@ -188,10 +188,10 @@ UsersList.propTypes = {
   classes: PropTypes.object.isRequired,
   usersList: PropTypes.array,
   push: PropTypes.func,
-  deleteRow: PropTypes.func,
+  deleteUsers: PropTypes.func,
   editingUser: PropTypes.func,
   isCreateUser: PropTypes.func,
-  deleteUser: PropTypes.func,
+  deleteUserInd: PropTypes.func,
   indDeleteUser: PropTypes.number,
   openConfirmation: PropTypes.bool,
   changeConfirmation: PropTypes.func,

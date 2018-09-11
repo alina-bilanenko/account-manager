@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 function ConfirmDeleteDialog (props) {
   const {
     classes,
-    deleteUser,
+    deleteUserInd,
     openConfirmation,
     deleteConfirmation
   } = props
@@ -19,7 +19,7 @@ function ConfirmDeleteDialog (props) {
     <Dialog
       fullScreen={false}
       open={openConfirmation}
-      onClose={() => deleteUser(0)}
+      onClose={() => deleteUserInd(0)}
       aria-labelledby='responsive-dialog-title'
       className={classes.dialog}
     >
@@ -31,7 +31,7 @@ function ConfirmDeleteDialog (props) {
       </DialogTitle>
       <DialogActions>
         <Button
-          onClick={() => deleteUser(0)}
+          onClick={() => deleteUserInd(0)}
           color='primary'
           className={classes.buttonDialog}
         >
@@ -52,7 +52,7 @@ function ConfirmDeleteDialog (props) {
 
 ConfirmDeleteDialog.propTypes = {
   classes: PropTypes.object,
-  deleteUser: PropTypes.func,
+  deleteUserInd: PropTypes.func,
   openConfirmation: PropTypes.bool,
   deleteConfirmation: PropTypes.func
 }

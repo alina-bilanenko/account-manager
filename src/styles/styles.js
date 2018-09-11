@@ -642,7 +642,9 @@ export const stylesUsersList = theme => ({
     '&:nth-of-type(odd):not(:last-child)': {
       backgroundColor: '#E7F0FF'
     },
-    alignItems: 'center'
+    alignItems: 'center',
+    transition: 'all 0.5s ease-out',
+    position: 'relative'
   },
   bigAvatar: {
     width: 40,
@@ -673,10 +675,14 @@ export const stylesUsersList = theme => ({
     paddingLeft: '50px',
     backgroundColor: '#FFFFFF',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    position: 'absolute',
+    right: '0'
   },
   columnDelete: {
-    visibility: 'hidden'
+    visibility: 'hidden',
+    position: 'absolute',
+    right: '0'
   },
   deleteButton: {
     fontStyle: 'normal',

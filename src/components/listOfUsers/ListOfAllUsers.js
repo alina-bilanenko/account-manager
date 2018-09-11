@@ -14,9 +14,27 @@ import { debounce } from 'debounce'
 
 class ListOfAllUsers extends Component {
   componentDidMount () {
-    this.props.setFilter('')
-    this.props.changePage(1)
-    this.props.loadUsersList(null, 1, this.props.rowsPerPage)
+    const {
+      loadUsersList,
+      filter,
+      page,
+      rowsPerPage
+    } = this.props
+
+    loadUsersList(filter, page, rowsPerPage)
+  }
+
+  deleteUsersAndUpdatePage = (id) => {
+    const {
+      deleteUsers,
+      loadUsersList,
+      filter,
+      page,
+      rowsPerPage
+    } = this.props
+
+    deleteUsers(id)
+    loadUsersList(filter, page, rowsPerPage)
   }
 
   render () {
@@ -24,7 +42,6 @@ class ListOfAllUsers extends Component {
       classes,
       usersList,
       push,
-      deleteUsers,
       editingUser,
       isCreateUser,
       deleteUserId,
@@ -58,11 +75,11 @@ class ListOfAllUsers extends Component {
         <UsersList
           usersList={usersList}
           push={push}
-          deleteRow={id => deleteUsers(id)}
+          deleteUsers={this.deleteUsersAndUpdatePage}
           editingUser={editingUser}
           isCreateUser={isCreateUser}
           indDeleteUser={indDeleteUser}
-          deleteUser={deleteUserId}
+          deleteUserInd={deleteUserId}
           openConfirmation={openConfirmation}
           changeConfirmation={changeConfirmation}
           page={page}
