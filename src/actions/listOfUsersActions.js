@@ -21,17 +21,52 @@ const usersConst = {
   EDITING_USER: 'EDITING_USER'
 }
 
-export function loadUsers (value) {
+export function loadUsers (value, page, rowsPerPage) {
+  const newPage = page || 1
+  const newRowsPerPage = rowsPerPage || 5
+
   return async (dispatch) => {
     let users = []
-    if(!value) {
-      users = await db.table('users').toArray()
-    } else {
-      const usersOne =  await db.table('users').filter(function (user) {
-        return user[fieldNames.firstName] === value || user[fieldNames.lastName] === value;
-      });
-      users = await usersOne.toArray()
+    let count = 0
+
+    if (!value) {
+      count = await db.table('users').count()
+      users = await db.table('users')
+        .offset((newPage - 1) * newRowsPerPage)
+        .limit(newRowsPerPage)
+        .toArray()
+    } else if (value) {
+      if (!page) {
+        dispatch({
+          type: 'PAGE',
+          page: 1
+        })
+      }
+
+      if (!rowsPerPage) {
+        dispatch({
+          type: 'ROWS_PER_PAGE',
+          rowsPerPage: 5
+        })
+      }
+
+      const filterUsers = await db.table('users')
+        .filter(function (user) {
+          return user[fieldNames.firstName].indexOf(value) !== -1 ||
+            user[fieldNames.lastName].indexOf(value) !== -1
+        })
+
+      count = await filterUsers.count()
+      users = await filterUsers
+        .offset((newPage - 1) * newRowsPerPage)
+        .limit(newRowsPerPage)
+        .toArray()
     }
+
+    dispatch({
+      type: 'COUNT',
+      count: count
+    })
 
     dispatch({
       type: usersConst.LOAD_USERS,
@@ -74,7 +109,9 @@ export function updateUsers (id, data) {
 
 export function editingUser (id, complete = false) {
   return async (dispatch) => {
-    const user = id ? await db.table('users').get({ id: parseInt(id, 10) }) || {} : {}
+    const user = id
+      ? await db.table('users').get({ id: parseInt(id, 10) }) || {}
+      : {}
     dispatch({
       type: usersConst.EDITING_USER,
       user: user

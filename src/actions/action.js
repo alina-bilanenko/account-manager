@@ -4,7 +4,8 @@ const collectiveActionsConst = {
   SHOW_CONFIRM_PASSWORD: 'SHOW_CONFIRM_PASSWORD',
   DELETE_USER_ID: 'DELETE_USER_ID',
   OPEN_CONFIRMATION: 'OPEN_CONFIRMATION',
-  HAS_UNSAVED_DATA: 'HAS_UNSAVED_DATA'
+  HAS_UNSAVED_DATA: 'HAS_UNSAVED_DATA',
+  FILTER: 'FILTER'
 }
 
 export const collectiveActions = {
@@ -18,15 +19,19 @@ export const collectiveActions = {
   showConfirmPassword: () => ({
     type: collectiveActionsConst.SHOW_CONFIRM_PASSWORD
   }),
-  deleteUserId: (ind) => ({
+  deleteUserId: ind => ({
     type: collectiveActionsConst.DELETE_USER_ID,
     index: ind
   }),
   openConfirmation: () => ({
     type: collectiveActionsConst.OPEN_CONFIRMATION
   }),
-  hasUnsavedData: (bool) => ({
+  hasUnsavedData: bool => ({
     type: collectiveActionsConst.HAS_UNSAVED_DATA,
     hasUnsavedData: bool
+  }),
+  filter: str => ({
+    type: collectiveActionsConst.FILTER,
+    filter: str
   })
 }

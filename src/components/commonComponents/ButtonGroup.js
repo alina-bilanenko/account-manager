@@ -42,7 +42,7 @@ const ButtonGroup = (props) => {
           ? finish
             ? 'Finish'
             : 'Forward'
-          :'Save'
+          : 'Save'
         }
       </Button>
     </div>

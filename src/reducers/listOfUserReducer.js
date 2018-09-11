@@ -7,7 +7,7 @@ export const usersList = (state = [], action) => {
     case 'UPDATE_USERS':
       return [
         ...state.filter((user) => user.id !== action.payload.id),
-        {...action.payload.user}
+        { ...action.payload.user }
       ]
     case 'DELETE_USERS':
       return state.filter((user) => user.id !== action.id)

@@ -30,7 +30,9 @@ class CheckboxesGroup extends React.Component {
 }
 
 CheckboxesGroup.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  label: PropTypes.string,
+  options: PropTypes.array
 }
 
 export default withStyles(stylesCheckbox)(CheckboxesGroup)

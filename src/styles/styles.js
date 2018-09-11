@@ -207,6 +207,17 @@ export const stylesImgLoader = theme => ({
     textAlign: 'center',
     textTransform: 'none',
     fontWeight: '400'
+  },
+  sizeDialog: {
+    maxWidth: 'max-content',
+    maxHeight: 'max-content'
+  },
+  buttons: {
+    display: 'flex',
+    flexDirection: 'row',
+    overflow: 'hidden',
+    flex: '1',
+    justifyContent: 'space-evenly'
   }
 })
 
@@ -628,7 +639,7 @@ export const stylesUsersList = theme => ({
     lineHeight: 'normal'
   },
   row: {
-    '&:nth-of-type(odd)': {
+    '&:nth-of-type(odd):not(:last-child)': {
       backgroundColor: '#E7F0FF'
     },
     alignItems: 'center'

@@ -9,10 +9,14 @@ import { deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import SearchListOfUsers from 'components/commonComponents/SearchListOfUsers'
+import { paginationActions } from 'actions/paginationActions'
+import { debounce } from 'debounce'
 
 class ListOfAllUsers extends Component {
   componentDidMount () {
-    this.props.loadUsersList()
+    this.props.setFilter('')
+    this.props.changePage(1)
+    this.props.loadUsersList(null, 1, this.props.rowsPerPage)
   }
 
   render () {
@@ -27,7 +31,14 @@ class ListOfAllUsers extends Component {
       indDeleteUser,
       openConfirmation,
       changeConfirmation,
-      loadUsersList
+      loadUsersList,
+      page,
+      rowsPerPage,
+      changePage,
+      changeRowsPerPage,
+      count,
+      setFilter,
+      filter
     } = this.props
 
     return (
@@ -40,7 +51,9 @@ class ListOfAllUsers extends Component {
           List of users
         </Typography>
         <SearchListOfUsers
-          loadUsersList={loadUsersList}
+          loadUsersList={debounce(loadUsersList, 500)}
+          setFilter={setFilter}
+          filter={filter}
         />
         <UsersList
           usersList={usersList}
@@ -52,6 +65,13 @@ class ListOfAllUsers extends Component {
           deleteUser={deleteUserId}
           openConfirmation={openConfirmation}
           changeConfirmation={changeConfirmation}
+          page={page}
+          rowsPerPage={rowsPerPage}
+          changePage={changePage}
+          changeRowsPerPage={changeRowsPerPage}
+          loadUsersList={loadUsersList}
+          count={count}
+          filter={filter}
         />
       </div>
     )
@@ -69,14 +89,25 @@ ListOfAllUsers.propTypes = {
   deleteUserId: PropTypes.func,
   indDeleteUser: PropTypes.number,
   openConfirmation: PropTypes.bool,
-  changeConfirmation: PropTypes.func
+  changeConfirmation: PropTypes.func,
+  setFilter: PropTypes.func,
+  changePage: PropTypes.func,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  changeRowsPerPage: PropTypes.func,
+  count: PropTypes.number,
+  filter: PropTypes.string
 }
 
 const mapStateToProps = (store) => {
   return {
     usersList: store.usersList,
     indDeleteUser: store.collectiveState.deleteUserId,
-    openConfirmation: store.collectiveState.openConfirmation
+    openConfirmation: store.collectiveState.openConfirmation,
+    page: store.pagination.page,
+    rowsPerPage: store.pagination.rowsPerPage,
+    count: store.pagination.count,
+    filter: store.collectiveState.filter
   }
 }
 
@@ -87,7 +118,10 @@ const mapDispatchToProps = {
   loadUsersList: loadUsers,
   isCreateUser: collectiveActions.createUser,
   deleteUserId: collectiveActions.deleteUserId,
-  changeConfirmation: collectiveActions.openConfirmation
+  changeConfirmation: collectiveActions.openConfirmation,
+  changePage: paginationActions.page,
+  changeRowsPerPage: paginationActions.rowsPerPage,
+  setFilter: collectiveActions.filter
 }
 
 export default compose(

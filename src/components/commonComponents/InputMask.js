@@ -6,12 +6,12 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 const InputWithMask = ({
-                         input: inputProps,
-                         classes,
-                         meta,
-                         label,
-                         mask
-                       }) => {
+  input: inputProps,
+  classes,
+  meta,
+  label,
+  mask
+}) => {
   return (
     <div className={classes.inputField}>
       <InputLabel
@@ -20,17 +20,17 @@ const InputWithMask = ({
         {label}
       </InputLabel>
       <InputMask mask={mask}
-                 {...inputProps}
-                 maskChar={'X'}
-                 alwaysShowMask={false}
-                 className={classNames(
-                   classes.bootstrapInput,
-                   { [classes.error]: meta.error && meta.touched }
-                 )}
+        {...inputProps}
+        maskChar={'X'}
+        alwaysShowMask={false}
+        className={classNames(
+          classes.bootstrapInput,
+          { [classes.error]: meta.error && meta.touched }
+        )}
 
       />
       {(meta.touched && meta.error)
-        ?(<FormHelperText
+        ? (<FormHelperText
           className={classes.textHelper}
         >
           {meta.error}

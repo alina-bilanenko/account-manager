@@ -15,7 +15,7 @@ const RenderPhone = ({ fields, classes }) => {
           {(fields.length > 1)
             ? (<button
               type='button'
-              onClick={(fields.length > 1) ? () => {fields.remove(index)} : null}
+              onClick={(fields.length > 1) ? () => { fields.remove(index) } : null}
               className={classes.buttonRemove}
             >
               {ButtonDelete}
@@ -37,7 +37,7 @@ const RenderPhone = ({ fields, classes }) => {
             component='span'
             className={classes.addNumber}
             disableRipple
-            onClick={(fields.length < 3) ? () => {fields.push()} : null}
+            onClick={(fields.length < 3) ? () => { fields.push() } : null}
           >
             <Typography variant='body2' gutterBottom>
               {Add}

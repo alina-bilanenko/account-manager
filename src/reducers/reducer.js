@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import { usersList } from 'reducers/listOfUserReducer'
 import { reducer as formReducer } from 'redux-form'
+import { pagination } from 'reducers/pagination'
+import { cropState } from 'reducers/crop'
 
 const collectiveState = (state = {}, action) => {
   switch (action.type) {
@@ -18,6 +20,8 @@ const collectiveState = (state = {}, action) => {
       return { ...state, openConfirmation: !state.openConfirmation }
     case 'HAS_UNSAVED_DATA':
       return { ...state, hasUnsavedData: action.hasUnsavedData }
+    case 'FILTER':
+      return { ...state, filter: action.filter }
 
     default:
       return state
@@ -27,5 +31,7 @@ const collectiveState = (state = {}, action) => {
 export const reducer = combineReducers({
   usersList,
   collectiveState,
+  pagination,
+  cropState,
   form: formReducer
 })

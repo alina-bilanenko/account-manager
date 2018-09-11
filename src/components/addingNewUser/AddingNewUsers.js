@@ -23,10 +23,16 @@ import { tabList } from 'utils/consts'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData'
+// import { generate } from 'utils/functions'
 
 class AddingNewUsers extends Component {
   componentDidMount () {
     if (this.props.isCreateUser) this.props.changeEditingUser()
+
+    // const users = generate()
+    // users.forEach(item => {
+    //   this.props.handlerAddUsers(item)
+    // })
   }
 
   handleChangeTab = (e, value) => {
@@ -83,7 +89,7 @@ class AddingNewUsers extends Component {
     localStorage.clear()
     this.resetAllForm()
     this.props.changeEditingUser()
-    this.props.push('/create-user/account')
+    this.props.push('/list-of-user')
   }
 
   completeData = () => {
@@ -142,7 +148,7 @@ class AddingNewUsers extends Component {
                     classNames(
                       classes.fieldHeader,
                       {
-                        [classes.activeTab]: tabName === item.name
+                        [classes.activeTab]:  tabName === item.name
                       }
                     )}
                 />

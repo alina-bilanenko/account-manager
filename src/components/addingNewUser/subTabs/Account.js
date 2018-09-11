@@ -18,6 +18,7 @@ import PropTypes from 'prop-types'
 import { asyncValidateName } from 'Validation/asyncValidate'
 import { compose } from 'redux'
 import { saveInLocalStorage } from 'utils/functions'
+import { cropActions } from 'actions/cropActions'
 
 let Account = (props) => {
   const {
@@ -29,7 +30,11 @@ let Account = (props) => {
     changeShowConfirmPassword,
     photo,
     push,
-    isCreateUser
+    isCreateUser,
+    changeCrop,
+    crop,
+    modalOpenDialogCrop,
+    changeModalOpenDialogCrop
   } = props
 
   return (
@@ -51,6 +56,11 @@ let Account = (props) => {
               name={fieldNames.photo}
               component={ImageLoader}
               type='file'
+              photo={photo}
+              changeCrop={changeCrop}
+              crop={crop}
+              modalOpenDialogCrop={modalOpenDialogCrop}
+              changeModalOpenDialogCrop={changeModalOpenDialogCrop}
             />
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
@@ -101,13 +111,17 @@ const mapStateToProps = (store) => {
     showPassword: store.collectiveState.showPassword,
     showConfirmPassword: store.collectiveState.showConfirmPassword,
     photo: selector(store, 'photo'),
-    isCreateUser: store.collectiveState.createUser
+    isCreateUser: store.collectiveState.createUser,
+    crop: store.cropState.crop,
+    modalOpenDialogCrop: store.cropState.modalOpenDialogCrop
   }
 }
 
 const mapDispatchToProps = {
   changeShowPassword: collectiveActions.showPassword,
-  changeShowConfirmPassword: collectiveActions.showConfirmPassword
+  changeShowConfirmPassword: collectiveActions.showConfirmPassword,
+  changeCrop: cropActions.crop,
+  changeModalOpenDialogCrop: cropActions.modalOpenDialogCrop
 }
 
 Account.propTypes = {
@@ -119,7 +133,11 @@ Account.propTypes = {
   changeShowConfirmPassword: PropTypes.func,
   photo: PropTypes.object,
   push: PropTypes.func,
-  isCreateUser: PropTypes.bool
+  isCreateUser: PropTypes.bool,
+  changeCrop: PropTypes.func,
+  crop: PropTypes.object,
+  modalOpenDialogCrop: PropTypes.bool,
+  changeModalOpenDialogCrop: PropTypes.func
 }
 
 export default compose(

@@ -5,7 +5,8 @@ import {
   Paper,
   Grid,
   Avatar,
-  Button
+  Button,
+  TablePagination
 } from '@material-ui/core'
 import PlaceholderUsersList from 'components/listOfUsers/PlaceholderUsersList'
 import { fieldNames } from 'utils/consts'
@@ -14,6 +15,7 @@ import { Edit, Delete, RedDelete } from 'utils/icons'
 import { stylesUsersList } from 'styles/styles'
 import classNames from 'classnames'
 import ConfirmDeleteDialog from 'components/commonComponents/ConfirmDeleteDialog'
+import TablePaginationActionsWrapped from 'components/commonComponents/TablePaginationActions'
 
 function UsersList (props) {
   const {
@@ -26,7 +28,14 @@ function UsersList (props) {
     deleteUser,
     indDeleteUser,
     openConfirmation,
-    changeConfirmation
+    changeConfirmation,
+    page,
+    rowsPerPage,
+    changePage,
+    changeRowsPerPage,
+    loadUsersList,
+    count,
+    filter
   } = props
 
   const createContact = (user) => {
@@ -39,6 +48,18 @@ function UsersList (props) {
   function rowClick (id) {
     editingUser(id)
     if (id) push(`user/${id}`)
+  }
+
+  const handleChangeRowsPerPage = event => {
+    changeRowsPerPage(event.target.value)
+    changePage(1)
+    loadUsersList(filter, 1, event.target.value)
+  }
+
+  const handleChangePage = (event, page) => {
+    if (!event) return
+    changePage(page)
+    loadUsersList(filter, page, rowsPerPage)
   }
 
   return (
@@ -133,6 +154,25 @@ function UsersList (props) {
                 </Grid>
               )
             })}
+            <Grid container className={classes.row}>
+              <Grid item xs={12} sm={12}>
+                <TablePagination
+                  count={count}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onChangePage={handleChangePage}
+                  onChangeRowsPerPage={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActionsWrapped}
+                  component={'div'}
+                  labelDisplayedRows={() =>
+                    `${(page - 1) * rowsPerPage + 1}-
+                     ${count < rowsPerPage * page
+      ? count
+      : rowsPerPage * page}
+                     of ${count}`}
+                />
+              </Grid>
+            </Grid>
           </Grid>
           : <PlaceholderUsersList
             push={push}
@@ -154,8 +194,14 @@ UsersList.propTypes = {
   deleteUser: PropTypes.func,
   indDeleteUser: PropTypes.number,
   openConfirmation: PropTypes.bool,
-  changeConfirmation: PropTypes.func
-
+  changeConfirmation: PropTypes.func,
+  changePage: PropTypes.func,
+  rowsPerPage: PropTypes.number,
+  page: PropTypes.number,
+  changeRowsPerPage: PropTypes.func,
+  count: PropTypes.number,
+  filter: PropTypes.string,
+  loadUsersList: PropTypes.func
 }
 
 export default withStyles(stylesUsersList)(UsersList)

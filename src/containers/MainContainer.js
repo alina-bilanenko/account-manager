@@ -19,19 +19,20 @@ import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
 
 class MainContainer extends Component {
-  static AddNewUser(classes){
+  static AddNewUser (classes) {
     return (
-    <Typography
-      variant='body2'
-      gutterBottom
-      className={classes.text}
-    >
-      {AddUser}
-      <span className={classes.icon}>Add new user</span>
-    </Typography>
-  )}
+      <Typography
+        variant='body2'
+        gutterBottom
+        className={classes.text}
+      >
+        {AddUser}
+        <span className={classes.icon}>Add new user</span>
+      </Typography>
+    )
+  }
 
-  static ListAllUsers(classes){
+  static ListAllUsers (classes) {
     return (
       <Typography
         variant='body2'

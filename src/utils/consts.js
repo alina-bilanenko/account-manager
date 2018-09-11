@@ -90,7 +90,22 @@ export const initialState = {
     indDeleteUser: 0,
     openConfirmation: false,
     hasUnsavedData: false,
-    search: 'firstName'
+    search: 'firstName',
+    filter: ''
+  },
+  pagination: {
+    page: 1,
+    rowsPerPage: 5,
+    count: 0
+  },
+  cropState: {
+    crop: {
+      x: 10,
+      y: 10,
+      width: 80,
+      height: 80
+    },
+    modalOpenDialogCrop: false
   },
   usersList: []
 }
@@ -303,4 +318,3 @@ export const gender = [
     label: 'Female'
   }
 ]
-

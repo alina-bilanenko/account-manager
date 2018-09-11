@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react'
 import {
   withStyles,
   InputLabel,
   Input,
   FormControl
-} from "@material-ui/core";
+} from '@material-ui/core'
+import PropTypes from 'prop-types'
 
 const styles = {
   root: {
@@ -16,39 +17,51 @@ const styles = {
   cssLabel: {
     color: '#475666',
     '&$cssFocused': {
-      color: '#4E86E4',
-    },
+      color: '#4E86E4'
+    }
   },
   cssFocused: {},
   cssUnderline: {
     color: '#475666',
     '&:after': {
-      borderBottomColor: '#4E86E4',
-    },
-  },
+      borderBottomColor: '#4E86E4'
+    }
+  }
 }
 
-const SearchListOfUsers = ({ loadUsersList, classes }) => (
+const SearchListOfUsers = ({ loadUsersList, classes, setFilter, filter }) => (
   <div className={classes.root}>
     <FormControl className={classes.margin}>
       <InputLabel
         FormLabelClasses={{
           root: classes.cssLabel,
-          focused: classes.cssFocused,
+          focused: classes.cssFocused
         }}
-        htmlFor="custom-css-input"
+        htmlFor='custom-css-input'
       >
         First name or Last name
       </InputLabel>
       <Input
         classes={{
-          underline: classes.cssUnderline,
+          underline: classes.cssUnderline
         }}
-        id="custom-css-input"
-        onChange={(e)=>{loadUsersList(e.target.value)}}
+        id='custom-css-input'
+        value={filter}
+        onChange={(e) => {
+          const filter = e.target.value
+          setFilter(filter)
+          loadUsersList(filter)
+        }}
       />
     </FormControl>
   </div>
 )
 
-export default  withStyles(styles)(SearchListOfUsers)
+SearchListOfUsers.propTypes = {
+  loadUsersList: PropTypes.func,
+  classes: PropTypes.object,
+  setFilter: PropTypes.func,
+  filter: PropTypes.string
+}
+
+export default withStyles(styles)(SearchListOfUsers)
