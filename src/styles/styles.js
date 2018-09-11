@@ -42,6 +42,9 @@ export const mainStyles = theme => ({
   },
   linkUnderlain: {
     textDecoration: 'none'
+  },
+  activeLink: {
+    opacity: '1'
   }
 })
 

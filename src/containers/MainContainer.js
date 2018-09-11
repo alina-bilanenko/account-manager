@@ -18,6 +18,7 @@ import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
 import { paginationActions } from "actions/paginationActions";
+import classNames from "classnames";
 
 class MainContainer extends Component {
   static AddNewUser (classes) {
@@ -52,7 +53,8 @@ class MainContainer extends Component {
   }
 
   render () {
-    const { classes, changePage, setFilter } = this.props
+    const { classes, changePage, setFilter, location: {pathname: path} } = this.props
+
     return (
       <div className={classes.root}>
         <Grid container spacing={0} justify='center'>
@@ -69,7 +71,12 @@ class MainContainer extends Component {
                 >
                   <BottomNavigationAction
                     icon={MainContainer.AddNewUser(classes)}
-                    className={classes.link}
+                    className={classNames(
+                      classes.link,
+                      {
+                        [classes.activeLink]: path.indexOf('create-user') !== -1
+                      }
+                    )}
                     disableRipple
                   />
                 </Link>
@@ -83,7 +90,12 @@ class MainContainer extends Component {
                 >
                   <BottomNavigationAction
                     icon={MainContainer.ListAllUsers(classes)}
-                    className={classes.link}
+                    className={classNames(
+                      classes.link,
+                      {
+                        [classes.activeLink]: path.indexOf('create-user') === -1
+                      }
+                    )}
                     disableRipple
                   />
                 </Link>
