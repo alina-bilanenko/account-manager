@@ -40,7 +40,7 @@ export function generate () {
       email: `email${i}@email.com`,
       gender: 'male',
       company: `company ${i}`,
-      mainLanguage: 'en',
+      mainLanguage: {value: "en", label: "English"},
       skills: [
         {label: "HTML", value: "HTML"},
         {label: "CSS", value: "CSS"},

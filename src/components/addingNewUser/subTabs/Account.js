@@ -131,7 +131,7 @@ Account.propTypes = {
   changeShowPassword: PropTypes.func,
   showConfirmPassword: PropTypes.bool,
   changeShowConfirmPassword: PropTypes.func,
-  photo: PropTypes.object,
+  photo: PropTypes.string,
   push: PropTypes.func,
   isCreateUser: PropTypes.bool,
   changeCrop: PropTypes.func,

@@ -27,6 +27,13 @@ import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData
 
 class AddingNewUsers extends Component {
   componentDidMount () {
+
+    const tabName = this.props.match.params.name
+    if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
+      this.props.push('/create-user/account')
+      return null
+    }
+
     if (this.props.isCreateUser) this.props.changeEditingUser()
 
     // const users = generate()
@@ -109,11 +116,7 @@ class AddingNewUsers extends Component {
       hasUnsavedData
     } = this.props
 
-    const tabName = this.props.match.params.name
-    if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
-      push('/create-user/account')
-      return null
-    }
+    const tabName = this.props.match.params.name || 'account'
 
     return (
       <div className={classes.root}>
