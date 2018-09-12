@@ -100,8 +100,8 @@ function ImageLoader (props) {
         id='icon-button-file'
         type={type}
       />
-      {photo && (
-        <Dialog
+      {photo
+        ? (<Dialog
           title='Crop the image'
           open={modalOpenDialogCrop}
           classes={
@@ -111,6 +111,9 @@ function ImageLoader (props) {
           <ReactCrop
             src={photo}
             crop={crop}
+            minWidth={20}
+            minHeight={20}
+            aspectRatio={16 / 9}
             onComplete={onCropComplete}
             onChange={onCropChange}
           />
@@ -125,7 +128,9 @@ function ImageLoader (props) {
             >Save</Button>
           </div>
         </Dialog>
-      )}
+        )
+        : null
+      }
       <label htmlFor='icon-button-file'>
         <Button
           variant='outlined'
@@ -133,13 +138,14 @@ function ImageLoader (props) {
           className={classes.avatar}
           disableRipple
         >
-          {meta.error &&
-          <FormHelperText
-            id='name-error-text'
-            className={classes.error}
-          >
-            {meta.error}
-          </FormHelperText>
+          {meta.error
+            ? (<FormHelperText
+              id='name-error-text'
+              className={classes.error}
+            >
+              {meta.error}
+            </FormHelperText>)
+            : null
           }
           {AddAvatar}
         </Button>
@@ -154,88 +160,3 @@ ImageLoader.propTypes = {
   type: PropTypes.string
 }
 export default withStyles(stylesImgLoader)(ImageLoader)
-
-// import React from 'react'
-// import {
-//   withStyles,
-//   Button,
-//   Typography,
-//   FormHelperText
-// } from '@material-ui/core'
-// import { Add } from 'utils/icons'
-// import { stylesImgLoader } from 'styles/styles'
-// import PropTypes from 'prop-types'
-//
-// function ImageLoader (props) {
-//   const { classes, input, meta, type } = props
-//
-//   const AddAvatar = (
-//     <Typography
-//       variant='body2'
-//       gutterBottom
-//       className={classes.addAvatar}
-//     >
-//       {Add}
-//       <span>add avatar</span>
-//     </Typography>
-//   )
-//
-//   function handleFile (e) {
-//     e.preventDefault()
-//
-//     const file = e.target.files[0]
-//     if (!file) {
-//       return
-//     }
-//
-//     const reader = new FileReader()
-//
-//     reader.onloadend = () => {
-//       input.onChange(reader.result)
-//     }
-//
-//     reader.readAsDataURL(file)
-//   }
-//
-//   return (
-//     <div>
-//       <input
-//         accept='image/*'
-//         name={input.name}
-//         {...input}
-//         value={undefined}
-//         onChange={handleFile}
-//         className={classes.input}
-//         id='icon-button-file'
-//         type={type}
-//       />
-//       <label htmlFor='icon-button-file'>
-//         <Button
-//           variant='outlined'
-//           component='span'
-//           className={classes.avatar}
-//           disableRipple
-//         >
-//           {meta.error &&
-//           <FormHelperText
-//             id='name-error-text'
-//             className={classes.error}
-//           >
-//             {meta.error}
-//           </FormHelperText>
-//           }
-//           {AddAvatar}
-//         </Button>
-//       </label>
-//     </div>
-//   )
-// }
-//
-// ImageLoader.propTypes = {
-//   classes: PropTypes.object,
-//   input: PropTypes.object,
-//   meta: PropTypes.object,
-//   type: PropTypes.string
-// }
-//
-// export default withStyles(stylesImgLoader)(ImageLoader)

@@ -27,7 +27,6 @@ import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData
 
 class AddingNewUsers extends Component {
   componentDidMount () {
-
     const tabName = this.props.match.params.name
     if (!tabName || !['account', 'profile', 'contacts', 'capabilities'].includes(tabName)) {
       this.props.push('/create-user/account')
@@ -120,7 +119,10 @@ class AddingNewUsers extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.captions}>
-          {!isCreateUser && <ButtonUsersList url='/list-of-user' push={push} />}
+          {!isCreateUser
+            ? (<ButtonUsersList url='/list-of-user' push={push} />)
+            : null
+          }
           <Typography
             variant='display1'
             gutterBottom
@@ -150,6 +152,7 @@ class AddingNewUsers extends Component {
                     classNames(
                       classes.fieldHeader,
                       {
+                        [classes.captionEditing]: !isCreateUser,
                         [classes.activeTab]:  tabName === item.name
                       }
                     )}
@@ -157,20 +160,22 @@ class AddingNewUsers extends Component {
               ))}
             </Tabs>
           </AppBar>
-          {hasUnsavedData && isCreateUser &&
-          <CompleteUnsavedData
-            completeData={this.completeData}
-            closeComplete={this.closeComplete}
-          />}
+          {hasUnsavedData && isCreateUser
+            ? (<CompleteUnsavedData
+              completeData={this.completeData}
+              closeComplete={this.closeComplete}
+            />)
+            : null
+          }
           <Route exact path='/create-user/account'
             render={(props) => (
               <Account
                 {...props}
                 push={push}
                 onSubmit={() => {
-                  if (isCreateUser) {
-                    push('/create-user/profile')
-                  } else this.save('account')
+                  isCreateUser
+                    ? push('/create-user/profile')
+                    : this.save('account')
                 }}
               />
             )}
@@ -181,9 +186,9 @@ class AddingNewUsers extends Component {
                 {...props}
                 push={push}
                 onSubmit={() => {
-                  if (isCreateUser) {
-                    push('/create-user/contacts')
-                  } else this.save('profile')
+                  isCreateUser
+                    ? push('/create-user/contacts')
+                    : this.save('profile')
                 }}
               />
             )}
@@ -194,9 +199,9 @@ class AddingNewUsers extends Component {
                 {...props}
                 push={push}
                 onSubmit={() => {
-                  if (isCreateUser) {
-                    push('/create-user/capabilities')
-                  } else this.save('contacts')
+                  isCreateUser
+                    ? push('/create-user/capabilities')
+                    : this.save('contacts')
                 }}
               />
             )}
@@ -206,7 +211,10 @@ class AddingNewUsers extends Component {
               <Capabilities
                 {...props}
                 push={push}
-                onSubmit={isCreateUser ? this.finish : () => this.save('capabilities')}
+                onSubmit={isCreateUser
+                  ? this.finish
+                  : () => this.save('capabilities')
+                }
               />
             )}
           />

@@ -81,6 +81,10 @@ export const stylesAdd = () => ({
     textTransform: 'none',
     height: '62px'
   },
+  captionEditing: {
+    color: '#475666',
+    opacity: '1'
+  },
   activeTab: {
     color: '#FFFFFF',
     backgroundColor: '#4E86E4'
@@ -646,7 +650,7 @@ export const stylesUsersList = theme => ({
       backgroundColor: '#E7F0FF'
     },
     alignItems: 'center',
-    transition: 'all 0.5s ease-out',
+    transition: 'all 0.5s ease',
     position: 'relative'
   },
   bigAvatar: {
@@ -668,17 +672,16 @@ export const stylesUsersList = theme => ({
     minWidth: '20px'
   },
   deleteRow: {
-    marginLeft: '-50px'
+    marginLeft: '-40px',
+    width: '110%',
+    transition: 'all 0.5s ease'
   },
   noWrap: {
     whiteSpace: 'nowrap'
   },
   hiddenDelete: {
     visibility: 'visible !important',
-    paddingLeft: '50px',
     backgroundColor: '#FFFFFF',
-    width: '100%',
-    height: '100%',
     position: 'absolute',
     right: '0'
   },
@@ -716,6 +719,9 @@ export const stylesUsersList = theme => ({
     fontWeight: '500',
     lineHeight: 'normal',
     color: '#4E86E4'
+  },
+  hiddenButtonsEditDelete: {
+    visibility: 'hidden'
   }
 })
 

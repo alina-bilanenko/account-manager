@@ -30,11 +30,20 @@ class ListOfAllUsers extends Component {
       loadUsersList,
       filter,
       page,
-      rowsPerPage
+      usersList,
+      rowsPerPage,
+      changePage
     } = this.props
 
+    let newPage = page
+
+    if (usersList.length <= 1) {
+      newPage = page - 1
+      changePage(newPage)
+    }
+
     deleteUsers(id)
-    loadUsersList(filter, page, rowsPerPage)
+    loadUsersList(filter, newPage, rowsPerPage)
   }
 
   render () {

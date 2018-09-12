@@ -36,15 +36,20 @@ let Profile = (props) => {
                     type={item.type}
                     key={i}
                   >
-                    {item.icon && <Icon>{item.icon}</Icon>}
+                    {item.icon
+                      ? (<Icon>{item.icon}</Icon>)
+                      : null
+                    }
                   </Field>
                 ))}
-                {(columnProfile.length === j + 1) &&
-                <ButtonGroup
-                  push={push}
-                  url='/create-user/account'
-                  isCreateUser={isCreateUser}
-                />}
+                {(columnProfile.length === j + 1)
+                  ? (<ButtonGroup
+                    push={push}
+                    url='/create-user/account'
+                    isCreateUser={isCreateUser}
+                  />)
+                  : null
+                }
               </div>
             </Grid>
           ))}

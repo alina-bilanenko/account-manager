@@ -1,9 +1,15 @@
 import { tabList, fieldNames } from 'utils/consts'
-import { initialize } from 'redux-form'
+import { initialize, reset } from 'redux-form'
 import moment from 'moment'
 
 export function saveInLocalStorage (value, dispatch, props) {
   if (!props.isCreateUser) return
+
+  dispatch({
+    type: 'HAS_UNSAVED_DATA',
+    hasUnsavedData: false
+  })
+
   let localStorageState = JSON.parse(localStorage.getItem('form')) || {}
 
   const newState = { ...localStorageState, ...value }
@@ -12,6 +18,14 @@ export function saveInLocalStorage (value, dispatch, props) {
 }
 
 export function initialValueForm (user, dispatch) {
+
+  if (Object.keys(user).length === 0) {
+    tabList.forEach(item => {
+      dispatch(initialize(item.name))
+    })
+    return
+  }
+
   tabList.forEach(item => {
     dispatch(initialize(item.name, {
       ...user,
@@ -40,11 +54,11 @@ export function generate () {
       email: `email${i}@email.com`,
       gender: 'male',
       company: `company ${i}`,
-      mainLanguage: {value: "en", label: "English"},
+      mainLanguage: { value: 'en', label: 'English' },
       skills: [
-        {label: "HTML", value: "HTML"},
-        {label: "CSS", value: "CSS"},
-        {label: "Javascript", value: "Javascript"}
+        { label: 'HTML', value: 'HTML' },
+        { label: 'CSS', value: 'CSS' },
+        { label: 'Javascript', value: 'Javascript' }
       ],
       lastUpdate: moment()
     })

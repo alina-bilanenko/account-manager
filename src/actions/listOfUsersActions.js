@@ -109,14 +109,6 @@ export function updateUsers (id, data) {
 
 export function editingUser (id, complete = false) {
   return async (dispatch) => {
-    const user = id
-      ? await db.table('users').get({ id: parseInt(id, 10) }) || {}
-      : {}
-    dispatch({
-      type: usersConst.EDITING_USER,
-      user: user
-    })
-    initialValueForm(user, dispatch)
     if (!id) {
       const userLocalStorage = await JSON.parse(localStorage.getItem('form'))
       if (!userLocalStorage) return
@@ -132,5 +124,14 @@ export function editingUser (id, complete = false) {
         })
       }
     }
+    const user = id
+      ? await db.table('users').get({ id: parseInt(id, 10) }) || {}
+      : {}
+    dispatch({
+      type: usersConst.EDITING_USER,
+      user: user
+    })
+    initialValueForm(user, dispatch)
+
   }
 }

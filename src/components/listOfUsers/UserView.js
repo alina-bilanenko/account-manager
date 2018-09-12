@@ -30,24 +30,28 @@ class UserView extends Component {
 
       return (hobbies.map(item => (
         myHobbiesList.map((hobie, i) => (
-          (hobie.name === item) &&
-          <Fragment key={i}>
-            <span>{hobie.title}</span>
-            <br />
-          </Fragment>
+          (hobie.name === item)
+            ? (<Fragment key={i}>
+              <span>{hobie.title}</span>
+              <br />
+            </Fragment>)
+            : null
         )))
       ))
     }
 
     if (name === fieldNames.phone && user[name]) {
-      return (user[name].map((item, i) => (
-        <Fragment key={i}>
-          <span>
-            {item}
-          </span>
-          <br />
-        </Fragment>
-      ))
+      return (user[name].map((item, i) => {
+        if (!item) return null
+        return (
+          <Fragment key={i}>
+            <span>
+              {item}
+            </span>
+            <br />
+          </Fragment>
+        )
+      })
       )
     }
 

@@ -102,8 +102,8 @@ export const initialState = {
     crop: {
       x: 10,
       y: 10,
-      width: 80,
-      height: 80
+      width: 20,
+      height: 20
     },
     modalOpenDialogCrop: false
   },

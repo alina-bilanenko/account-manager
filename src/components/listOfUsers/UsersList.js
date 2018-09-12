@@ -111,14 +111,21 @@ function UsersList (props) {
                   <Grid item xs={2} sm={2} className={classes.noWrap}>
                     <Button
                       disableRipple
-                      className={classes.button}
+                      className={classNames(
+                        classes.button,
+                        { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
+                      )}
                       onClick={() => rowClick(user.id)}
                     >
                       {Edit}
                     </Button>
                     <Button
+                      id='show-delete-button'
                       disableRipple
-                      className={classes.button}
+                      className={classNames(
+                        classes.button,
+                        { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
+                      )}
                       onClick={
                         () => deleteUserInd(
                           user.id === indDeleteUser
@@ -137,6 +144,7 @@ function UsersList (props) {
                     }
                   >
                     <Button
+                      id='delete-button'
                       disableRipple
                       className={classes.deleteButton}
                       onClick={changeConfirmation}
@@ -167,8 +175,8 @@ function UsersList (props) {
                   labelDisplayedRows={() =>
                     `${(page - 1) * rowsPerPage + 1}-
                      ${count < rowsPerPage * page
-                      ? count
-                      : rowsPerPage * page}
+      ? count
+      : rowsPerPage * page}
                      of ${count}`}
                 />
               </Grid>

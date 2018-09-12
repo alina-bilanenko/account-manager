@@ -17,8 +17,8 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
-import { paginationActions } from "actions/paginationActions";
-import classNames from "classnames";
+import { paginationActions } from 'actions/paginationActions'
+import classNames from 'classnames'
 
 class MainContainer extends Component {
   static AddNewUser (classes) {
@@ -47,13 +47,20 @@ class MainContainer extends Component {
     )
   }
 
+  hiddenButtonDeleteRow = (e) => {
+    if (!e.target.closest('#show-delete-button') &&
+      !e.target.closest('#delete-button')) {
+      this.props.deleteUserId(0)
+    }
+  }
+
   handlerClickAddUser = () => {
     this.props.isCreateUser(true)
     this.props.changeEditingUser()
   }
 
   render () {
-    const { classes, changePage, setFilter, location: {pathname: path} } = this.props
+    const { classes, changePage, setFilter, location: { pathname: path } } = this.props
 
     return (
       <div className={classes.root}>
@@ -83,7 +90,7 @@ class MainContainer extends Component {
                 <Link
                   to='/list-of-user'
                   className={classes.linkUnderlain}
-                  onClick={()=>{
+                  onClick={() => {
                     setFilter('')
                     changePage(1)
                   }}
@@ -102,7 +109,7 @@ class MainContainer extends Component {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} onClick={this.hiddenButtonDeleteRow}>
             <Switch>
               <Route
                 exact
@@ -136,7 +143,11 @@ class MainContainer extends Component {
 MainContainer.propTypes = {
   classes: PropTypes.object,
   isCreateUser: PropTypes.func,
-  changeEditingUser: PropTypes.func
+  changeEditingUser: PropTypes.func,
+  deleteUserId: PropTypes.func,
+  changePage: PropTypes.func,
+  setFilter: PropTypes.func,
+  location: PropTypes.object
 }
 
 const mapStateToProps = () => ({})
@@ -145,7 +156,8 @@ const mapDispatchToProps = {
   isCreateUser: collectiveActions.createUser,
   changeEditingUser: editingUser,
   changePage: paginationActions.page,
-  setFilter: collectiveActions.filter
+  setFilter: collectiveActions.filter,
+  deleteUserId: collectiveActions.deleteUserId
 }
 
 export default compose(
