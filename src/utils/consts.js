@@ -318,3 +318,43 @@ export const gender = [
     label: 'Female'
   }
 ]
+
+export const headerLink = [
+  {
+    linkTo: '\'/create-user/account\'',
+    onClick: 'handlerClickAddUser',
+    icon: 'AddNewUser',
+    classActive: (path) => path.indexOf('create-user') !== -1
+  },
+  {
+    linkTo: '/list-of-user',
+    onClick: 'handlerClickListOfUsers',
+    icon: 'ListAllUsers',
+    classActive: (path) => path.indexOf('create-user') === -1
+  }
+]
+
+export const rightColumnAccount = [
+    {
+      name: fieldNames.userName,
+      label: 'User name',
+      endAdornment: false,
+      type: 'text'
+    },
+    {
+      name: fieldNames.password,
+      label: 'Password',
+      endAdornment: true,
+      type: (showPassword) => showPassword ? 'text' : 'password',
+      show: showPassword => showPassword,
+      changeShow: changeShowPassword => changeShowPassword
+    },
+    {
+      name: fieldNames.repeatPassword,
+      label: 'Repeat Password',
+      endAdornment: true,
+      type: (showPassword, showConfirmPassword) => showConfirmPassword ? 'text' : 'password',
+      show: (showPassword, showConfirmPassword) => showConfirmPassword,
+      changeShow: (changeShowPassword, changeShowConfirmPassword) => changeShowConfirmPassword
+    }
+]

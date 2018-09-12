@@ -8,7 +8,7 @@ import { Avatar } from 'utils/icons'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import ImageLoader from 'components/addingNewUser/subTabs/ImageLoader'
-import { fieldNames } from 'utils/consts'
+import { fieldNames, rightColumnAccount } from 'utils/consts'
 import { accountValidation, matchInput, confirmPassword } from 'Validation/index'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { connect } from 'react-redux'
@@ -65,31 +65,35 @@ let Account = (props) => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field
-                name={fieldNames.userName}
-                label='User name'
-                component={BootstrapInput}
-                type='text'
-              />
-              <Field
-                name={fieldNames.password}
-                label='Password'
-                endAdornment
-                component={BootstrapInput}
-                type={showPassword ? 'text' : 'password'}
-                show={showPassword}
-                changeShow={changeShowPassword}
-              />
-              <Field
-                name={fieldNames.repeatPassword}
-                validate={[confirmPassword, matchInput]}
-                label='Repeat Password'
-                endAdornment
-                component={BootstrapInput}
-                type={showConfirmPassword ? 'text' : 'password'}
-                show={showConfirmPassword}
-                changeShow={changeShowConfirmPassword}
-              />
+              {rightColumnAccount.map((field, i) => (
+                <Field
+                  key={i}
+                  name={field.name}
+                  validate= {
+                    fieldNames.repeatPassword === field.name
+                      ? [confirmPassword, matchInput]
+                      : null
+                  }
+                  label={field.label}
+                  endAdornment={field.endAdornment}
+                  component={BootstrapInput}
+                  type={
+                    fieldNames.userName === field.name
+                      ? field.type
+                      : field.type(showPassword, showConfirmPassword)
+                  }
+                  show={
+                    fieldNames.userName !== field.name
+                      ? field.show(showPassword, showConfirmPassword)
+                      : null
+                  }
+                  changeShow={
+                    fieldNames.userName !== field.name
+                      ? field.changeShow(changeShowPassword, changeShowConfirmPassword)
+                      : null
+                  }
+                />
+              ))}
               <ButtonGroup
                 push={push}
                 hidden

@@ -1,5 +1,5 @@
 import { tabList, fieldNames } from 'utils/consts'
-import { initialize, reset } from 'redux-form'
+import { initialize } from 'redux-form'
 import moment from 'moment'
 
 export function saveInLocalStorage (value, dispatch, props) {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import AddingNewUsers from 'components/addingNewUser/AddingNewUsers'
 import {
   withStyles,
   Grid,
@@ -8,8 +7,6 @@ import {
 } from '@material-ui/core'
 import { Logo, AddUser, ListOfUsers } from 'utils/icons'
 import { mainStyles } from 'styles/styles'
-import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
-import UsersList from 'components/listOfUsers/UserView'
 import { Route, Switch } from 'react-router'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -19,6 +16,8 @@ import { collectiveActions } from 'actions/action'
 import { editingUser } from 'actions/listOfUsersActions'
 import { paginationActions } from 'actions/paginationActions'
 import classNames from 'classnames'
+import routes from 'utils/route'
+import { headerLink } from 'utils/consts'
 
 class MainContainer extends Component {
   static AddNewUser (classes) {
@@ -59,8 +58,13 @@ class MainContainer extends Component {
     this.props.changeEditingUser()
   }
 
+  handlerClickListOfUsers = () => {
+    this.props.setFilter('')
+    this.props.changePage(1)
+  }
+
   render () {
-    const { classes, changePage, setFilter, location: { pathname: path } } = this.props
+    const { classes, location: { pathname: path } } = this.props
 
     return (
       <div className={classes.root}>
@@ -71,67 +75,38 @@ class MainContainer extends Component {
                 {Logo}
               </div>
               <div className={classes.logo}>
-                <Link
-                  to='/create-user/account'
-                  className={classes.linkUnderlain}
-                  onClick={this.handlerClickAddUser}
-                >
-                  <BottomNavigationAction
-                    icon={MainContainer.AddNewUser(classes)}
-                    className={classNames(
-                      classes.link,
-                      {
-                        [classes.activeLink]: path.indexOf('create-user') !== -1
-                      }
-                    )}
-                    disableRipple
-                  />
-                </Link>
-                <Link
-                  to='/list-of-user'
-                  className={classes.linkUnderlain}
-                  onClick={() => {
-                    setFilter('')
-                    changePage(1)
-                  }}
-                >
-                  <BottomNavigationAction
-                    icon={MainContainer.ListAllUsers(classes)}
-                    className={classNames(
-                      classes.link,
-                      {
-                        [classes.activeLink]: path.indexOf('create-user') === -1
-                      }
-                    )}
-                    disableRipple
-                  />
-                </Link>
+                {headerLink.map((link, i) => (
+                  <Link
+                    to={link.linkTo}
+                    className={classes.linkUnderlain}
+                    onClick={this[link.onClick]}
+                    key={i}
+                  >
+                    <BottomNavigationAction
+                      icon={MainContainer[link.icon](classes)}
+                      className={classNames(
+                        classes.link,
+                        {
+                          [classes.activeLink]: link.classActive(path)
+                        }
+                      )}
+                      disableRipple
+                    />
+                  </Link>
+                ))}
               </div>
             </div>
           </Grid>
           <Grid item xs={12} onClick={this.hiddenButtonDeleteRow}>
             <Switch>
-              <Route
-                exact
-                path='/create-user/:name'
-                component={AddingNewUsers}
-              />
-              <Route
-                exact
-                path='/list-of-user'
-                component={ListOfAllUsers}
-              />
-              <Route
-                exact
-                path='/user/:id'
-                component={UsersList}
-              />
-              <Route
-                exact
-                path='/edit-user/:id'
-                component={AddingNewUsers}
-              />
-              <Route component={AddingNewUsers} />
+              {routes.map((route, i) => (
+                <Route
+                  exact = {!!route.exact}
+                  path = {route.path}
+                  component={route.component}
+                  key={i}
+                />
+              ))}
             </Switch>
           </Grid>
         </Grid>
