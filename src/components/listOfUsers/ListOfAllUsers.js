@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { stylesList } from 'styles/styles'
-import { deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
+import { addUsers, deleteUsers, editingUser, loadUsers } from "actions/listOfUsersActions";
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import SearchListOfUsers from 'components/commonComponents/SearchListOfUsers'
@@ -64,7 +64,8 @@ class ListOfAllUsers extends Component {
       changeRowsPerPage,
       count,
       setFilter,
-      filter
+      filter,
+      generateUsers
     } = this.props
 
     return (
@@ -80,6 +81,7 @@ class ListOfAllUsers extends Component {
           loadUsersList={debounce(loadUsersList, 500)}
           setFilter={setFilter}
           filter={filter}
+          generateUsers={generateUsers}
         />
         <UsersList
           usersList={usersList}
@@ -147,7 +149,8 @@ const mapDispatchToProps = {
   changeConfirmation: collectiveActions.openConfirmation,
   changePage: paginationActions.page,
   changeRowsPerPage: paginationActions.rowsPerPage,
-  setFilter: collectiveActions.filter
+  setFilter: collectiveActions.filter,
+  generateUsers: addUsers
 }
 
 export default compose(

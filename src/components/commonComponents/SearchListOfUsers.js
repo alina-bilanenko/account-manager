@@ -6,6 +6,7 @@ import {
   FormControl
 } from '@material-ui/core'
 import PropTypes from 'prop-types'
+import { generate } from 'utils/functions'
 
 const styles = {
   root: {
@@ -29,33 +30,44 @@ const styles = {
   }
 }
 
-const SearchListOfUsers = ({ loadUsersList, classes, setFilter, filter }) => (
-  <div className={classes.root}>
-    <FormControl className={classes.margin}>
-      <InputLabel
-        FormLabelClasses={{
-          root: classes.cssLabel,
-          focused: classes.cssFocused
-        }}
-        htmlFor='custom-css-input'
-      >
-        First name or Last name
-      </InputLabel>
-      <Input
-        classes={{
-          underline: classes.cssUnderline
-        }}
-        id='custom-css-input'
-        value={filter}
-        onChange={(e) => {
-          const filter = e.target.value
-          setFilter(filter)
-          loadUsersList(filter)
-        }}
-      />
-    </FormControl>
-  </div>
-)
+const SearchListOfUsers = ({ loadUsersList, classes, setFilter, filter, generateUsers }) => {
+  const generateUsersList = () => {
+    const users = generate()
+    users.forEach(item => {
+      generateUsers(item)
+    })
+    loadUsersList(filter)
+  }
+  return (
+    <div className={classes.root}>
+      <FormControl className={classes.margin}>
+        <InputLabel
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused
+          }}
+          htmlFor='custom-css-input'
+        >
+          First name or Last name
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline
+          }}
+          id='custom-css-input'
+          value={filter}
+          onChange={(e) => {
+            const filter = e.target.value
+            setFilter(filter)
+            loadUsersList(filter)
+          }}
+        />
+      </FormControl>
+      <button onClick={generateUsersList}>
+        Generate
+      </button>
+    </div>
+  )}
 
 SearchListOfUsers.propTypes = {
   loadUsersList: PropTypes.func,

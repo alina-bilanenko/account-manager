@@ -20,7 +20,6 @@ import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData'
 import routesAddUsers from 'utils/routesAddUsers'
-// import { generate } from 'utils/functions'
 
 class AddingNewUsers extends Component {
   componentDidMount () {
@@ -30,11 +29,6 @@ class AddingNewUsers extends Component {
     }
 
     if (this.props.isCreateUser) this.props.changeEditingUser()
-
-    // const users = generate()
-    // users.forEach(item => {
-    //   this.props.handlerAddUsers(item)
-    // })
   }
 
   handleChangeTab = (e, value) => {
