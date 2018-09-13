@@ -113,7 +113,6 @@ function ImageLoader (props) {
             crop={crop}
             minWidth={20}
             minHeight={20}
-            aspectRatio={16 / 9}
             onComplete={onCropComplete}
             onChange={onCropChange}
           />

@@ -108,7 +108,8 @@ export const initialState = {
       x: 10,
       y: 10,
       width: 20,
-      height: 20
+      height: 20,
+      aspect: 20 / 20
     },
     modalOpenDialogCrop: false
   },
