@@ -1,9 +1,11 @@
 import BirthDate from 'components/commonComponents/BirthDate'
-import { Calendar } from 'utils/icons'
+import { Calendar, Close } from "utils/icons";
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
+import { BottomNavigationAction } from "@material-ui/core";
+import React from "react";
 
 export const mainLanguage = [
   { value: 'en', label: 'English' },
@@ -335,28 +337,28 @@ export const headerLink = [
 ]
 
 export const rightColumnAccount = [
-    {
-      name: fieldNames.userName,
-      label: 'User name',
-      endAdornment: false,
-      type: 'text'
-    },
-    {
-      name: fieldNames.password,
-      label: 'Password',
-      endAdornment: true,
-      type: (showPassword) => showPassword ? 'text' : 'password',
-      show: showPassword => showPassword,
-      changeShow: changeShowPassword => changeShowPassword
-    },
-    {
-      name: fieldNames.repeatPassword,
-      label: 'Repeat Password',
-      endAdornment: true,
-      type: (showPassword, showConfirmPassword) => showConfirmPassword ? 'text' : 'password',
-      show: (showPassword, showConfirmPassword) => showConfirmPassword,
-      changeShow: (changeShowPassword, changeShowConfirmPassword) => changeShowConfirmPassword
-    }
+  {
+    name: fieldNames.userName,
+    label: 'User name',
+    endAdornment: false,
+    type: 'text'
+  },
+  {
+    name: fieldNames.password,
+    label: 'Password',
+    endAdornment: true,
+    type: (showPassword) => showPassword ? 'text' : 'password',
+    show: showPassword => showPassword,
+    changeShow: changeShowPassword => changeShowPassword
+  },
+  {
+    name: fieldNames.repeatPassword,
+    label: 'Repeat Password',
+    endAdornment: true,
+    type: (showPassword, showConfirmPassword) => showConfirmPassword ? 'text' : 'password',
+    show: (showPassword, showConfirmPassword) => showConfirmPassword,
+    changeShow: (changeShowPassword, changeShowConfirmPassword) => changeShowConfirmPassword
+  }
 ]
 
 export const rightColumnCapabilities = [
@@ -375,5 +377,18 @@ export const rightColumnCapabilities = [
     type: 'text',
     maxLength: '300',
     multiline: true
+  }
+]
+
+export const completeNavigationAction = [
+  {
+    icon: 'Continue',
+    className: (classes) => classes.unsavedUserDataTextBlack,
+    click: (completeData) => completeData
+  },
+  {
+    icon: Close,
+    className: (classes) => classes.rightIcons,
+    click: (completeData, closeComplete) => closeComplete
   }
 ]

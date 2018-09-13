@@ -122,6 +122,7 @@ export function editingUser (id, complete = false) {
           type: 'HAS_UNSAVED_DATA',
           hasUnsavedData: false
         })
+        return
       }
     }
     const user = id

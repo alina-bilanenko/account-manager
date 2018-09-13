@@ -4,8 +4,8 @@ import {
   BottomNavigationAction,
   withStyles
 } from '@material-ui/core'
-import { Close } from 'utils/icons'
 import PropTypes from 'prop-types'
+import { completeNavigationAction } from 'utils/consts'
 
 const styles = theme => ({
   unsavedUserData: {
@@ -45,18 +45,15 @@ const CompleteUnsavedData = ({ classes, completeData, closeComplete }) => (
     >
       You have an unsaved user data. Do you want to complete it?
     </Typography>
-    <BottomNavigationAction
-      icon='Continue'
-      className={classes.unsavedUserDataTextBlack}
-      disableRipple
-      onClick={completeData}
-    />
-    <BottomNavigationAction
-      icon={Close}
-      className={classes.rightIcons}
-      disableRipple
-      onClick={closeComplete}
-    />
+    {completeNavigationAction.map((action, i) => (
+      <BottomNavigationAction
+        key={i}
+        icon={action.icon}
+        className={action.className(classes)}
+        disableRipple
+        onClick={action.click(completeData, closeComplete)}
+      />
+    ))}
   </div>
 )
 
