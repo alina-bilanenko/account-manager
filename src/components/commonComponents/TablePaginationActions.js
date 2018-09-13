@@ -2,10 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
-import FirstPageIcon from '@material-ui/icons/FirstPage'
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
-import LastPageIcon from '@material-ui/icons/LastPage'
+import { iconTablePagination } from 'utils/consts'
 
 const actionsStyles = theme => ({
   root: {
@@ -28,49 +25,19 @@ class TablePaginationActions extends React.Component {
 
     return (
       <div className={classes.root}>
-        <IconButton
-          onClick={event => onChangePage(event, 1)}
-          disabled={page === 1}
-          aria-label='First Page'
-        >
-          {theme.direction === 'rtl'
-            ? <LastPageIcon />
-            : <FirstPageIcon />
-          }
-        </IconButton>
-        <IconButton
-          onClick={event => onChangePage(event, page - 1)}
-          disabled={page === 1}
-          aria-label='Previous Page'
-        >
-          {theme.direction === 'rtl'
-            ? <KeyboardArrowRight />
-            : <KeyboardArrowLeft />
-          }
-        </IconButton>
-        <IconButton
-          onClick={event => onChangePage(event, page + 1)}
-          disabled={page >= Math.ceil(count / rowsPerPage)}
-          aria-label='Next Page'
-        >
-          {theme.direction === 'rtl'
-            ? <KeyboardArrowLeft />
-            : <KeyboardArrowRight />
-          }
-        </IconButton>
-        <IconButton
-          onClick={event => onChangePage(
-            event,
-            Math.max(1, Math.ceil(count / rowsPerPage))
-          )}
-          disabled={page >= Math.ceil(count / rowsPerPage)}
-          aria-label='Last Page'
-        >
-          {theme.direction === 'rtl'
-            ? <FirstPageIcon />
-            : <LastPageIcon />
-          }
-        </IconButton>
+        {iconTablePagination.map((icon, i) => (
+          <IconButton
+            key={i}
+            onClick={event => onChangePage(event, icon.page(page, count, rowsPerPage))}
+            disabled={icon.disabled(page, count, rowsPerPage)}
+            aria-label={icon.label}
+          >
+            {theme.direction === 'rtl'
+              ? icon.isDirectionRtl
+              : icon.noDirectionRtl
+            }
+          </IconButton>
+        ))}
       </div>
     )
   }

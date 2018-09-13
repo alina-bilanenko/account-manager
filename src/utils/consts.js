@@ -4,8 +4,11 @@ import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
-import { BottomNavigationAction } from "@material-ui/core";
 import React from "react";
+import FirstPageIcon from '@material-ui/icons/FirstPage'
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
+import LastPageIcon from '@material-ui/icons/LastPage'
 
 export const mainLanguage = [
   { value: 'en', label: 'English' },
@@ -390,5 +393,36 @@ export const completeNavigationAction = [
     icon: Close,
     className: (classes) => classes.rightIcons,
     click: (completeData, closeComplete) => closeComplete
+  }
+]
+
+export const iconTablePagination = [
+  {
+    page: () => 1,
+    disabled: (page) => page === 1,
+    label: 'First Page',
+    isDirectionRtl: <LastPageIcon />,
+    noDirectionRtl: <FirstPageIcon />
+  },
+  {
+    page: (page) => page - 1,
+    disabled: (page) => page === 1,
+    label: 'Previous Page',
+    isDirectionRtl: <KeyboardArrowRight />,
+    noDirectionRtl: <KeyboardArrowLeft />
+  },
+  {
+    page: (page) => page + 1,
+    disabled: (page, count, rowsPerPage) => page >= Math.ceil(count / rowsPerPage),
+    label: 'Next Page',
+    isDirectionRtl: <KeyboardArrowLeft />,
+    noDirectionRtl: <KeyboardArrowRight />
+  },
+  {
+    page: (page, count, rowsPerPage) => Math.max(1, Math.ceil(count / rowsPerPage)),
+    disabled: (page, count, rowsPerPage) => page >= Math.ceil(count / rowsPerPage),
+    label: 'Last Page',
+    isDirectionRtl: <FirstPageIcon />,
+    noDirectionRtl: <LastPageIcon />
   }
 ]
