@@ -6,10 +6,6 @@ import {
   Tab,
   Typography
 } from '@material-ui/core'
-import Account from 'components/addingNewUser/subTabs/Account'
-import Capabilities from 'components/addingNewUser/subTabs/Capabilities'
-import Contacts from 'components/addingNewUser/subTabs/Contacts'
-import Profile from 'components/addingNewUser/subTabs/Profile'
 import classNames from 'classnames'
 import { stylesAdd } from 'styles/styles'
 import { Route } from 'react-router'
@@ -23,6 +19,7 @@ import { tabList } from 'utils/consts'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import CompleteUnsavedData from 'components/commonComponents/CompleteUnsavedData'
+import routesAddUsers from 'utils/routesAddUsers'
 // import { generate } from 'utils/functions'
 
 class AddingNewUsers extends Component {
@@ -167,57 +164,14 @@ class AddingNewUsers extends Component {
             />)
             : null
           }
-          <Route exact path='/create-user/account'
-            render={(props) => (
-              <Account
-                {...props}
-                push={push}
-                onSubmit={() => {
-                  isCreateUser
-                    ? push('/create-user/profile')
-                    : this.save('account')
-                }}
-              />
-            )}
-          />
-          <Route exact path='/create-user/profile'
-            render={(props) => (
-              <Profile
-                {...props}
-                push={push}
-                onSubmit={() => {
-                  isCreateUser
-                    ? push('/create-user/contacts')
-                    : this.save('profile')
-                }}
-              />
-            )}
-          />
-          <Route exact path='/create-user/contacts'
-            render={(props) => (
-              <Contacts
-                {...props}
-                push={push}
-                onSubmit={() => {
-                  isCreateUser
-                    ? push('/create-user/capabilities')
-                    : this.save('contacts')
-                }}
-              />
-            )}
-          />
-          <Route exact path='/create-user/capabilities'
-            render={(props) => (
-              <Capabilities
-                {...props}
-                push={push}
-                onSubmit={isCreateUser
-                  ? this.finish
-                  : () => this.save('capabilities')
-                }
-              />
-            )}
-          />
+          {routesAddUsers.map((route, i) => (
+            <Route
+              key={i}
+              exact
+              path={route.path}
+              render={(props) => (route.render(props, this.props, this.save, this.finish))}
+            />
+          ))}
         </div>
       </div>
     )

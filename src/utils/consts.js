@@ -358,3 +358,22 @@ export const rightColumnAccount = [
       changeShow: (changeShowPassword, changeShowConfirmPassword) => changeShowConfirmPassword
     }
 ]
+
+export const rightColumnCapabilities = [
+  {
+    name: fieldNames.skills,
+    label: 'Skills',
+    isMulti: true,
+    indicator: true,
+    component: IntegrationReactSelect,
+    options: skills
+  },
+  {
+    name: fieldNames.additionalInformation,
+    label: 'Additional information',
+    component: BootstrapInput,
+    type: 'text',
+    maxLength: '300',
+    multiline: true
+  }
+]

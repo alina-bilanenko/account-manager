@@ -1,12 +1,10 @@
 import React from 'react'
 import { withStyles, Grid } from '@material-ui/core'
-import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import CheckboxesGroup from 'components/commonComponents/CheckboxesGroup'
 import ButtonGroup from 'components/commonComponents/ButtonGroup'
 import { Field, reduxForm } from 'redux-form'
 import { capabilitiesValidation } from 'Validation'
-import { fieldNames, myHobbiesList, skills } from 'utils/consts'
-import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
+import { myHobbiesList, rightColumnCapabilities } from 'utils/consts'
 import { stylesCapabilities } from 'styles/styles'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -27,22 +25,20 @@ let Capabilities = (props) => {
         <Grid container>
           <Grid item xs={6} className={classes.gridItem}>
             <div className={classes.container}>
-              <Field
-                name={fieldNames.skills}
-                label='Skills'
-                isMulti
-                indicator
-                component={IntegrationReactSelect}
-                options={skills}
-              />
-              <Field
-                name={fieldNames.additionalInformation}
-                label='Additional information'
-                component={BootstrapInput}
-                type='text'
-                maxLength='300'
-                multiline
-              />
+              {rightColumnCapabilities.map((field, i) => (
+                <Field
+                  name={field.name}
+                  label={field.label}
+                  isMulti={field.isMulti}
+                  indicator={field.indicator}
+                  component={field.component}
+                  options={field.options}
+                  type={field.type}
+                  maxLength={field.maxLength}
+                  multiline={field.multiline}
+                  key={i}
+                />
+              ))}
             </div>
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
