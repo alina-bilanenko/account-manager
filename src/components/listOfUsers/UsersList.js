@@ -145,10 +145,13 @@ function UsersList (props) {
                   component={'div'}
                   labelDisplayedRows={() =>
                     `${(page - 1) * rowsPerPage + 1}-
-                     ${count < rowsPerPage * page
-      ? count
-      : rowsPerPage * page}
-                     of ${count}`}
+                     ${
+                      count < rowsPerPage * page
+                        ? count
+                        : rowsPerPage * page
+                      }
+                     of ${count}`
+                  }
                 />
               </Grid>
             </Grid>
