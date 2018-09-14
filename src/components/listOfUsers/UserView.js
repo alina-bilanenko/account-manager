@@ -21,52 +21,49 @@ class UserView extends Component {
 
   valueToTableCell = (name) => {
     const user = this.props.user
+    if (!user[name] && name !== 'checkBox') return
     let value = ''
 
-    if (name === 'checkBox') {
-      const hobbies = Object.keys(user).filter(item => {
-        return item.indexOf('checkBox') !== -1
-      })
+    switch (name) {
+      case 'checkBox':
+        const hobbies = Object.keys(user).filter(item => {
+          return item.indexOf('checkBox') !== -1
+        })
 
-      return (hobbies.map(item => (
-        myHobbiesList.map((hobie, i) => (
-          (hobie.name === item)
-            ? (<Fragment key={i}>
-              <span>{hobie.title}</span>
+        return (hobbies.map(item => (
+          myHobbiesList.map((hobie, i) => (
+            (hobie.name === item)
+              ? (<Fragment key={i}>
+                <span>{hobie.title}</span>
+                <br />
+              </Fragment>)
+              : null
+          )))
+        ))
+      case fieldNames.phone:
+        return (user[name].map((item, i) => {
+          if (!item) return null
+          return (
+            <Fragment key={i}>
+              <span>
+                {item}
+              </span>
               <br />
-            </Fragment>)
-            : null
-        )))
-      ))
-    }
+            </Fragment>
+          )
+        }))
+      case fieldNames.birthDate:
+        return moment(user[name]).format('DD.MM.YYYY')
 
-    if (name === fieldNames.phone && user[name]) {
-      return (user[name].map((item, i) => {
-        if (!item) return null
-        return (
-          <Fragment key={i}>
-            <span>
-              {item}
-            </span>
-            <br />
-          </Fragment>
-        )
-      })
-      )
-    }
+      case fieldNames.skills:
+        user[name].map(item => (
+          value = value + item.label + ', '
+        ))
+        return value
 
-    if (name === fieldNames.birthDate) {
-      return user[name] ? moment(user[name]).format('DD.MM.YYYY') : user[name]
+      default:
+        return user[name]
     }
-
-    if (name === fieldNames.skills && user[name]) {
-      user[name].map(item => (
-        value = value + item.label + ', '
-      ))
-      return value
-    }
-
-    return user[name]
   }
 
   editUser = (tabName) => {

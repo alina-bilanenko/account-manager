@@ -4,11 +4,13 @@ import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
-import React from 'react'
+import React, { Fragment } from 'react'
 import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import LastPageIcon from '@material-ui/icons/LastPage'
+import { Avatar } from '@material-ui/core'
+import moment from 'moment'
 
 export const mainLanguage = [
   { value: 'en', label: 'English' },
@@ -425,5 +427,48 @@ export const iconTablePagination = [
     label: 'Last Page',
     isDirectionRtl: <FirstPageIcon />,
     noDirectionRtl: <LastPageIcon />
+  }
+]
+
+export const usersListFields = [
+  {
+    column: (user, classes) => (
+      <Avatar
+        alt='photo'
+        src={user[fieldNames.photo]}
+        className={classes.bigAvatar}
+      />
+    )
+  },
+  {
+    column: (user, classes) => (
+      <Fragment>
+        <span>
+          {`${user[fieldNames.firstName]} ${user[fieldNames.lastName]}`}
+        </span>
+        <br />
+        <span className={classes.userName}>
+          {user[fieldNames.userName]}
+        </span>
+      </Fragment>
+    )
+  },
+  {
+    column: (user) => (
+      user[fieldNames.company]
+    )
+  },
+  {
+    column: (user, classes, createContact) => (
+      user[fieldNames.phone] &&
+      user[fieldNames.phone][0]
+        ? user[fieldNames.phone][0]
+        : user[fieldNames.email]
+    )
+  },
+  {
+    column: (user) => (
+      moment(user[fieldNames.lastUpdate]).fromNow()
+    )
   }
 ]

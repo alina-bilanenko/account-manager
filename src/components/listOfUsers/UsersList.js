@@ -4,18 +4,16 @@ import {
   withStyles,
   Paper,
   Grid,
-  Avatar,
   Button,
   TablePagination
 } from '@material-ui/core'
 import PlaceholderUsersList from 'components/listOfUsers/PlaceholderUsersList'
-import { fieldNames } from 'utils/consts'
-import moment from 'moment'
 import { Edit, Delete, RedDelete } from 'utils/icons'
 import { stylesUsersList } from 'styles/styles'
 import classNames from 'classnames'
 import ConfirmDeleteDialog from 'components/commonComponents/ConfirmDeleteDialog'
 import TablePaginationActionsWrapped from 'components/commonComponents/TablePaginationActions'
+import { usersListFields } from 'utils/consts'
 
 function UsersList (props) {
   const {
@@ -37,13 +35,6 @@ function UsersList (props) {
     count,
     filter
   } = props
-
-  const createContact = (user) => {
-    return user[fieldNames.phone] &&
-    user[fieldNames.phone][0]
-      ? user[fieldNames.phone][0]
-      : user[fieldNames.email]
-  }
 
   function rowClick (id) {
     editingUser(id)
@@ -83,31 +74,11 @@ function UsersList (props) {
                     )}
                   key={user.id}
                 >
-                  <Grid item xs={2} sm={2}>
-                    <Avatar
-                      alt='photo'
-                      src={user[fieldNames.photo]}
-                      className={classes.bigAvatar}
-                    />
-                  </Grid>
-                  <Grid item xs={2} sm={2}>
-                    <span>
-                      {`${user[fieldNames.firstName]} ${user[fieldNames.lastName]}`}
-                    </span>
-                    <br />
-                    <span className={classes.userName}>
-                      {user[fieldNames.userName]}
-                    </span>
-                  </Grid>
-                  <Grid item xs={2} sm={2}>
-                    {user[fieldNames.company]}
-                  </Grid>
-                  <Grid item xs={2} sm={2}>
-                    {createContact(user)}
-                  </Grid>
-                  <Grid item xs={2} sm={2}>
-                    {moment(user[fieldNames.lastUpdate]).fromNow()}
-                  </Grid>
+                  {usersListFields.map((field, i) => (
+                    <Grid item xs={2} sm={2} key={i}>
+                      {field.column(user, classes)}
+                    </Grid>
+                  ))}
                   <Grid item xs={2} sm={2} className={classes.noWrap}>
                     <Button
                       disableRipple

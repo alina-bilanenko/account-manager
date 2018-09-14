@@ -88,10 +88,6 @@ class AddingNewUsers extends Component {
     this.props.push('/list-of-user')
   }
 
-  completeData = () => {
-    this.props.changeEditingUser(null, true)
-  }
-
   closeComplete = () => {
     this.props.changehasUnsavedData(false)
     localStorage.clear()
@@ -102,7 +98,8 @@ class AddingNewUsers extends Component {
       classes,
       push,
       isCreateUser,
-      hasUnsavedData
+      hasUnsavedData,
+      changeEditingUser
     } = this.props
 
     const tabName = this.props.match.params.name || 'account'
@@ -153,7 +150,7 @@ class AddingNewUsers extends Component {
           </AppBar>
           {hasUnsavedData && isCreateUser
             ? (<CompleteUnsavedData
-              completeData={this.completeData}
+              completeData={() => changeEditingUser(null, true)}
               closeComplete={this.closeComplete}
             />)
             : null
