@@ -206,7 +206,7 @@ AddingNewUsers.propTypes = {
   push: PropsTypes.func,
   match: PropsTypes.object,
   isCreateUser: PropsTypes.bool,
-  changeEditingUser: PropsTypes.object,
+  changeEditingUser: PropsTypes.func,
   resetForm: PropsTypes.func,
   isValid: PropsTypes.object,
   handlerUpdateUsers: PropsTypes.func,

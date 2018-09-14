@@ -111,7 +111,10 @@ export function editingUser (id, complete = false) {
   return async (dispatch) => {
     if (!id) {
       const userLocalStorage = await JSON.parse(localStorage.getItem('form'))
-      if (!userLocalStorage) return
+      if (!userLocalStorage) {
+        initialValueForm({}, dispatch)
+        return
+      }
       dispatch({
         type: 'HAS_UNSAVED_DATA',
         hasUnsavedData: true
