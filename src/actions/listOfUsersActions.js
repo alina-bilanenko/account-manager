@@ -133,6 +133,5 @@ export function editingUser (id, complete = false) {
       user: user
     })
     initialValueForm(user, dispatch)
-
   }
 }

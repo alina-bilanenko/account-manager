@@ -1,6 +1,6 @@
-import AddingNewUsers from "components/addingNewUser/AddingNewUsers";
-import ListOfAllUsers from "components/listOfUsers/ListOfAllUsers";
-import UserView from "components/listOfUsers/UserView";
+import AddingNewUsers from 'components/addingNewUser/AddingNewUsers'
+import ListOfAllUsers from 'components/listOfUsers/ListOfAllUsers'
+import UserView from 'components/listOfUsers/UserView'
 
 const routes = [
   {

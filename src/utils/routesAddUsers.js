@@ -1,8 +1,8 @@
-import Account from "components/addingNewUser/subTabs/Account";
-import Profile from "components/addingNewUser/subTabs/Profile";
-import Contacts from "components/addingNewUser/subTabs/Contacts";
-import Capabilities from "components/addingNewUser/subTabs/Capabilities";
-import React from "react";
+import Account from 'components/addingNewUser/subTabs/Account'
+import Profile from 'components/addingNewUser/subTabs/Profile'
+import Contacts from 'components/addingNewUser/subTabs/Contacts'
+import Capabilities from 'components/addingNewUser/subTabs/Capabilities'
+import React from 'react'
 
 const routesAddUsers = [
   {

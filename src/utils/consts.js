@@ -1,10 +1,10 @@
 import BirthDate from 'components/commonComponents/BirthDate'
-import { Calendar, Close } from "utils/icons";
+import { Calendar, Close } from 'utils/icons'
 import BootstrapInput from 'components/commonComponents/BootstrapInput'
 import GenderRadioBtns from 'components/commonComponents/GenderRadioBtns'
 import GoogleAddress from 'components/commonComponents/GoogleAddress'
 import IntegrationReactSelect from 'components/commonComponents/IntegrationReactSelect'
-import React from "react";
+import React from 'react'
 import FirstPageIcon from '@material-ui/icons/FirstPage'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
@@ -109,7 +109,7 @@ export const initialState = {
       y: 10,
       width: 20,
       height: 20,
-      aspect: 20 / 20
+      aspect: 1
     },
     modalOpenDialogCrop: false
   },

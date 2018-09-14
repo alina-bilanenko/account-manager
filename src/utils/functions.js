@@ -18,7 +18,6 @@ export function saveInLocalStorage (value, dispatch, props) {
 }
 
 export function initialValueForm (user, dispatch) {
-
   if (Object.keys(user).length === 0) {
     tabList.forEach(item => {
       dispatch(initialize(item.name))

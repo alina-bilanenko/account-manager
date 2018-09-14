@@ -67,13 +67,15 @@ const SearchListOfUsers = ({ loadUsersList, classes, setFilter, filter, generate
         Generate
       </button>
     </div>
-  )}
+  )
+}
 
 SearchListOfUsers.propTypes = {
   loadUsersList: PropTypes.func,
   classes: PropTypes.object,
   setFilter: PropTypes.func,
-  filter: PropTypes.string
+  filter: PropTypes.string,
+  generateUsers: PropTypes.func
 }
 
 export default withStyles(styles)(SearchListOfUsers)

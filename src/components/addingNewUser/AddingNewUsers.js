@@ -203,7 +203,19 @@ const mapDispatchToProps = {
 
 AddingNewUsers.propTypes = {
   classes: PropsTypes.object,
-  push: PropsTypes.func
+  push: PropsTypes.func,
+  match: PropsTypes.object,
+  isCreateUser: PropsTypes.bool,
+  changeEditingUser: PropsTypes.object,
+  resetForm: PropsTypes.func,
+  isValid: PropsTypes.object,
+  handlerUpdateUsers: PropsTypes.func,
+  changehasUnsavedData: PropsTypes.func,
+  hasUnsavedData: PropsTypes.bool,
+  user: PropsTypes.object,
+  formData: PropsTypes.object,
+  handlerAddUsers: PropsTypes.func
+
 }
 
 export default compose(

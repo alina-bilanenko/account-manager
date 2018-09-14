@@ -69,7 +69,7 @@ let Account = (props) => {
                 <Field
                   key={i}
                   name={field.name}
-                  validate= {
+                  validate={
                     fieldNames.repeatPassword === field.name
                       ? [confirmPassword, matchInput]
                       : null

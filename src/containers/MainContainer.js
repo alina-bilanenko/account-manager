@@ -101,8 +101,8 @@ class MainContainer extends Component {
             <Switch>
               {routes.map((route, i) => (
                 <Route
-                  exact = {!!route.exact}
-                  path = {route.path}
+                  exact={!!route.exact}
+                  path={route.path}
                   component={route.component}
                   key={i}
                 />

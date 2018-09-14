@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { stylesList } from 'styles/styles'
-import { addUsers, deleteUsers, editingUser, loadUsers } from "actions/listOfUsersActions";
+import { addUsers, deleteUsers, editingUser, loadUsers } from 'actions/listOfUsersActions'
 import { compose } from 'redux'
 import { collectiveActions } from 'actions/action'
 import SearchListOfUsers from 'components/commonComponents/SearchListOfUsers'
@@ -124,7 +124,8 @@ ListOfAllUsers.propTypes = {
   page: PropTypes.number,
   changeRowsPerPage: PropTypes.func,
   count: PropTypes.number,
-  filter: PropTypes.string
+  filter: PropTypes.string,
+  generateUsers: PropTypes.func
 }
 
 const mapStateToProps = (store) => {
