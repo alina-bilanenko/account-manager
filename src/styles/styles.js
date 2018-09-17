@@ -123,7 +123,8 @@ export const stylesAccount = theme => ({
   },
   imageLoader: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    objectFit: 'cover'
   }
 })
 
@@ -356,14 +357,14 @@ export const stylesButtonGroup = () => ({
       backgroundColor: '#5E97F3'
     }
   },
-  hidden: {
-    visibility: 'hidden'
-  },
   finish: {
     backgroundColor: '#4EE4A5',
     '&:hover': {
       backgroundColor: '#4EE4A5'
     }
+  },
+  position: {
+    justifyContent: 'flex-end'
   }
 })
 
@@ -680,13 +681,11 @@ export const stylesUsersList = theme => ({
     whiteSpace: 'nowrap'
   },
   hiddenDelete: {
-    visibility: 'visible !important',
     backgroundColor: '#FFFFFF',
     position: 'absolute',
     right: '0'
   },
   columnDelete: {
-    visibility: 'hidden',
     position: 'absolute',
     right: '0'
   },
@@ -719,9 +718,6 @@ export const stylesUsersList = theme => ({
     fontWeight: '500',
     lineHeight: 'normal',
     color: '#4E86E4'
-  },
-  hiddenButtonsEditDelete: {
-    visibility: 'hidden'
   }
 })
 
@@ -754,7 +750,8 @@ export const stylesUserView = theme => ({
     height: 200,
     margin: '35px 58px',
     padding: '0',
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    objectFit: 'cover'
   },
   firstRow: {
     verticalAlign: 'top',

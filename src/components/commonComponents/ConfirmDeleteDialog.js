@@ -27,7 +27,7 @@ function ConfirmDeleteDialog (props) {
         id='responsive-dialog-title'
         className={classes.dialog}
       >
-        {'Are you sure you want to delete the user?'}
+        Are you sure you want to delete the user?
       </DialogTitle>
       <DialogActions>
         <Button

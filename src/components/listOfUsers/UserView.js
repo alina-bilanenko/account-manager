@@ -105,11 +105,13 @@ class UserView extends Component {
                           <TableCell className={classes.tableText} />
                         </TableRow>
                         <TableRow>
-                          <TableCell rowSpan={item.data.length}
+                          <TableCell
+                            rowSpan={item.data.length}
                             className={
                               classNames(
                                 classes.tableText, classes.firstRow)
-                            }>
+                            }
+                          >
                             {item.title}
                             <Button
                               disableRipple

@@ -15,19 +15,23 @@ const ButtonGroup = (props) => {
   } = props
 
   return (
-    <div className={classes.buttonGroup}>
-      <Button
-        onClick={url ? () => push(url) : null}
-        variant='contained'
-        color='primary'
-        className={
-          classNames(
-            classes.button,
-            { [classes.hidden]: hidden || !isCreateUser }
-          )
-        }>
-        Back
-      </Button>
+    <div className={
+      classNames(
+        classes.buttonGroup,
+        { [classes.position]: hidden || !isCreateUser }
+      )
+    }>
+      {!hidden && isCreateUser
+        ? (<Button
+          onClick={url ? () => push(url) : null}
+          variant='contained'
+          color='primary'
+          className={classes.button}
+        >
+          Back
+        </Button>)
+        : null
+      }
       <Button
         type='submit'
         variant='contained'

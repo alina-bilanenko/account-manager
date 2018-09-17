@@ -79,57 +79,63 @@ function UsersList (props) {
                       {field.column(user, classes)}
                     </Grid>
                   ))}
-                  <Grid item xs={2} sm={2} className={classes.noWrap}>
-                    <Button
-                      disableRipple
-                      className={classNames(
-                        classes.button,
-                        { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
-                      )}
-                      onClick={() => rowClick(user.id)}
-                    >
-                      {Edit}
-                    </Button>
-                    <Button
-                      id='show-delete-button'
-                      disableRipple
-                      className={classNames(
-                        classes.button,
-                        { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
-                      )}
-                      onClick={
-                        () => deleteUserInd(
-                          user.id === indDeleteUser
-                            ? 0
-                            : user.id)
+                  {user.id !== indDeleteUser
+                    ? (<Grid item xs={2} sm={2} className={classes.noWrap}>
+                      <Button
+                        disableRipple
+                        className={classNames(
+                          classes.button,
+                          { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
+                        )}
+                        onClick={() => rowClick(user.id)}
+                      >
+                        {Edit}
+                      </Button>
+                      <Button
+                        id='show-delete-button'
+                        disableRipple
+                        className={classNames(
+                          classes.button,
+                          { [classes.hiddenButtonsEditDelete]: user.id === indDeleteUser }
+                        )}
+                        onClick={
+                          () => deleteUserInd(
+                            user.id === indDeleteUser
+                              ? 0
+                              : user.id)
+                        }
+                      >
+                        {Delete}
+                      </Button>
+                    </Grid>)
+                    : null
+                  }
+                  {user.id === indDeleteUser
+                    ? (<div
+                      className={
+                        classNames(
+                          classes.columnDelete,
+                          { [classes.hiddenDelete]: user.id === indDeleteUser })
                       }
                     >
-                      {Delete}
-                    </Button>
-                  </Grid>
-                  <div
-                    className={
-                      classNames(
-                        classes.columnDelete,
-                        { [classes.hiddenDelete]: user.id === indDeleteUser })
-                    }
-                  >
-                    <Button
-                      id='delete-button'
-                      disableRipple
-                      className={classes.deleteButton}
-                      onClick={changeConfirmation}
-                    >
-                      {RedDelete}
-                      <span>delete</span>
-                      <ConfirmDeleteDialog
-                        classes={classes}
-                        deleteUserInd={deleteUserInd}
-                        openConfirmation={openConfirmation}
-                        deleteConfirmation={() => deleteUsers(indDeleteUser)}
-                      />
-                    </Button>
-                  </div>
+                      <Button
+                        id='delete-button'
+                        disableRipple
+                        className={classes.deleteButton}
+                        onClick={changeConfirmation}
+                      >
+                        {RedDelete}
+                        <span>delete</span>
+                        <ConfirmDeleteDialog
+                          classes={classes}
+                          deleteUserInd={deleteUserInd}
+                          openConfirmation={openConfirmation}
+                          deleteConfirmation={() => deleteUsers(indDeleteUser)}
+                        />
+                      </Button>
+                    </div>)
+                    : null
+                  }
                 </Grid>
               )
             })}
@@ -145,11 +151,10 @@ function UsersList (props) {
                   component={'div'}
                   labelDisplayedRows={() =>
                     `${(page - 1) * rowsPerPage + 1}-
-                     ${
-                      count < rowsPerPage * page
-                        ? count
-                        : rowsPerPage * page
-                      }
+                     ${count < rowsPerPage * page
+      ? count
+      : rowsPerPage * page
+    }
                      of ${count}`
                   }
                 />

@@ -29,7 +29,7 @@ class IntegrationReactSelect extends React.Component {
           classNamePrefix='react-select'
           className={classNames(
             'react-select-container',
-            { 'error': meta.error && meta.touched }
+            { error: meta.error && meta.touched }
           )}
           value={input.value}
           onChange={input.onChange}
