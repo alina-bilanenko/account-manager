@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === 'production') {
   historyOptions.basename = new URL(homepage).pathname + '/'
 }
 
+// const history = createBrowserHistory(historyOptions)
 const history = createBrowserHistory(historyOptions)
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
